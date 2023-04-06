@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\PeakTrackMeasurementView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ProgView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ResonanceMeasurementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +21,13 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\PeakTrackMeasurementView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\ProgView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ResonanceMeasurementView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
