@@ -16,7 +16,7 @@
         <vm:ProgViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <md:Card Background="{StaticResource PrimaryHueMidForegroundBrush}" Margin="10" Grid.Row="0" Padding="10">
+        <md:Card Background="{StaticResource PrimaryHueLightBrush}" Margin="10" Grid.Row="0" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
