@@ -3,16 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:v="clr-namespace:BodeGUI1.View"
              mc:Ignorable="d" 
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:ProgViewModel/>
     </UserControl.DataContext>
     <Grid>
-            
+        <md:Card Background="{StaticResource PrimaryHueMidForegroundBrush}" Margin="10" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <md:Card>
+                    <TextBlock Text="Application" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}"/>
+                </md:Card>
+            </Grid>
+        </md:Card>
     </Grid>
 </UserControl>
