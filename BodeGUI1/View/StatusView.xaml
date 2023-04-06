@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="BodeGUI1.View.StatusView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BodeGUI1.View"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:v="clr-namespace:BodeGUI1.View"
+             xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200">
+    <UserControl.DataContext>
+        <vm:BodeStatusViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <StackPanel>
+            <md:Card Background="{Binding }">
+                <TextBlock Text="Connection Status" Style="{DynamicResource MaterialDesignBody1TextBlock}"/>
+            </md:Card>
+        </StackPanel>  
+    </Grid>
+</UserControl>

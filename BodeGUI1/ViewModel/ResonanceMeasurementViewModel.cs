@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BodeGUI1.ViewModel
 {
-    internal class ResonanceMeasurementViewModel : ViewModelBase
+    internal class ResonanceMeasurementViewModel : MeasurementViewModelBase
     {
+
     }
 }
