@@ -24,4 +24,3 @@ namespace BodeGUI1.ViewModel
         }
     }
 }
-}
