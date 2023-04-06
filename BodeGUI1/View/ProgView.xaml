@@ -16,15 +16,24 @@
         <vm:ProgViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <md:Card Background="{StaticResource PrimaryHueMidForegroundBrush}" Margin="10" Grid.Row="0">
+        <md:Card Background="{StaticResource PrimaryHueMidForegroundBrush}" Margin="10" Grid.Row="0" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <md:Card>
-                    <TextBlock Text="Application" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}"/>
+                <md:Card Background="{StaticResource SecondaryHueMidBrush}" Padding="20">
+                    <TextBlock Text="Bode Application" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center"/>
                 </md:Card>
+                <StackPanel Grid.Row="1">
+                    <TabControl Style="{DynamicResource MaterialDesignFilledTabControl}">
+                        <TabItem Header="Resonance"/>
+                        <TabItem Header="Peak Tacking"/>
+                    </TabControl>
+                    <ContentControl>
+
+                    </ContentControl>
+                </StackPanel>
             </Grid>
         </md:Card>
     </Grid>
