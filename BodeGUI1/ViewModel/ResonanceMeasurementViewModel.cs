@@ -1,13 +1,25 @@
-﻿using System;
+﻿using BodeGUI1.ViewModel.DataModel;
+using BodeGUI1.ViewModel.UI;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BodeGUI1.ViewModel
 {
-    internal class ResonanceMeasurementViewModel : MeasurementViewModelBase
+    internal class ResonanceMeasurementViewModel : ViewModelBase
     {
-
+        public ResonanceMeasurementViewModel()
+        {
+            
+        }
+        private ObservableCollection<ResonanceSweepDataViewModel> _sweepData;
+        public ObservableCollection<ResonanceSweepDataViewModel> SweepData
+        {
+            get { return _sweepData; }
+            set { _sweepData = value; OnPropertyChanged(); }
+        }
     }
 }

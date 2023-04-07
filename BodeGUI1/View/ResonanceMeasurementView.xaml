@@ -13,6 +13,12 @@
         <vm:ResonanceMeasurementViewModel/>
     </UserControl.DataContext>
     <md:Card Height="500" Width="800">
-
+        <ContentControl Content="{Binding View}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vm:BodeStatusViewModel}">
+                    <v:StatusView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
     </md:Card>
 </UserControl>

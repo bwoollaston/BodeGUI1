@@ -12,11 +12,18 @@
     <UserControl.DataContext>
         <vm:BodeStatusViewModel/>
     </UserControl.DataContext>
-    <Grid>
-        <StackPanel>
-            <md:Card Background="{Binding }">
-                <TextBlock Text="Connection Status" Style="{DynamicResource MaterialDesignBody1TextBlock}"/>
+    <StackPanel>
+        <md:Card Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}"  Background="{Binding StatusCollection[0].Background}">
+                <TextBlock Text="{Binding StatusCollection[0].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center"/>
+            </md:Card>
+        <md:Card Height="{Binding StatusCollection[1].Height}" Width="{Binding StatusCollection[1].Width}" Background="{Binding StatusCollection[1].Background}">
+                <TextBlock Text="{Binding StatusCollection[1].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center"/>
+            </md:Card>
+        <md:Card Height="{Binding StatusCollection[2].Height}" Width="{Binding StatusCollection[2].Width}" Background="{Binding StatusCollection[2].Background}">
+                <TextBlock Text="{Binding StatusCollection[2].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center"/>
+            </md:Card>
+        <md:Card Height="{Binding StatusCollection[3].Height}" Width="{Binding StatusCollection[3].Width}" Background="{Binding StatusCollection[3].Background}" >
+                <TextBlock Text="{Binding StatusCollection[3].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center"/>
             </md:Card>
         </StackPanel>  
-    </Grid>
 </UserControl>

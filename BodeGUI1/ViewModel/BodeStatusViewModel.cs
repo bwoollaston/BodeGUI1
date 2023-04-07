@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using BodeGUI1.ViewModel.UI;
 
 namespace BodeGUI1.ViewModel
 {
@@ -10,41 +14,15 @@ namespace BodeGUI1.ViewModel
     {
         public BodeStatusViewModel()
         {
-            CalibrationStatus = false;
-            ConnectionStatus = false;
-            LoadCalibrationStatus = false;
-            ShortCalibrationStatus = false;
-            OpenCalibrationStatus = false;
+            StatusCollection = new ObservableCollection<StatusBase> { new StatusBase("Connect"),new StatusBase("Open"),
+                                                                      new StatusBase("Short") , new StatusBase("Load") };
         }
-        private bool _calibrationStatus;
-        public bool CalibrationStatus
+
+        private ObservableCollection<StatusBase> _statusCollection;
+        public ObservableCollection<StatusBase> StatusCollection
         {
-            get { return _calibrationStatus; }
-            set { _calibrationStatus = value; OnPropertyChanged(); }
-        }
-        private bool _connectionStatus;
-        public bool ConnectionStatus
-        {
-            get { return _connectionStatus; }
-            set { _connectionStatus = value; OnPropertyChanged(); }
-        }
-        private bool _loadCalibrationStatus;
-        public bool LoadCalibrationStatus
-        {
-            get { return _loadCalibrationStatus; }
-            set { _loadCalibrationStatus = value; OnPropertyChanged(); }
-        }
-        private bool _shortCalibrationStatus;
-        public bool ShortCalibrationStatus
-        {
-            get { return _shortCalibrationStatus; }
-            set { _shortCalibrationStatus=value; OnPropertyChanged(); }
-        }
-        private bool _openCalibrationStatus;
-        public bool OpenCalibrationStatus
-        {
-            get { return _openCalibrationStatus; }
-            set { _openCalibrationStatus = value; OnPropertyChanged(); }
+            get { return _statusCollection; }
+            set { _statusCollection = value; OnPropertyChanged(); }
         }
     }
 }
