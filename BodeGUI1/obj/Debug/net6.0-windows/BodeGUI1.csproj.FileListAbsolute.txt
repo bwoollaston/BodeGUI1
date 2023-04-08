@@ -268,3 +268,6 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.csproj.CopyComplete
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.genruntimeconfig.cache
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\ref\BodeGUI1.dll
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.dll
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.Wpf.dll
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.Wpf.Shared.dll

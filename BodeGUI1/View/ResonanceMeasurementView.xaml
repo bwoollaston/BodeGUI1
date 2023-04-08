@@ -7,18 +7,32 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:v="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
+             xmlns:vmp="clr-namespace:BodeGUI1.ViewModel.Plots"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:ResonanceMeasurementViewModel/>
     </UserControl.DataContext>
-    <md:Card Height="500" Width="800">
-        <ContentControl Content="{Binding View}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type vm:BodeStatusViewModel}">
-                    <v:StatusView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+    <md:Card Height="450" Width="800" Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vmp:ResonancePlotViewModel}">
+                            <v:BodePlotView/>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+            </Grid>
+
+        </Grid>
     </md:Card>
 </UserControl>

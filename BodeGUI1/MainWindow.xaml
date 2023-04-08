@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
         xmlns:v="clr-namespace:BodeGUI1.View"
         mc:Ignorable="d"
-        Title="MainWindow">
+        Title="MainWindow" Height="700" Width="900">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
