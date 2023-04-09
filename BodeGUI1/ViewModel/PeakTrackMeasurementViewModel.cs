@@ -11,10 +11,10 @@ namespace BodeGUI1.ViewModel
     {
         public PeakTrackMeasurementViewModel()
         {
-            BodePlot = new PlotBase();
+            BodePlot = new PeakPlotViewModel();
         }
-        private PlotBase _bodePlot;
-        public PlotBase BodePlot
+        private PeakPlotViewModel _bodePlot;
+        public PeakPlotViewModel BodePlot
         {
             get { return _bodePlot; }
             set { _bodePlot = value; OnPropertyChanged(); }

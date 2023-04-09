@@ -7,7 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\BodeControlView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\BodePlotView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\MeasurementParametersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\PeakPlotView.xaml.cs">
@@ -30,7 +36,13 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\BodeControlView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\BodePlotView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MeasurementParametersView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PeakPlotView.xaml">

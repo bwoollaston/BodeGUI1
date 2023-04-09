@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BodeGUI1.ViewModel.UI;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace BodeGUI1.ViewModel
 {
-    internal class ProgViewModel : ViewModelBase
+    internal class ProgViewModel : MeasurementViewModelBase
     {
         public ProgViewModel()
         {
             TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking" };
             SelectedTab = TabItems[0]; 
             CurrentContent = new ResonanceMeasurementViewModel();
+            BodeControls = new BodeControlsViewModel();
+            Parameters = new MeasurementParamtersViewModel();
         }
         private string _selectedTab;
         public string SelectedTab
@@ -28,6 +31,12 @@ namespace BodeGUI1.ViewModel
                 OnPropertyChanged();
             }
         }
+        private MeasurementParamtersViewModel _parameters;
+        public MeasurementParamtersViewModel Parameters
+        {
+            get { return _parameters; }
+            set { _parameters = value; OnPropertyChanged(); }
+        }
         private ViewModelBase _currentContent;
         public ViewModelBase CurrentContent
         {
@@ -39,6 +48,12 @@ namespace BodeGUI1.ViewModel
         {
             get { return _tabItems; }
             set { _tabItems = value; OnPropertyChanged(); }
+        }
+        private BodeControlsViewModel _bodeControls;
+        public BodeControlsViewModel BodeControls
+        {
+            get { return _bodeControls; }
+            set { _bodeControls=value; OnPropertyChanged();}
         }
     }
 }

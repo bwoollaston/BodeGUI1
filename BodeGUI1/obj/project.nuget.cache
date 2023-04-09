@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "f95JUXoz+SKF8snh9luWLMRF9qjYG+bCrJzZj3hjePrEX3f2mWY6geHFG+uR1zuhstJHE2mAk5pfAH39MbteKw==",
+  "dgSpecHash": "uwV+nxunGx/qTFh4/wxUlR/qIuo29W9Byoc0lun1kFbayCNxv2Fcdmbs+cNH/6aJQUMe42+nb+SY1EJIxpQVpQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\cwool\\source\\repos\\BodeGUI1\\BodeGUI1\\BodeGUI1.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,7 @@
     "C:\\Users\\cwool\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
     "C:\\Users\\cwool\\.nuget\\packages\\oxyplot.wpf\\2.1.2\\oxyplot.wpf.2.1.2.nupkg.sha512",
     "C:\\Users\\cwool\\.nuget\\packages\\oxyplot.wpf.shared\\2.1.2\\oxyplot.wpf.shared.2.1.2.nupkg.sha512",
+    "C:\\Users\\cwool\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
     "C:\\Users\\cwool\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\5.0.0-rtm.20519.4\\runtime.linux-arm.runtime.native.system.io.ports.5.0.0-rtm.20519.4.nupkg.sha512",
     "C:\\Users\\cwool\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\5.0.0-rtm.20519.4\\runtime.linux-arm64.runtime.native.system.io.ports.5.0.0-rtm.20519.4.nupkg.sha512",
     "C:\\Users\\cwool\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\5.0.0-rtm.20519.4\\runtime.linux-x64.runtime.native.system.io.ports.5.0.0-rtm.20519.4.nupkg.sha512",

@@ -13,26 +13,30 @@
     <UserControl.DataContext>
         <vm:ResonanceMeasurementViewModel/>
     </UserControl.DataContext>
-    <md:Card Height="450" Width="800" Padding="10">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2.5*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vmp:ResonancePlotViewModel}">
-                            <v:BodePlotView/>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
-            </Grid>
-
-        </Grid>
-    </md:Card>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding }" MinHeight="100" Style="{DynamicResource MaterialDesignListView}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="{Binding DataTypes[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
+                    <GridViewColumn Header="{Binding DataTypes[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
+                    <GridViewColumn Header="{Binding DataTypes[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
+                    <GridViewColumn Header="{Binding DataTypes[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
+                    <GridViewColumn Header="{Binding DataTypes[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
+                    <GridViewColumn Header="{Binding DataTypes[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vmp:ResonancePlotViewModel}">
+                    <v:BodePlotView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
 </UserControl>
