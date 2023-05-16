@@ -1,0 +1,32 @@
+# Ignore build output files
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+
+# Ignore temporary files
+*.bak
+*.cache
+*.log
+*.tmp
+
+# Ignore Visual Studio files
+.vs/
+.vscode/
+
+# Ignore NuGet packages
+packages/
+
+# Ignore Resharper files
+_ReSharper*/
+
+# Ignore Windows, macOS, and Linux file attributes
+Desktop.ini
+.DS_Store
+Thumbs.db
+
+# Ignore Visual Studio temporary files
+*.suo
+*.userprefs
+*.sln.docstates
