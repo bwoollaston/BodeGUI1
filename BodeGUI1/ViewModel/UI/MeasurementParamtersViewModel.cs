@@ -43,7 +43,6 @@ namespace BodeGUI1.ViewModel.UI
             get { return _recieverBW; }
             set 
             {
-                value *= 1000;
                 if(value < 1000 ) value = 1000;
                 else if (value > 3000000) value = 3000000;
                 _recieverBW = value; 

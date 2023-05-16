@@ -8,8 +8,11 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:UserControlsViewModel x:Key="ucvm"/>
+    </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{Binding vm:UserControlsViewModel}">
+        <ListBox ItemsSource="{Binding ucvm}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

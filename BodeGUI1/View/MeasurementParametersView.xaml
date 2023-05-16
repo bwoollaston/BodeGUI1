@@ -4,19 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BodeGUI1.View"
+             xmlns:bwc="clr-namespace:BodeGUI1.View.BWConverter"
+             xmlns:magc="clr-namespace:BodeGUI1.View.MagConverter"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
              xmlns:v="clr-namespace.BodeGUI1.View"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <magc:MagnitudeUnitConverter x:Key="magcon"/>
+        <bwc:BandwidthConverter x:Key="bwcon"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vmu:MeasurementParamtersViewModel/>
     </UserControl.DataContext>
     <StackPanel>
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" Text="{Binding HighSweep}"/>
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" Text="{Binding LowSweep}"/>
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" Text="{Binding RecieverBW}"/>
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" Text="{Binding SampleName}"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz'}"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz'}"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" Text="{Binding RecieverBW,Converter={StaticResource bwcon}}"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" Text="{Binding SampleName,Mode=TwoWay}"/>
     </StackPanel>
 </UserControl>

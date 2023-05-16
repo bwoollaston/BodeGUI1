@@ -245,11 +245,13 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\BodeControlView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\BodePlotView.g.cs
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\PeakPlotView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\PeakTrackMeasurementView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\ProgView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\ResonanceMeasurementView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\StatusView.g.cs
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1_MarkupCompile.cache
@@ -258,11 +260,13 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\App.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\BodeControlView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\BodePlotView.baml
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\PeakPlotView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\PeakTrackMeasurementView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\ProgView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\ResonanceMeasurementView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\StatusView.baml
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.baml
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.g.resources
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.AssemblyInfoInputs.cache
@@ -274,7 +278,3 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\refint\Bo
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.pdb
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.genruntimeconfig.cache
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\ref\BodeGUI1.dll
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.g.cs
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.baml
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.g.cs
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.baml
