@@ -1,4 +1,4 @@
-﻿C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\App.xaml;;
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\MainWindow.xaml;;
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\BodeControlView.xaml;;
@@ -9,4 +9,5 @@ FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\PeakTrackMeasurementView.xam
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\ProgView.xaml;;
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\ResonanceMeasurementView.xaml;;
 FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\StatusView.xaml;;
+FC:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\View\UserControlsView.xaml;;
 

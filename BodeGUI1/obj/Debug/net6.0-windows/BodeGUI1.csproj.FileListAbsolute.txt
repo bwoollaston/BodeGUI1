@@ -276,3 +276,5 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\BodeGUI1.
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\ref\BodeGUI1.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.g.cs
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\MeasurementParametersView.baml
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.g.cs
+C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\obj\Debug\net6.0-windows\View\UserControlsView.baml
