@@ -44,7 +44,7 @@ namespace BodeGUI1.ViewModel
         }
         public ResonanceSweepDataViewModel SweepData { get; private set; }
         public List<DataPoint> BodePoints { get; private set; }
-        public void Connect()
+        public void Connect(object? sender, EventArgs e)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace BodeGUI1.ViewModel
                 MessageBox.Show("Bode connection failed", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public void Disconnect()
+        public void Disconnect(object? sender, EventArgs e)
         {
             try { if (bode != null) bode.ShutDown(); Connected = false; }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace BodeGUI1.ViewModel
             state = measurement.ExecuteMeasurement();
             if (state != ExecutionState.Ok)
             {
-                Disconnect();
+                Disconnect(this, EventArgs.Empty);
                 //throw new ExecuteStateException("Frequency Sweep");
             }
         }
@@ -83,7 +83,7 @@ namespace BodeGUI1.ViewModel
             state = measurement.ExecuteMeasurement();
             if (state != ExecutionState.Ok)
             {
-                Disconnect();
+                Disconnect(this, EventArgs.Empty);
                 //throw new ExecuteStateException("Resonant Frequency Measurement");
             }
         }
@@ -134,18 +134,39 @@ namespace BodeGUI1.ViewModel
             }
             return fileSelected;
         }
-        public void OpenCal()
+        public void OpenCal(object? sender, EventArgs e)
         {
             /* Bode Automation Suite method runs open calibration */
-            ExecutionState state = measurement.Calibration.FullRange.ExecuteOpen();
+            try
+            {
+                ExecutionState state = measurement.Calibration.FullRange.ExecuteOpen();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
+            }
         }
-        public void ShortCal()
+        public void ShortCal(object? sender, EventArgs e)
         {
-            ExecutionState state = measurement.Calibration.FullRange.ExecuteShort();
+            try
+            {
+                ExecutionState state = measurement.Calibration.FullRange.ExecuteShort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Short calibration failed", "Exception Sample", MessageBoxButton.OK);
+            }
         }
-        public void LoadCal()
+        public void LoadCal(object? sender, EventArgs e)
         {
-            ExecutionState state = measurement.Calibration.FullRange.ExecuteLoad();
+            try
+            {
+                ExecutionState state = measurement.Calibration.FullRange.ExecuteLoad();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Load calibration failed", "Exception Sample", MessageBoxButton.OK);
+            }
         }
     }
 

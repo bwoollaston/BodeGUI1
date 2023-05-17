@@ -21,7 +21,7 @@
     <UserControl.DataContext>
         <vmu:MeasurementParamtersViewModel/>
     </UserControl.DataContext>
-    <StackPanel>
+    <StackPanel Margin="2">
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" 
                  Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" 
@@ -36,5 +36,7 @@
                 <CheckBox IsChecked="{Binding IndexingIsChecked}"  Margin="10,0,0,0" IsEnabled="{Binding Enable}"/>
             </StackPanel>
         </StackPanel>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Export Filename" 
+                 Text="{Binding Filename,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100" IsEnabled="{Binding Enable}"/>
     </StackPanel>
 </UserControl>

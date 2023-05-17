@@ -15,13 +15,16 @@ namespace BodeGUI1.ViewModel.UI
     {
         public MeasurementParamtersViewModel()
         {
+            SampleIndex = 1;
             HighSweep = 190000;
             LowSweep = 180000;
             RecieverBW = 100000;
-            SampleName = "";
+            SampleName = String.Empty;
+            Filename = String.Empty;
             IndexingIsChecked = false;
             Enable = true;
         }
+        private int SampleIndex;
         private bool _indexingIsChecked;
         public bool IndexingIsChecked
         {
@@ -62,7 +65,21 @@ namespace BodeGUI1.ViewModel.UI
         public string SampleName
         {
             get { return _sampleName; }
-            set { _sampleName = value; OnPropertyChanged(); }
+            set 
+            { 
+                _sampleName = value;
+                if (IndexingIsChecked == true)
+                {
+                    _sampleName += String.Format("_{0}", SampleIndex);
+                }
+                OnPropertyChanged(); 
+            }
+        }
+        private string _filename;
+        public string Filename
+        {
+            get { return _filename; }
+            set { _filename = value; OnPropertyChanged(); }
         }
         public double CheckRange(double value, double HighRange, double LowRange)
         {
@@ -89,7 +106,13 @@ namespace BodeGUI1.ViewModel.UI
         public bool Enable
         {
             get { return _enable; }
-            set { _enable = value;OnPropertyChanged(); }
+            set 
+            { 
+                _enable = value;
+                if (_enable == false) SampleIndex++;
+                SampleName = _sampleName;
+                OnPropertyChanged(); 
+            }
         }
     }
 }

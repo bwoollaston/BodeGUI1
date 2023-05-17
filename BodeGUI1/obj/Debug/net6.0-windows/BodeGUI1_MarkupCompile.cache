@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\BrodyWoollaston\Source\Repos\BodeGUI1\BodeGUI1\App.xaml
-101644624111
+11-994552424
 
-29-1744887767
+31264932918
 2661593144124
-MainWindow.xaml;View\BodeControlView.xaml;View\BodePlotView.xaml;View\MeasurementParametersView.xaml;View\PeakPlotView.xaml;View\PeakTrackMeasurementView.xaml;View\ProgView.xaml;View\ResonanceMeasurementView.xaml;View\StatusView.xaml;View\UserControlsView.xaml;
+MainWindow.xaml;View\BodeControlView.xaml;View\BodePlotView.xaml;View\BodeSettingsView.xaml;View\MeasurementParametersView.xaml;View\PeakPlotView.xaml;View\PeakTrackMeasurementView.xaml;View\ProgView.xaml;View\ResonanceMeasurementView.xaml;View\StatusView.xaml;View\UserControlsView.xaml;
 
 False
 

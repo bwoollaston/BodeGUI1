@@ -20,6 +20,7 @@ namespace BodeGUI1.ViewModel.UI
             CurrentProgress = 0;
             Status = new BodeStatusViewModel();
             Run = new DelegateCommand(AdminMeasurement);
+
         }
         private void AdminMeasurement()
         {

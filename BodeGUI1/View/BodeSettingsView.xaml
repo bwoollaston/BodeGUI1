@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="BodeGUI1.View.BodeSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BodeGUI1.View"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:v="clr-namespace:BodeGUI1.View"
+             xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
+             xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vmu:BodeSettingsViewModel/>
+    </UserControl.DataContext>
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Height="40" Width="200" IsEnabled="{Binding Enable}">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Connect" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <Image Grid.Column="1">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="20" UriSource="/images/connecting.png"/>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button Height="40" Width="200" Grid.Row="1" IsEnabled="{Binding Enable}">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Open" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <Image Grid.Column="1">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="20" UriSource="/images/switch-off.png"/>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button Height="40" Width="200" Grid.Row="2" IsEnabled="{Binding Enable}">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Short" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <Image Grid.Column="1">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="20" UriSource="/images/switch-on.png"/>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button Height="40" Width="200" Grid.Row="3" IsEnabled="{Binding Enable}">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Open" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <Image Grid.Column="1">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="20" UriSource="/images/resistor.png"/>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

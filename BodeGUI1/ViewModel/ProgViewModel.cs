@@ -13,7 +13,7 @@ namespace BodeGUI1.ViewModel
     {
         public ProgViewModel()
         {
-            TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking" };
+            TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking","Bode Settings" };
             SelectedTab = TabItems[0]; 
             CurrentContent = new ResonanceMeasurementViewModel();
             BodeControls = new BodeControlsViewModel();
@@ -38,6 +38,8 @@ namespace BodeGUI1.ViewModel
                     break;
                 case "Peak Tracking":
                     break;
+
+                default: break;
             }
         }
 
@@ -49,8 +51,17 @@ namespace BodeGUI1.ViewModel
             {
                 if (_selectedTab == value) return;
                 _selectedTab = value;
-                if(_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
+                if (_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
                 else if (_selectedTab == TabItems[1]) CurrentContent = new PeakTrackMeasurementViewModel();
+                else if (SelectedTab == TabItems[2])
+                {
+                    CurrentContent = new BodeSettingsViewModel();
+                    BodeSettingsViewModel Content = (BodeSettingsViewModel)CurrentContent;
+                    Content.ConnectClicked += Connect;
+                    Content.OpenClicked += OpenCal;
+                    Content.ShortClicked += ShortCal;
+                    Content.LoadClicked += LoadCal;
+                }
                 OnPropertyChanged();
             }
         }

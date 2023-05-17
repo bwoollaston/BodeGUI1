@@ -13,6 +13,9 @@
     <Compile Update="View\BodePlotView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\BodeSettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\MeasurementParametersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\BodePlotView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\BodeSettingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MeasurementParametersView.xaml">
