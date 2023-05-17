@@ -23,18 +23,14 @@
     </UserControl.DataContext>
     <StackPanel>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" 
-                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz'}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="KeyUp">
-                    <i:InvokeCommandAction Command="{Binding TextBoxKeyUpCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp">
         </TextBox>
+           
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" 
-                 Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz'}"/>
+                 Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" 
-                 Text="{Binding RecieverBW,Converter={StaticResource bwcon}}" />
+                 Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" />
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
-                 Text="{Binding SampleName,Mode=TwoWay}"/>
+                 Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
     </StackPanel>
 </UserControl>

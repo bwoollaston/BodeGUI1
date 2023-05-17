@@ -15,14 +15,20 @@ using System.Windows.Shapes;
 
 namespace BodeGUI1.View
 {
-    /// <summary>
-    /// Interaction logic for MeasurementParametersView.xaml
-    /// </summary>
     public partial class MeasurementParametersView : UserControl
     {
         public MeasurementParametersView()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox textBox = sender as TextBox;
+                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            }
         }
     }
 }

@@ -17,7 +17,6 @@ namespace BodeGUI1.ViewModel.UI
             LowSweep = 180000;
             RecieverBW = 100000;
             SampleName = "";
-            TextBoxKeyUpCommand = new DelegateCommand<KeyEventArgs>(HandleKeyUp);
         }
         private double _highSweep;
         public double HighSweep
@@ -58,17 +57,6 @@ namespace BodeGUI1.ViewModel.UI
         {
             get { return _sampleName; }
             set { _sampleName = value; OnPropertyChanged(); }
-        }
-        public DelegateCommand<KeyEventArgs> TextBoxKeyUpCommand { get; }
-        private void HandleKeyUp(KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                if(e.Source is TextBox textBox)
-                {
-                    textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                }
-            }
         }
     }
 }
