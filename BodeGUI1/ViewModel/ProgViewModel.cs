@@ -17,6 +17,9 @@ namespace BodeGUI1.ViewModel
             CurrentContent = new ResonanceMeasurementViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
+            CurrentContentWidth = 1000;
+            BodeControlsHeight = 80;
+            BodeControls.ControlHeight = BodeControlsHeight;
         }
         private string _selectedTab;
         public string SelectedTab
@@ -26,7 +29,7 @@ namespace BodeGUI1.ViewModel
             {
                 if (_selectedTab == value) return;
                 _selectedTab = value;
-                if(_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel();
+                if(_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
                 else if (_selectedTab == TabItems[1]) CurrentContent = new PeakTrackMeasurementViewModel();
                 OnPropertyChanged();
             }
@@ -66,6 +69,18 @@ namespace BodeGUI1.ViewModel
         {
             get { return _controlWidth; }
             set { _controlWidth = value; OnPropertyChanged(); }
+        }
+        private double _bodeControlsHeight;
+        public double BodeControlsHeight
+        {
+            get { return _bodeControlsHeight; }
+            set { _bodeControlsHeight = value; OnPropertyChanged(); }
+        }
+        private double _currentContentWidth;
+        public double CurrentContentWidth
+        {
+            get { return _currentContentWidth; }
+            set { _currentContentWidth = value; OnPropertyChanged(); }
         }
     }
 }

@@ -13,6 +13,27 @@ using System.Windows.Data;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
+namespace BodeGUI1.View.SizeConverter
+{
+    public class GridToDoubleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double doubleSize = (double)value;
+            GridLength gridSize = new GridLength(doubleSize);
+            return gridSize;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double doubleSize;
+            GridLength gridSize = (GridLength)value;
+            doubleSize = gridSize.Value;
+            return doubleSize;
+        }
+    }
+}
+
 namespace BodeGUI1.View.BWConverter
 {
     public class BandwidthConverter : IValueConverter

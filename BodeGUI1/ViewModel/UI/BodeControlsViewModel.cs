@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using BodeGUI1.ViewModel;
 using Prism.Commands;
 
 namespace BodeGUI1.ViewModel.UI
@@ -13,8 +12,11 @@ namespace BodeGUI1.ViewModel.UI
     {
         public BodeControlsViewModel()
         {
+            ProgramingActive = Visibility.Collapsed;
+            Enabled = true;
             Status = new BodeStatusViewModel();
             Run = new DelegateCommand(AdminMeasurement);
+            Status.ControlHeight = ControlHeight;
         }
         private void AdminMeasurement()
         {
@@ -43,6 +45,12 @@ namespace BodeGUI1.ViewModel.UI
         {
             get { return _enabled; }
             set { _enabled = value; OnPropertyChanged();}
+        }
+        private double _controlHeight;
+        public double ControlHeight
+        {
+            get { return _controlHeight; }
+            set { _controlHeight = value; OnPropertyChanged(); }
         }
     }
 }

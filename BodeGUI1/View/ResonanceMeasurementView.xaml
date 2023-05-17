@@ -1,33 +1,47 @@
 ﻿<UserControl x:Class="BodeGUI1.View.ResonanceMeasurmentView"
+             x:Name="ResView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p="clr-namespace:BodeGUI1"
              xmlns:local="clr-namespace:BodeGUI1.View"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:v="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:vmp="clr-namespace:BodeGUI1.ViewModel.Plots"
+             xmlns:gdc="clr-namespace:BodeGUI1.View.SizeConverter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <gdc:GridToDoubleConverter x:Key="gtodc"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:ResonanceMeasurementViewModel/>
     </UserControl.DataContext>
     <Grid>
+        <p:DataPiping.DataPipes>
+            <p:DataPipeCollection>
+                <p:DataPipe Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ActualWidth}"
+                         Target="{Binding Path=ListWidth, Mode=OneWayToSource}"/>
+            </p:DataPipeCollection>
+        </p:DataPiping.DataPipes>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListVie}">
+        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListVie}"
+                  Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="{Binding DataTypes}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
-                    <GridViewColumn Header="{Binding DataTypes[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
-                    <GridViewColumn Header="{Binding DataTypes[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
-                    <GridViewColumn Header="{Binding DataTypes[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
-                    <GridViewColumn Header="{Binding DataTypes[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
-                    <GridViewColumn Header="{Binding DataTypes[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
+                    <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
+                    <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
+                    <GridViewColumn Header="{Binding Headers[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
+                    <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
+                    <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
+                    <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
                 </GridView>
             </ListView.View>
         </ListView>

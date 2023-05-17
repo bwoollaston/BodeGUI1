@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
             <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type vmp:PeakPlotViewModel}">
+                <DataTemplate DataType="{x:Type vmp:ResonancePlotViewModel}">
                     <v:PeakPlotView/>
                 </DataTemplate>
             </ContentControl.Resources>

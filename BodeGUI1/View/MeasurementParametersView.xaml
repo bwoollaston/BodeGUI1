@@ -13,7 +13,7 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="150" Background="White">
     <UserControl.Resources>
         <magc:MagnitudeUnitConverter x:Key="magcon"/>
         <bwc:BandwidthConverter x:Key="bwcon"/>
@@ -23,14 +23,18 @@
     </UserControl.DataContext>
     <StackPanel>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" 
-                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp">
-        </TextBox>
-           
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" 
+                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" 
                  Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" 
                  Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" />
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
-                 Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
+                 Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100"/>
+            <StackPanel>
+                <TextBlock Text="Auto Index" TextWrapping="Wrap" Width="30" FontSize="8" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox IsChecked="{Binding IndexingIsChecked}"  Margin="10,0,0,0" />
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -8,11 +8,14 @@
              xmlns:v="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
+             xmlns:gdc="clr-namespace:BodeGUI1.View.SizeConverter"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             d:DesignHeight="{Binding ControlHeight,Mode=TwoWay}" d:DesignWidth="{Binding ControlWidth,Mode=TwoWay}" Background="DarkGray">
+             TextOptions.TextRenderingMode="Auto">
+    <UserControl.Resources>
+        <gdc:GridToDoubleConverter x:Key="gtodc"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:ProgViewModel/>
     </UserControl.DataContext>
@@ -22,7 +25,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="{Binding BodeControlsHeight}"/>
             </Grid.RowDefinitions>
             <md:Card Background="{StaticResource SecondaryHueMidBrush}" Padding="20,5">
                 <TextBlock Text="Bode Application" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center"/>
@@ -30,10 +33,10 @@
             <TabControl Style="{DynamicResource MaterialDesignFilledTabControl}" ItemsSource="{Binding TabItems}" 
                                 SelectedItem="{Binding SelectedTab}" Grid.Row="1">
             </TabControl>
-            <md:Card Height="450" Width="800" Padding="10" Grid.Row="2">
+            <md:Card Padding="10" Grid.Row="2">
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <ContentControl Content="{Binding Parameters}" Grid.Column="0">

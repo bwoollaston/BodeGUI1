@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using BodeGUI1.ExceptionHandlers;
 using Prism.Commands;
 
 namespace BodeGUI1.ViewModel.UI
@@ -17,6 +19,13 @@ namespace BodeGUI1.ViewModel.UI
             LowSweep = 180000;
             RecieverBW = 100000;
             SampleName = "";
+            IndexingIsChecked = false;
+        }
+        private bool _indexingIsChecked;
+        public bool IndexingIsChecked
+        {
+            get { return _indexingIsChecked; }
+            set { _indexingIsChecked = value; OnPropertyChanged(); }
         }
         private double _highSweep;
         public double HighSweep
@@ -24,8 +33,7 @@ namespace BodeGUI1.ViewModel.UI
             get { return _highSweep; }
             set 
             {
-                if (value <= LowSweep) value = LowSweep + (RecieverBW);
-                _highSweep = value; 
+                _highSweep = CheckRange(value, 40e6, LowSweep);
                 OnPropertyChanged(); 
             }
         }
@@ -35,8 +43,7 @@ namespace BodeGUI1.ViewModel.UI
             get { return _lowSweep; }
             set 
             {
-                if (value >= HighSweep) value = HighSweep - (RecieverBW);
-                _lowSweep = value; 
+                _lowSweep = CheckRange(value, HighSweep, 1); 
                 OnPropertyChanged(); 
             }
         }
@@ -46,9 +53,7 @@ namespace BodeGUI1.ViewModel.UI
             get { return _recieverBW; }
             set 
             {
-                if(value < 1000 ) value = 1000;
-                else if (value > 3000000) value = 3000000;
-                _recieverBW = value; 
+                _recieverBW = CheckRange(value,3000000,1000); 
                 OnPropertyChanged(); 
             }
         }
@@ -57,6 +62,27 @@ namespace BodeGUI1.ViewModel.UI
         {
             get { return _sampleName; }
             set { _sampleName = value; OnPropertyChanged(); }
+        }
+        public double CheckRange(double value, double HighRange, double LowRange)
+        {
+            try
+            {
+                if (value < LowRange)
+                {
+                    value = LowRange;
+                    throw new ControlOutOfRangeException("Control out of range");
+                } 
+                else if (value > HighRange)
+                {
+                    value = HighRange;
+                    throw new ControlOutOfRangeException("Control out of range");
+                }
+            }
+            catch (ControlOutOfRangeException)
+            {
+                MessageBox.Show(string.Format("Control must be in range {0} to {1}",LowRange,HighRange), "Exception Sample", MessageBoxButton.OK);
+            }
+            return value;
         }
     }
 }

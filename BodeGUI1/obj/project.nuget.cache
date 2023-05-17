@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xD+p3fWHLmvREvDlBE1k67oEMd5Nri+oQkw96CcjLpIST8xJDGeiRtNHn8q3Dsic/sf4dxMcxu5uVi+uWq2UcQ==",
+  "dgSpecHash": "3pMMi3hiTNN8b8lvgSc3LK+ybuuizjBmCcMrV6CBBvDToCg1DConcQltEZxSvIM8TYD6zTMTHRHkv0oPshpwJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\BrodyWoollaston\\Source\\Repos\\BodeGUI1\\BodeGUI1\\BodeGUI1.csproj",
   "expectedPackageFiles": [
@@ -40,9 +40,8 @@
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\omicronlab.tools.base\\2.26.1613\\omicronlab.tools.base.2.26.1613.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\omicronlab.vectornetworkanalysis.automationinterface\\3.25.2241.1\\omicronlab.vectornetworkanalysis.automationinterface.3.25.2241.1.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\omicronlab.vectornetworkanalysis.midlayer\\3.25.1902.1\\omicronlab.vectornetworkanalysis.midlayer.3.25.1902.1.nupkg.sha512",
-    "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
-    "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\oxyplot.wpf\\2.1.2\\oxyplot.wpf.2.1.2.nupkg.sha512",
-    "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\oxyplot.wpf.shared\\2.1.2\\oxyplot.wpf.shared.2.1.2.nupkg.sha512",
+    "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\oxyplot.core\\1.0.0\\oxyplot.core.1.0.0.nupkg.sha512",
+    "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\oxyplot.wpf\\1.0.0\\oxyplot.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\5.0.0-rtm.20519.4\\runtime.linux-arm.runtime.native.system.io.ports.5.0.0-rtm.20519.4.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\5.0.0-rtm.20519.4\\runtime.linux-arm64.runtime.native.system.io.ports.5.0.0-rtm.20519.4.nupkg.sha512",
@@ -129,5 +128,26 @@
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\tmds.libc\\0.2.0\\tmds.libc.0.2.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OxyPlot.Core 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OxyPlot.Core",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OxyPlot.Wpf 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OxyPlot.Wpf",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }
