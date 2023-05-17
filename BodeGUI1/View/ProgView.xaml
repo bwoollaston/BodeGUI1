@@ -12,58 +12,56 @@
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="{Binding ControlHeight,Mode=TwoWay}" d:DesignWidth="{Binding ControlWidth,Mode=TwoWay}" Background="DarkGray">
     <UserControl.DataContext>
         <vm:ProgViewModel/>
     </UserControl.DataContext>
-    <Grid>
-        <md:Card Background="{StaticResource PrimaryHueLightBrush}" Margin="10" Grid.Row="0" Padding="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="70"/>
-                </Grid.RowDefinitions>
-                <md:Card Background="{StaticResource SecondaryHueMidBrush}" Padding="20,5">
-                    <TextBlock Text="Bode Application" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center"/>
-                </md:Card>
-                <TabControl Style="{DynamicResource MaterialDesignFilledTabControl}" ItemsSource="{Binding TabItems}" 
+    <md:Card Background="{StaticResource PrimaryHueLightBrush}"  Margin="10" Grid.Row="0" Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <md:Card Background="{StaticResource SecondaryHueMidBrush}" Padding="20,5">
+                <TextBlock Text="Bode Application" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" VerticalAlignment="Center"/>
+            </md:Card>
+            <TabControl Style="{DynamicResource MaterialDesignFilledTabControl}" ItemsSource="{Binding TabItems}" 
                                 SelectedItem="{Binding SelectedTab}" Grid.Row="1">
-                </TabControl>
-                <md:Card Height="450" Width="800" Padding="10" Grid.Row="2">
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="130"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentControl Content="{Binding Parameters}" Grid.Column="0">
-                            <ContentControl.Resources>
-                                <DataTemplate DataType="{x:Type vmu:MeasurementParamtersViewModel}">
-                                    <v:MeasurementParametersView/>
-                                </DataTemplate>
-                            </ContentControl.Resources>
-                        </ContentControl>
-                        <ContentControl Content="{Binding CurrentContent}" Grid.Column="1">
-                            <ContentControl.Resources>
-                                <DataTemplate DataType="{x:Type vm:ResonanceMeasurementViewModel}">
-                                    <v:ResonanceMeasurmentView/>
-                                </DataTemplate>
-                                <DataTemplate DataType="{x:Type vm:PeakTrackMeasurementViewModel}">
-                                    <v:PeakTrackMeasurementView/>
-                                </DataTemplate>
-                            </ContentControl.Resources>
-                        </ContentControl>
-                    </Grid>
-                </md:Card>
-                <ContentControl Grid.Row="3" Content="{Binding BodeControls}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vmu:BodeControlsViewModel}">
-                            <v:BodeControlView/>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
-            </Grid>
-        </md:Card>
-    </Grid>
+            </TabControl>
+            <md:Card Height="450" Width="800" Padding="10" Grid.Row="2">
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Content="{Binding Parameters}" Grid.Column="0">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vmu:MeasurementParamtersViewModel}">
+                                <v:MeasurementParametersView/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                    <ContentControl Content="{Binding CurrentContent}" Grid.Column="1">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:ResonanceMeasurementViewModel}">
+                                <v:ResonanceMeasurmentView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:PeakTrackMeasurementViewModel}">
+                                <v:PeakTrackMeasurementView/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </Grid>
+            </md:Card>
+            <ContentControl Grid.Row="3" Content="{Binding BodeControls}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vmu:BodeControlsViewModel}">
+                        <v:BodeControlView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+    </md:Card>
 </UserControl>

@@ -55,5 +55,17 @@ namespace BodeGUI1.ViewModel
             get { return _bodeControls; }
             set { _bodeControls=value; OnPropertyChanged();}
         }
+        private double _controlHeight;
+        public double ControlHeight
+        {
+            get { return _controlHeight; }
+            set { _controlHeight = value; OnPropertyChanged(); }
+        }
+        private double _controlWidth;
+        public double ControlWidth
+        {
+            get { return _controlWidth; }
+            set { _controlWidth = value; OnPropertyChanged(); }
+        }
     }
 }

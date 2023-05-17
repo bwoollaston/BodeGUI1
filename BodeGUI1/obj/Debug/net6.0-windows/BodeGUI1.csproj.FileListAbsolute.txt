@@ -186,8 +186,6 @@ C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.d
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.Wpf.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\OxyPlot.Wpf.Shared.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\Prism.dll
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\ScottPlot.dll
-C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\ScottPlot.WPF.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\SimpleBase.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\System.ComponentModel.Composition.dll
 C:\Users\cwool\source\repos\BodeGUI1\BodeGUI1\bin\Debug\net6.0-windows\System.ComponentModel.Composition.Registration.dll

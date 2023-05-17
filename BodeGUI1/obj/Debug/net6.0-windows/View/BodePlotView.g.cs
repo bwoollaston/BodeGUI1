@@ -12,7 +12,6 @@
 using BodeGUI1.View;
 using BodeGUI1.ViewModel.Plots;
 using OxyPlot.Wpf;
-using ScottPlot;
 using System;
 using System.Diagnostics;
 using System.Windows;

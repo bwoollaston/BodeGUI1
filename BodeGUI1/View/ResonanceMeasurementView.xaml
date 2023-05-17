@@ -18,11 +18,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding }" MinHeight="100" Style="{DynamicResource MaterialDesignListView}">
+        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListVie}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="{Binding DataTypes[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
+                    <GridViewColumn Header="{Binding DataTypes}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
                     <GridViewColumn Header="{Binding DataTypes[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
                     <GridViewColumn Header="{Binding DataTypes[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
                     <GridViewColumn Header="{Binding DataTypes[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>

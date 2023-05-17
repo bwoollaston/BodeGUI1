@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace BodeGUI1.ViewModel.UI
 {
@@ -14,6 +17,8 @@ namespace BodeGUI1.ViewModel.UI
             LowSweep = 180000;
             RecieverBW = 100000;
             SampleName = "";
+            //KeyUpCommand = new DelegateCommand<KeyEventArgs>(HandleKeyUp);
+            //UpdateValueCommand = new DelegateCommand(UpdateAndLoseFocus);
         }
         private double _highSweep;
         public double HighSweep
@@ -21,7 +26,7 @@ namespace BodeGUI1.ViewModel.UI
             get { return _highSweep; }
             set 
             {
-                if (value <= LowSweep) value = LowSweep + (RecieverBW/1000);
+                if (value <= LowSweep) value = LowSweep + (RecieverBW);
                 _highSweep = value; 
                 OnPropertyChanged(); 
             }
@@ -32,7 +37,7 @@ namespace BodeGUI1.ViewModel.UI
             get { return _lowSweep; }
             set 
             {
-                if (value >= HighSweep) value = HighSweep - (RecieverBW/1000);
+                if (value >= HighSweep) value = HighSweep - (RecieverBW);
                 _lowSweep = value; 
                 OnPropertyChanged(); 
             }
@@ -55,5 +60,25 @@ namespace BodeGUI1.ViewModel.UI
             get { return _sampleName; }
             set { _sampleName = value; OnPropertyChanged(); }
         }
+        //public DelegateCommand UpdateValueCommand { get; }
+        //public DelegateCommand<KeyEventArgs> KeyUpCommand { get; }
+        //private void HandleKeyUp(KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+                
+        //    }
+        //}
+        //public void TextBox_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if(sender is TextBox textBox)
+        //    {
+        //        TextBox reference = (TextBox)sender;
+        //        if(e.Key == Key.Enter)
+        //        {
+        //            reference.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+        //        }
+        //    }
+        //}
     }
 }

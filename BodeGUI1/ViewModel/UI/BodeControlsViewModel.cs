@@ -9,7 +9,7 @@ using Prism.Commands;
 
 namespace BodeGUI1.ViewModel.UI
 {
-    internal class BodeControlsViewModel :ViewModelBase
+    internal class BodeControlsViewModel : ViewModelBase
     {
         public BodeControlsViewModel()
         {

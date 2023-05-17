@@ -8,10 +8,14 @@
         xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
         xmlns:v="clr-namespace:BodeGUI1.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="900">
+        Title="MainWindow" 
+        Background="Green"
+        Height="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" 
+        Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

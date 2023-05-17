@@ -11,7 +11,6 @@
 
 using BodeGUI1.View;
 using BodeGUI1.ViewModel.UI;
-using ScottPlot;
 using System;
 using System.Diagnostics;
 using System.Windows;
