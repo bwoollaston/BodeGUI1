@@ -1,4 +1,5 @@
 ﻿using BodeGUI1.ViewModel.UI;
+using OmicronLab.VectorNetworkAnalysis.AutomationInterface.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,10 +18,29 @@ namespace BodeGUI1.ViewModel
             CurrentContent = new ResonanceMeasurementViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
+            BodeControls.StartProgrammingClicked += BodeControls_StartProgrammingClicked;
             CurrentContentWidth = 1000;
             BodeControlsHeight = 80;
-            BodeControls.ControlHeight = BodeControlsHeight;
         }
+
+        private void BodeControls_StartProgrammingClicked(object? sender, EventArgs e)
+        {
+            switch (SelectedTab)
+            {
+                case "Resonance Measurement":
+                    Parameters.Enable = false;
+                    SweepData.Name = Parameters.SampleName;
+                    Sweep(Parameters.LowSweep, Parameters.HighSweep, 201, SweepMode.Logarithmic, Parameters.RecieverBW);
+                    ResonanceMeasurementViewModel Content = (ResonanceMeasurementViewModel)CurrentContent;
+                    Content.SweepData.Add(SweepData);
+                    Content.BodePlot.Points.Clear();
+                    Content.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
+                    break;
+                case "Peak Tracking":
+                    break;
+            }
+        }
+
         private string _selectedTab;
         public string SelectedTab
         {
@@ -58,18 +78,7 @@ namespace BodeGUI1.ViewModel
             get { return _bodeControls; }
             set { _bodeControls=value; OnPropertyChanged();}
         }
-        private double _controlHeight;
-        public double ControlHeight
-        {
-            get { return _controlHeight; }
-            set { _controlHeight = value; OnPropertyChanged(); }
-        }
-        private double _controlWidth;
-        public double ControlWidth
-        {
-            get { return _controlWidth; }
-            set { _controlWidth = value; OnPropertyChanged(); }
-        }
+
         private double _bodeControlsHeight;
         public double BodeControlsHeight
         {

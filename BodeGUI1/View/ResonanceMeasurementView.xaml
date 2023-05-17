@@ -28,10 +28,10 @@
             </p:DataPipeCollection>
         </p:DataPiping.DataPipes>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height=".7*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListVie}"
+        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
                   Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0">
             <ListView.View>
                 <GridView>

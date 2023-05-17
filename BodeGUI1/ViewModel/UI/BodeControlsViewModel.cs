@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Prism.Commands;
@@ -10,17 +11,22 @@ namespace BodeGUI1.ViewModel.UI
 {
     internal class BodeControlsViewModel : ViewModelBase
     {
+        public event EventHandler StartProgrammingClicked;
+        CancellationTokenSource cts = new CancellationTokenSource();
         public BodeControlsViewModel()
         {
             ProgramingActive = Visibility.Collapsed;
             Enabled = true;
+            CurrentProgress = 0;
             Status = new BodeStatusViewModel();
             Run = new DelegateCommand(AdminMeasurement);
-            Status.ControlHeight = ControlHeight;
         }
         private void AdminMeasurement()
         {
+            StartProgrammingClicked?.Invoke(this,EventArgs.Empty);
             Enabled = false;
+            CurrentProgress = 0;
+            ProgramingActive = Visibility.Visible;
         }
         private BodeStatusViewModel _status;
         public BodeStatusViewModel Status
@@ -46,11 +52,19 @@ namespace BodeGUI1.ViewModel.UI
             get { return _enabled; }
             set { _enabled = value; OnPropertyChanged();}
         }
-        private double _controlHeight;
-        public double ControlHeight
+        private int _currentProgress;
+        public int CurrentProgress
         {
-            get { return _controlHeight; }
-            set { _controlHeight = value; OnPropertyChanged(); }
+            get { return _currentProgress; }
+            set { _currentProgress = value; OnPropertyChanged(); }
+        }
+        public async Task AnimateBar()
+        {
+            while (!cts.Token.IsCancellationRequested)
+            {
+                CurrentProgress++;
+                await Task.Delay(200);
+            }
         }
     }
 }

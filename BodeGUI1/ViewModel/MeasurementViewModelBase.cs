@@ -30,7 +30,6 @@ namespace BodeGUI1.ViewModel
             BodePoints = new List<DataPoint>();
             SweepData = new ResonanceSweepDataViewModel();
         }
-
         private bool _connected;
         public bool Connected
         {

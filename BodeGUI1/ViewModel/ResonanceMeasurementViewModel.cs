@@ -22,6 +22,7 @@ namespace BodeGUI1.ViewModel
                                                             "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",
                                                             "Quality Factor", "Capacitance" };
             BodePlot = new ResonancePlotViewModel();
+            SweepData = new ObservableCollection<ResonanceSweepDataViewModel>();
         }
         private ResonancePlotViewModel _bodePlot;
         public ResonancePlotViewModel BodePlot

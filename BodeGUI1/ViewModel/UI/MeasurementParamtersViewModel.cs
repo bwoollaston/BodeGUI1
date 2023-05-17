@@ -20,6 +20,7 @@ namespace BodeGUI1.ViewModel.UI
             RecieverBW = 100000;
             SampleName = "";
             IndexingIsChecked = false;
+            Enable = true;
         }
         private bool _indexingIsChecked;
         public bool IndexingIsChecked
@@ -83,6 +84,12 @@ namespace BodeGUI1.ViewModel.UI
                 MessageBox.Show(string.Format("Control must be in range {0} to {1}",LowRange,HighRange), "Exception Sample", MessageBoxButton.OK);
             }
             return value;
+        }
+        private bool _enable;
+        public bool Enable
+        {
+            get { return _enable; }
+            set { _enable = value;OnPropertyChanged(); }
         }
     }
 }

@@ -23,17 +23,17 @@
     </UserControl.DataContext>
     <StackPanel>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" 
-                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
+                 Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Low Sweep Frequency [Hz]" 
-                 Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp"/>
+                 Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" 
-                 Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" />
+                 Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <StackPanel Orientation="Horizontal">
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
-                 Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100"/>
+                 Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100" IsEnabled="{Binding Enable}"/>
             <StackPanel>
                 <TextBlock Text="Auto Index" TextWrapping="Wrap" Width="30" FontSize="8" HorizontalAlignment="Center" Margin="10,0,0,0"/>
-                <CheckBox IsChecked="{Binding IndexingIsChecked}"  Margin="10,0,0,0" />
+                <CheckBox IsChecked="{Binding IndexingIsChecked}"  Margin="10,0,0,0" IsEnabled="{Binding Enable}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
