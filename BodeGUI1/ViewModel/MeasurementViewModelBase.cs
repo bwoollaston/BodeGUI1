@@ -1,4 +1,5 @@
 ﻿using System;
+using BodeGUI1.ViewModel.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,24 +24,23 @@ namespace BodeGUI1.ViewModel
         public BodeDevice bode;
         public ExecutionState state;
         public BodeAutomationInterface auto = new BodeAutomation();
+        public event EventHandler StatusBasePropertyChanged;
         public MeasurementViewModelBase()
         {
-            Connected = false;
-            Calibrated = false;
+            BodeStatusViewModel = new BodeStatusViewModel();
             BodePoints = new List<DataPoint>();
             SweepData = new ResonanceSweepDataViewModel();
         }
-        private bool _connected;
-        public bool Connected
+        private BodeStatusViewModel _bodeStatusViewModel;
+        public BodeStatusViewModel BodeStatusViewModel
         {
-            get { return _connected; }
-            set { _connected = value; OnPropertyChanged(); }
-        }
-        private bool _calibrated;
-        public bool Calibrated
-        {
-            get { return _calibrated; }
-            set { _calibrated = value; OnPropertyChanged(); }
+            get { return _bodeStatusViewModel; }
+            set 
+            { 
+                _bodeStatusViewModel = value;
+                StatusBasePropertyChanged?.Invoke(this, EventArgs.Empty);
+                OnPropertyChanged(); 
+            }
         }
         public ResonanceSweepDataViewModel SweepData { get; private set; }
         public List<DataPoint> BodePoints { get; private set; }
@@ -50,17 +50,17 @@ namespace BodeGUI1.ViewModel
             {
                 bode = auto.Connect();
                 measurement = bode.Impedance.CreateOnePortMeasurement();
-                Connected = true;
+                BodeStatusViewModel.StatusCollection[0].Status = true;
             }
             catch (Exception ex)
             {
-                Connected = false;
                 MessageBox.Show("Bode connection failed", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
+                BodeStatusViewModel.StatusCollection[0].Status = false;
             }
         }
         public void Disconnect(object? sender, EventArgs e)
         {
-            try { if (bode != null) bode.ShutDown(); Connected = false; }
+            try { if (bode != null) bode.ShutDown(); BodeStatusViewModel.StatusCollection[0].Status = false; }
             catch (Exception ex)
             {
                 MessageBox.Show("Shutdowm did not go as planned", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -140,9 +140,11 @@ namespace BodeGUI1.ViewModel
             try
             {
                 ExecutionState state = measurement.Calibration.FullRange.ExecuteOpen();
+                BodeStatusViewModel.StatusCollection[1].Status = true;
             }
             catch (Exception ex)
             {
+                BodeStatusViewModel.StatusCollection[1].Status = false;
                 MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
             }
         }
@@ -151,10 +153,12 @@ namespace BodeGUI1.ViewModel
             try
             {
                 ExecutionState state = measurement.Calibration.FullRange.ExecuteShort();
+                BodeStatusViewModel.StatusCollection[2].Status = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Short calibration failed", "Exception Sample", MessageBoxButton.OK);
+                BodeStatusViewModel.StatusCollection[2].Status = false;
             }
         }
         public void LoadCal(object? sender, EventArgs e)
@@ -162,12 +166,13 @@ namespace BodeGUI1.ViewModel
             try
             {
                 ExecutionState state = measurement.Calibration.FullRange.ExecuteLoad();
+                BodeStatusViewModel.StatusCollection[3].Status = true;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Load calibration failed", "Exception Sample", MessageBoxButton.OK);
+                BodeStatusViewModel.StatusCollection[3].Status = false;
             }
         }
     }
-
 }

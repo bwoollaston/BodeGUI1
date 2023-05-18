@@ -11,7 +11,7 @@ namespace BodeGUI1.ViewModel.UI
 {
     internal class BodeControlsViewModel : ViewModelBase
     {
-        public event EventHandler StartProgrammingClicked;
+        public event EventHandler StartMeasurementClicked;
         CancellationTokenSource cts = new CancellationTokenSource();
         public BodeControlsViewModel()
         {
@@ -20,11 +20,10 @@ namespace BodeGUI1.ViewModel.UI
             CurrentProgress = 0;
             Status = new BodeStatusViewModel();
             Run = new DelegateCommand(AdminMeasurement);
-
         }
         private void AdminMeasurement()
         {
-            StartProgrammingClicked?.Invoke(this,EventArgs.Empty);
+            StartMeasurementClicked?.Invoke(this,EventArgs.Empty);
             Enabled = false;
             CurrentProgress = 0;
             ProgramingActive = Visibility.Visible;

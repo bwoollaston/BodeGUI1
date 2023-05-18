@@ -10,9 +10,6 @@
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vmu:BodeSettingsViewModel/>
-    </UserControl.DataContext>
     <Grid Margin="40">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,7 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Height="40" Width="200" IsEnabled="{Binding Enable}">
+        <Button Height="40" Width="200" IsEnabled="{Binding Enable}" Command="{Binding Connect}">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -39,7 +36,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button Height="40" Width="200" Grid.Row="1" IsEnabled="{Binding Enable}">
+        <Button Height="40" Width="200" Grid.Row="1" IsEnabled="{Binding Enable}" Command="{Binding Open}">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -55,7 +52,7 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button Height="40" Width="200" Grid.Row="2" IsEnabled="{Binding Enable}">
+        <Button Height="40" Width="200" Grid.Row="2" IsEnabled="{Binding Enable}" Command="{Binding Short}">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -71,14 +68,14 @@
                 </Grid>
             </Button.Content>
         </Button>
-        <Button Height="40" Width="200" Grid.Row="3" IsEnabled="{Binding Enable}">
+        <Button Height="40" Width="200" Grid.Row="3" IsEnabled="{Binding Enable}" Command="{Binding Load}">
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Open" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <TextBlock Text="Load" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
                     <Image Grid.Column="1">
                         <Image.Source>
                             <BitmapImage DecodePixelWidth="20" UriSource="/images/resistor.png"/>

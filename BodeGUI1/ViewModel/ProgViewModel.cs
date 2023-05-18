@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Prism.Commands;
 
 namespace BodeGUI1.ViewModel
 {
@@ -18,12 +19,13 @@ namespace BodeGUI1.ViewModel
             CurrentContent = new ResonanceMeasurementViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
-            BodeControls.StartProgrammingClicked += BodeControls_StartProgrammingClicked;
+            BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
+            this.StatusBasePropertyChanged += UpdateStatus;
             CurrentContentWidth = 1000;
             BodeControlsHeight = 80;
         }
 
-        private void BodeControls_StartProgrammingClicked(object? sender, EventArgs e)
+        private void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
         {
             switch (SelectedTab)
             {
@@ -52,7 +54,7 @@ namespace BodeGUI1.ViewModel
                 if (_selectedTab == value) return;
                 _selectedTab = value;
                 if (_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
-                else if (_selectedTab == TabItems[1]) CurrentContent = new PeakTrackMeasurementViewModel();
+                else if (_selectedTab == TabItems[1]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
                 else if (SelectedTab == TabItems[2])
                 {
                     CurrentContent = new BodeSettingsViewModel();
@@ -61,6 +63,7 @@ namespace BodeGUI1.ViewModel
                     Content.OpenClicked += OpenCal;
                     Content.ShortClicked += ShortCal;
                     Content.LoadClicked += LoadCal;
+                    CurrentContent = Content;
                 }
                 OnPropertyChanged();
             }
@@ -87,9 +90,17 @@ namespace BodeGUI1.ViewModel
         public BodeControlsViewModel BodeControls
         {
             get { return _bodeControls; }
-            set { _bodeControls=value; OnPropertyChanged();}
+            set 
+            { 
+                _bodeControls=value;
+                _bodeControls.Status = BodeStatusViewModel;
+                OnPropertyChanged();
+            }
         }
-
+        private void UpdateStatus(object? sender, EventArgs e)
+        {
+            BodeControls.Status = BodeStatusViewModel;
+        }
         private double _bodeControlsHeight;
         public double BodeControlsHeight
         {

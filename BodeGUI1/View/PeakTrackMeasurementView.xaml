@@ -10,9 +10,6 @@
              xmlns:vmp="clr-namespace:BodeGUI1.ViewModel.Plots"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:PeakTrackMeasurementViewModel/>
-    </UserControl.DataContext>
     <Grid Grid.Column="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
