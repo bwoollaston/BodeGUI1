@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3pMMi3hiTNN8b8lvgSc3LK+ybuuizjBmCcMrV6CBBvDToCg1DConcQltEZxSvIM8TYD6zTMTHRHkv0oPshpwJg==",
+  "dgSpecHash": "0C5SATrMc4kGwYjHbzTeMgkURYBXWMiO9+tAnGGOsn4dI8xCqFLr9Qs8J6BXkItIz4Q91tV/ENWtY+Au5m+B9A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BrodyWoollaston\\Source\\Repos\\BodeGUI1\\BodeGUI1\\BodeGUI1.csproj",
+  "projectFilePath": "C:\\Users\\BrodyWoollaston\\source\\repos\\BodeGUI1\\BodeGUI1\\BodeGUI1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\BrodyWoollaston\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",
