@@ -15,10 +15,9 @@ namespace BodeGUI1.ViewModel
     {
         public ProgViewModel()
         {
-            CurrentContentWidth = 1000;
-            BodeControlsHeight = 80;
-            ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
-            PeakTrackMeasurementViewModel = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
+            BodeControlsHeight = 100;
+            ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel();
+            PeakTrackMeasurementViewModel = new ResonanceMeasurementViewModel();
             BodeConnection = new BodeSettingsViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
@@ -34,7 +33,7 @@ namespace BodeGUI1.ViewModel
             this.StatusBasePropertyChanged += UpdateStatus;
         }
 
-        private void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
+        private async void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
         {
             switch (SelectedTab)
             {
@@ -42,11 +41,10 @@ namespace BodeGUI1.ViewModel
                     var p = Parameters;
                     p.Enable = false;
                     SweepData.Name = p.SampleName;
-                    Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, SweepMode.Logarithmic, p.RecieverBW);
-                    var a = (ResonanceMeasurementViewModel)CurrentContent;
-                    a.SweepData.Add(SweepData);
-                    a.BodePlot.Points.Clear();
-                    a.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
+                    await Task.Run(() => Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, SweepMode.Logarithmic, p.RecieverBW));
+                    ResonanceMeasurementViewModel.SweepData.Add(SweepData);
+                    ResonanceMeasurementViewModel.BodePlot.Points.Clear();
+                    ResonanceMeasurementViewModel.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
                     BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
                 case "Peak Tracking":
@@ -66,12 +64,10 @@ namespace BodeGUI1.ViewModel
                 _selectedTab = value;
                 if (_selectedTab == TabItems[0]) 
                 {
-                    ResonanceMeasurementViewModel.ListWidth = CurrentContentWidth;
                     CurrentContent = ResonanceMeasurementViewModel;
                 }
                 else if (_selectedTab == TabItems[1])
                 {
-                    PeakTrackMeasurementViewModel.ListWidth = CurrentContentWidth;
                     CurrentContent = PeakTrackMeasurementViewModel;
                 }
                 else if (SelectedTab == TabItems[2]) CurrentContent = BodeConnection;
