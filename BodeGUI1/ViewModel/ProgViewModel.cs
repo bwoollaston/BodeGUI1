@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Commands;
+using System.Windows;
 
 namespace BodeGUI1.ViewModel
 {
@@ -14,15 +15,23 @@ namespace BodeGUI1.ViewModel
     {
         public ProgViewModel()
         {
-            TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking","Bode Settings" };
-            SelectedTab = TabItems[0]; 
-            CurrentContent = new ResonanceMeasurementViewModel();
-            BodeControls = new BodeControlsViewModel();
-            Parameters = new MeasurementParamtersViewModel();
-            BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
-            this.StatusBasePropertyChanged += UpdateStatus;
             CurrentContentWidth = 1000;
             BodeControlsHeight = 80;
+            ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
+            PeakTrackMeasurementViewModel = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
+            BodeConnection = new BodeSettingsViewModel();
+            BodeControls = new BodeControlsViewModel();
+            Parameters = new MeasurementParamtersViewModel();
+            TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking","Connection Settings" };
+            SelectedTab = TabItems[2];
+            CurrentContent = BodeConnection;
+
+            BodeConnection.ConnectClicked += Connect;
+            BodeConnection.OpenClicked += OpenCal;
+            BodeConnection.ShortClicked += ShortCal;
+            BodeConnection.LoadClicked += LoadCal;
+            BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
+            this.StatusBasePropertyChanged += UpdateStatus;
         }
 
         private void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
@@ -30,13 +39,15 @@ namespace BodeGUI1.ViewModel
             switch (SelectedTab)
             {
                 case "Resonance Measurement":
-                    Parameters.Enable = false;
-                    SweepData.Name = Parameters.SampleName;
-                    Sweep(Parameters.LowSweep, Parameters.HighSweep, 201, SweepMode.Logarithmic, Parameters.RecieverBW);
-                    ResonanceMeasurementViewModel Content = (ResonanceMeasurementViewModel)CurrentContent;
-                    Content.SweepData.Add(SweepData);
-                    Content.BodePlot.Points.Clear();
-                    Content.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
+                    var p = Parameters;
+                    p.Enable = false;
+                    SweepData.Name = p.SampleName;
+                    Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, SweepMode.Logarithmic, p.RecieverBW);
+                    var a = (ResonanceMeasurementViewModel)CurrentContent;
+                    a.SweepData.Add(SweepData);
+                    a.BodePlot.Points.Clear();
+                    a.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
+                    BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
                 case "Peak Tracking":
                     break;
@@ -53,18 +64,17 @@ namespace BodeGUI1.ViewModel
             {
                 if (_selectedTab == value) return;
                 _selectedTab = value;
-                if (_selectedTab == TabItems[0]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
-                else if (_selectedTab == TabItems[1]) CurrentContent = new ResonanceMeasurementViewModel() { ListWidth = CurrentContentWidth };
-                else if (SelectedTab == TabItems[2])
+                if (_selectedTab == TabItems[0]) 
                 {
-                    CurrentContent = new BodeSettingsViewModel();
-                    BodeSettingsViewModel Content = (BodeSettingsViewModel)CurrentContent;
-                    Content.ConnectClicked += Connect;
-                    Content.OpenClicked += OpenCal;
-                    Content.ShortClicked += ShortCal;
-                    Content.LoadClicked += LoadCal;
-                    CurrentContent = Content;
+                    ResonanceMeasurementViewModel.ListWidth = CurrentContentWidth;
+                    CurrentContent = ResonanceMeasurementViewModel;
                 }
+                else if (_selectedTab == TabItems[1])
+                {
+                    PeakTrackMeasurementViewModel.ListWidth = CurrentContentWidth;
+                    CurrentContent = PeakTrackMeasurementViewModel;
+                }
+                else if (SelectedTab == TabItems[2]) CurrentContent = BodeConnection;
                 OnPropertyChanged();
             }
         }
@@ -79,6 +89,24 @@ namespace BodeGUI1.ViewModel
         {
             get { return _currentContent; }
             set { _currentContent = value; OnPropertyChanged(); }
+        }
+        private ResonanceMeasurementViewModel _measurement;
+        public ResonanceMeasurementViewModel ResonanceMeasurementViewModel
+        {
+            get { return _measurement; }
+            set { _measurement = value;OnPropertyChanged(); }
+        }
+        private ResonanceMeasurementViewModel _tracking;
+        public ResonanceMeasurementViewModel PeakTrackMeasurementViewModel
+        {
+            get { return _tracking; }
+            set { _tracking = value;OnPropertyChanged(); }
+        }
+        private BodeSettingsViewModel _bodeConnection;
+        public BodeSettingsViewModel BodeConnection
+        {
+            get { return _bodeConnection; }
+            set { _bodeConnection = value;OnPropertyChanged(); }
         }
         private ObservableCollection<string> _tabItems;
         public ObservableCollection<string> TabItems

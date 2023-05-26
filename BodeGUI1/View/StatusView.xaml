@@ -8,24 +8,24 @@
              xmlns:v="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
-    <UserControl.DataContext>
-        <vmu:BodeStatusViewModel/>
-    </UserControl.DataContext>
-    <Border BorderBrush="{Binding BorderColor}" BorderThickness="{Binding BorderThicknes}">
+             mc:Ignorable="d" >
+    <Border BorderBrush="{Binding BorderColor}" BorderThickness="{Binding BorderThicknes}" Height="auto">
         <StackPanel>
-            <Label Background="{Binding StatusCollection[0].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}">
-                <TextBlock Text="{Binding StatusCollection[0].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
+            <Label Background="{Binding StatusCollection[0].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
+                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
+                <TextBlock Text="{Binding StatusCollection[0].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
             </Label>
-            <Label Background="{Binding StatusCollection[1].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}">
-                <TextBlock Text="{Binding StatusCollection[1].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
+            <Label Background="{Binding StatusCollection[1].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
+                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
+                <TextBlock Text="{Binding StatusCollection[1].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
             </Label>
-            <Label Background="{Binding StatusCollection[2].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}">
-                <TextBlock Text="{Binding StatusCollection[2].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
+            <Label Background="{Binding StatusCollection[2].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}" 
+                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
+                <TextBlock Text="{Binding StatusCollection[2].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
             </Label>
-            <Label Background="{Binding StatusCollection[3].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}">
-                <TextBlock Text="{Binding StatusCollection[3].Name}" Style="{DynamicResource MaterialDesignBody1TextBlock}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
+            <Label Background="{Binding StatusCollection[3].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
+                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
+                <TextBlock Text="{Binding StatusCollection[3].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
             </Label>
         </StackPanel>
     </Border>

@@ -28,6 +28,8 @@
                  Text="{Binding LowSweep,Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Reciever Bandwidth" 
                  Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
+        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Number of Points" 
+                 Text="{Binding SweepPoints,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <StackPanel Orientation="Horizontal">
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
                  Text="{Binding SampleName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100" IsEnabled="{Binding Enable}"/>

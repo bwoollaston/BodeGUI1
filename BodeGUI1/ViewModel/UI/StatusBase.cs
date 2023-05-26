@@ -16,8 +16,8 @@ namespace BodeGUI1.ViewModel.UI
             this.Name = Name;
             Status = false;
             Background = new SolidColorBrush( Colors.Red );
-            Height = 30;
-            Width = 200;
+            Width = 400;
+            Height = 20;
         }
         private string _name;
         public string Name

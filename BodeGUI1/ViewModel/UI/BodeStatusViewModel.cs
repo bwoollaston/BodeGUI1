@@ -15,11 +15,10 @@ namespace BodeGUI1.ViewModel.UI
         public BodeStatusViewModel()
         {
             FontSize = 8;
-            BorderThicknes = 2;
+            BorderThicknes = 1;
             BorderColor = new SolidColorBrush(Colors.Black);
             StatusCollection = new ObservableCollection<StatusBase> { new StatusBase("Connect"),new StatusBase("Open"), new StatusBase("Short") , new StatusBase("Load") };
         }
-        
         private ObservableCollection<StatusBase> _statusCollection;
         public ObservableCollection<StatusBase> StatusCollection
         {

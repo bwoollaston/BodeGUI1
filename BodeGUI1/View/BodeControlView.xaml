@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace.BodeGUI1.ViewModel"
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="{Binding ControlHeight}" d:DesignWidth="800">
+             d:DesignHeight="100" d:DesignWidth="800">
 
     <Grid>
         <Grid.ColumnDefinitions>

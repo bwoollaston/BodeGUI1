@@ -64,8 +64,8 @@ namespace BodeGUI1.ViewModel.UI
         private DelegateCommand _load;
         public DelegateCommand Load
         {
-            get { return _short; }
-            set { _short = value; OnPropertyChanged(); }
+            get { return _load; }
+            set { _load = value; OnPropertyChanged(); }
         }
     }
 }

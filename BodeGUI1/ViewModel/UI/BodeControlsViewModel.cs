@@ -27,6 +27,13 @@ namespace BodeGUI1.ViewModel.UI
             Enabled = false;
             CurrentProgress = 0;
             ProgramingActive = Visibility.Visible;
+            AnimateBar().Await();
+        }
+        private void stopProgram()
+        {
+            cts.Cancel();
+            CurrentProgress = 0;
+            Enabled = true;
         }
         private BodeStatusViewModel _status;
         public BodeStatusViewModel Status
@@ -44,7 +51,15 @@ namespace BodeGUI1.ViewModel.UI
         public Visibility ProgramingActive
         {
             get { return _programingActive; }
-            set { _programingActive = value; OnPropertyChanged(); }
+            set 
+            { 
+                _programingActive = value; 
+                if(ProgramingActive != Visibility.Collapsed)
+                {
+                    stopProgram();
+                }
+                OnPropertyChanged(); 
+            }
         }
         private bool _enabled;
         public bool Enabled

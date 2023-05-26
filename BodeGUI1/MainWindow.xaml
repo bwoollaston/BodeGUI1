@@ -9,7 +9,7 @@
         xmlns:v="clr-namespace:BodeGUI1.View"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" 
+        MinHeight="750" 
         Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" MinWidth="1150">
     <Window.DataContext>
         <vm:MainWindowViewModel/>

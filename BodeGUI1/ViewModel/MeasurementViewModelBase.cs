@@ -39,7 +39,7 @@ namespace BodeGUI1.ViewModel
             { 
                 _bodeStatusViewModel = value;
                 StatusBasePropertyChanged?.Invoke(this, EventArgs.Empty);
-                OnPropertyChanged(); 
+                OnPropertyChanged();
             }
         }
         public ResonanceSweepDataViewModel SweepData { get; private set; }

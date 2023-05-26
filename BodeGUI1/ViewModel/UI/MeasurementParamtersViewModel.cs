@@ -19,6 +19,7 @@ namespace BodeGUI1.ViewModel.UI
             HighSweep = 190000;
             LowSweep = 180000;
             RecieverBW = 100000;
+            SweepPoints = 201;
             SampleName = String.Empty;
             Filename = String.Empty;
             IndexingIsChecked = false;
@@ -30,6 +31,12 @@ namespace BodeGUI1.ViewModel.UI
         {
             get { return _indexingIsChecked; }
             set { _indexingIsChecked = value; OnPropertyChanged(); }
+        }
+        private int _sweepPoints;
+        public int SweepPoints
+        {
+            get { return _sweepPoints; }
+            set { _sweepPoints = (int)CheckRange(value, 60000, 100); OnPropertyChanged(); }
         }
         private double _highSweep;
         public double HighSweep
