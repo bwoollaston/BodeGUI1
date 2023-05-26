@@ -18,9 +18,6 @@
         <magc:MagnitudeUnitConverter x:Key="magcon"/>
         <bwc:BandwidthConverter x:Key="bwcon"/>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <vmu:MeasurementParamtersViewModel/>
-    </UserControl.DataContext>
     <StackPanel Margin="2">
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="High Sweep Frequency [Hz]" 
                  Text="{Binding HighSweep, Mode=TwoWay,Converter={StaticResource magcon},ConverterParameter='Hz',UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
