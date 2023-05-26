@@ -62,7 +62,8 @@ namespace BodeGUI1.ViewModel
             {
                 if (_selectedTab == value) return;
                 _selectedTab = value;
-                if (_selectedTab == TabItems[0]) 
+                ParamVisibility = Visibility.Visible;
+                if (_selectedTab == TabItems[0])
                 {
                     CurrentContent = ResonanceMeasurementViewModel;
                 }
@@ -70,7 +71,11 @@ namespace BodeGUI1.ViewModel
                 {
                     CurrentContent = PeakTrackMeasurementViewModel;
                 }
-                else if (SelectedTab == TabItems[2]) CurrentContent = BodeConnection;
+                else if (SelectedTab == TabItems[2])
+                {
+                    ParamVisibility = Visibility.Collapsed;
+                    CurrentContent = BodeConnection;
+                }
                 OnPropertyChanged();
             }
         }
@@ -121,6 +126,12 @@ namespace BodeGUI1.ViewModel
                 OnPropertyChanged();
             }
         }
+        private Visibility _paramVisibility;
+        public Visibility ParamVisibility
+        {
+            get { return _paramVisibility; }
+            set { _paramVisibility = value; OnPropertyChanged(); }
+        }
         private void UpdateStatus(object? sender, EventArgs e)
         {
             BodeControls.Status = BodeStatusViewModel;
@@ -130,12 +141,6 @@ namespace BodeGUI1.ViewModel
         {
             get { return _bodeControlsHeight; }
             set { _bodeControlsHeight = value; OnPropertyChanged(); }
-        }
-        private double _currentContentWidth;
-        public double CurrentContentWidth
-        {
-            get { return _currentContentWidth; }
-            set { _currentContentWidth = value; OnPropertyChanged(); }
         }
     }
 }

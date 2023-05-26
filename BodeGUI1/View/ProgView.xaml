@@ -34,7 +34,7 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ContentControl Content="{Binding Parameters}" Grid.Column="0">
+                    <ContentControl Content="{Binding Parameters}" Grid.Column="0" Visibility="{Binding ParamVisibility}">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type vmu:MeasurementParamtersViewModel}">
                                 <v:MeasurementParametersView/>

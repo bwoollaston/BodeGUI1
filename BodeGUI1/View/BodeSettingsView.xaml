@@ -24,11 +24,11 @@
             <Button.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Connect" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
-                    <Image Grid.Column="1">
+                    <Image Grid.Column="2">
                         <Image.Source>
                             <BitmapImage DecodePixelWidth="20" UriSource="/images/connecting.png"/>
                         </Image.Source>

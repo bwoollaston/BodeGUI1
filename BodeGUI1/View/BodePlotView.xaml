@@ -10,9 +10,7 @@
              xmlns:oxycontrols="http://oxyplot.org/wpf/contrib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <vm:ResonancePlotViewModel/>
-    </UserControl.DataContext>
+
     <Grid>
         <oxy:Plot Title="{Binding Title}" TitleFontSize="14" LegendPlacement="Inside">
             <oxy:Plot.Axes>
