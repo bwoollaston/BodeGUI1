@@ -1,6 +1,7 @@
 ﻿using BodeGUI1.ViewModel.DataModel;
 using BodeGUI1.ViewModel.Plots;
 using BodeGUI1.ViewModel.UI;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,6 +65,18 @@ namespace BodeGUI1.ViewModel
         {
             get { return _selectedItems; }
             set { _selectedItems = value; OnPropertyChanged(); }
+        }
+        private DelegateCommand _clearData;
+        public DelegateCommand ClearData
+        {
+            get { return _clearData; }
+            set { _clearData = value; OnPropertyChanged(); }
+        }
+        private DelegateCommand _deleteRow;
+        public DelegateCommand DeleteRow
+        {
+            get { return _deleteRow; }
+            set { _deleteRow=value; OnPropertyChanged(); } 
         }
         private void ClearList()
         {
