@@ -13,15 +13,16 @@ namespace BodeGUI1.ViewModel.UI
 {
     internal class MeasurementParamtersViewModel : ViewModelBase
     {
+        public event EventHandler ExportClicked;
         public MeasurementParamtersViewModel()
         {
+            Export = new DelegateCommand(DataExport);
             SampleIndex = 1;
             HighSweep = 190000;
             LowSweep = 180000;
             RecieverBW = 100000;
             SweepPoints = 201;
             SampleName = String.Empty;
-            Filename = String.Empty;
             IndexingIsChecked = false;
             Enable = true;
         }
@@ -82,11 +83,15 @@ namespace BodeGUI1.ViewModel.UI
                 OnPropertyChanged(); 
             }
         }
-        private string _filename;
-        public string Filename
+        private DelegateCommand _export;
+        public DelegateCommand Export
         {
-            get { return _filename; }
-            set { _filename = value; OnPropertyChanged(); }
+            get { return _export; }
+            set { _export = value; OnPropertyChanged(); }
+        }
+        private void DataExport()
+        {
+            ExportClicked?.Invoke(this, EventArgs.Empty);
         }
         public double CheckRange(double value, double HighRange, double LowRange)
         {

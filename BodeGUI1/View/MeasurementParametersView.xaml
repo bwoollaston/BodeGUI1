@@ -35,7 +35,17 @@
                 <CheckBox IsChecked="{Binding IndexingIsChecked}"  Margin="10,0,0,0" IsEnabled="{Binding Enable}"/>
             </StackPanel>
         </StackPanel>
-        <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Export Filename" 
-                 Text="{Binding Filename,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" MinWidth="100" IsEnabled="{Binding Enable}"/>
+        <Button Margin="0,10" Padding="0" Command="{Binding Export}">
+            <Button.Content>
+                <Grid Height="30" Width="130">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Export Data" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                    <md:PackIcon Kind="Upload" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button.Content>
+        </Button>
     </StackPanel>
 </UserControl>

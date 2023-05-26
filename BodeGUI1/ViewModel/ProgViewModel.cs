@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Commands;
 using System.Windows;
+using System.IO;
+using CsvHelper;
+using System.Globalization;
 
 namespace BodeGUI1.ViewModel
 {
@@ -29,6 +32,7 @@ namespace BodeGUI1.ViewModel
             BodeConnection.OpenClicked += OpenCal;
             BodeConnection.ShortClicked += ShortCal;
             BodeConnection.LoadClicked += LoadCal;
+            Parameters.ExportClicked += ExportData;
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
             this.StatusBasePropertyChanged += UpdateStatus;
         }
@@ -135,6 +139,24 @@ namespace BodeGUI1.ViewModel
         private void UpdateStatus(object? sender, EventArgs e)
         {
             BodeControls.Status = BodeStatusViewModel;
+        }
+        private async void ExportData(object? sender, EventArgs e)
+        {
+            try
+            {
+                string fp = await Task.Run(() => ExportPath());
+                using (var writer = new StreamWriter(fp))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    if (SelectedTab == TabItems[0]) csv.WriteRecords(ResonanceMeasurementViewModel.SweepData);
+                    else if (SelectedTab == TabItems[1]) csv.WriteRecords(PeakTrackMeasurementViewModel.SweepData);
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show("No FilePath Provided", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
         }
         private double _bodeControlsHeight;
         public double BodeControlsHeight
