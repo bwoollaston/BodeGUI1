@@ -14,6 +14,7 @@ namespace BodeGUI1.ViewModel
 {
     internal class ResonanceMeasurementViewModel : ViewModelBase
     {
+
         public ResonanceMeasurementViewModel()
         {
             ListWidth = 1000;
@@ -23,6 +24,8 @@ namespace BodeGUI1.ViewModel
                                                             "Quality Factor", "Capacitance" };
             BodePlot = new ResonancePlotViewModel();
             SweepData = new ObservableCollection<ResonanceSweepDataViewModel>();
+            DeleteRow = new DelegateCommand(Delete);
+            ClearData = new DelegateCommand(ClearList);
         }
         private ResonancePlotViewModel _bodePlot;
         public ResonancePlotViewModel BodePlot
@@ -55,6 +58,45 @@ namespace BodeGUI1.ViewModel
         {
             get { return _sweepData; }
             set { _sweepData = value; OnPropertyChanged(); }
+        }
+        private List<ResonanceSweepDataViewModel> _selectedItems;
+        public List<ResonanceSweepDataViewModel> SelectedItems
+        {
+            get { return _selectedItems; }
+            set { _selectedItems = value; OnPropertyChanged(); }
+        }
+        private void ClearList()
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to clear data?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
+                {
+                    SweepData.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Clear Failed", "Exception Sample", MessageBoxButton.OK);
+            }
+        }
+        private void Delete()
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to clear data?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
+                {
+                    foreach(ResonanceSweepDataViewModel item in SelectedItems)
+                    {
+                        SweepData.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Clear Failed", "Exception Sample", MessageBoxButton.OK);
+            }
         }
         private double _columnWidth;
         public double ColumnWidth

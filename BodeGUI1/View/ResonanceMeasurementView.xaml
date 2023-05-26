@@ -28,20 +28,26 @@
             <RowDefinition Height=".7*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
-                  Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
-                    <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
-                    <GridViewColumn Header="{Binding Headers[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
-                    <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
-                    <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
-                    <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel>
+            <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
+                  Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0" SelectedItem="{Binding SelectedItems}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq}"/>
+                        <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance}"/>
+                        <GridViewColumn Header="{Binding Headers[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq}"/>
+                        <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
+                        <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
+                        <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Delete" Width="100" Margin="10,0" Command="{Binding DeleteRow}"/>
+                <Button Content="Clear" Width="100" Margin="10,0,0,0" Command="{Binding ClearData}"/>
+            </StackPanel>
+        </StackPanel>
         <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vmp:ResonancePlotViewModel}">
