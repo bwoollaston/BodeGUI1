@@ -78,8 +78,11 @@ namespace BodeGUI1.ViewModel.UI
                 _sampleName = value;
                 if (IndexingIsChecked == true)
                 {
-                    string sub = _sampleName.Substring(_sampleName.Length - 2);
-                    if (sub == "_" + (SampleIndex - 1).ToString()) _sampleName = _sampleName.Substring(0,_sampleName.Length-2);
+                    if (_sampleName != String.Empty)
+                    {
+                        string sub = _sampleName.Substring(_sampleName.Length - 2);
+                        if (sub == "_" + (SampleIndex - 1).ToString()) _sampleName = _sampleName.Substring(0, _sampleName.Length - 2);
+                    }
                     _sampleName += String.Format("_{0}", SampleIndex);
                 }
                 OnPropertyChanged(); 
