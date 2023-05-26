@@ -18,7 +18,6 @@ namespace BodeGUI1.ViewModel
 
         public ResonanceMeasurementViewModel()
         {
-            ListWidth = 1000;
             Headers = new ObservableCollection<TextBlock>();
             DataTypes = new ObservableCollection<string>() { "Name", "Resonance Frequency [kHz]", "Resonance Impedance [Ω]",
                                                             "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",
@@ -97,7 +96,7 @@ namespace BodeGUI1.ViewModel
         {
             try
             {
-                MessageBoxResult result = MessageBox.Show("Are you sure you want to clear data?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete selected items?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
                 {
                     foreach(ResonanceSweepDataViewModel item in SelectedItems)
