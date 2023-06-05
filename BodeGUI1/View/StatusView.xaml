@@ -9,8 +9,29 @@
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
              xmlns:vmu="clr-namespace:BodeGUI1.ViewModel.UI"
              mc:Ignorable="d" >
-    <Border BorderBrush="{Binding BorderColor}" BorderThickness="{Binding BorderThicknes}" Height="auto">
-        <StackPanel>
+    <UserControl.Resources>
+        <Style TargetType="Ellipse" x:Key="elp">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Fill" Value="Blue"/>
+            <Setter Property="Stroke" Value="Red"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Ellipse Style="{StaticResource elp}" />
+        <StackPanel Grid.Row="2">
+            <Ellipse Width="20" Height="10" Fill="{Binding StatusCollection[0].Background}"/>
             <Label Background="{Binding StatusCollection[0].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
                    Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
                 <TextBlock Text="{Binding StatusCollection[0].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
@@ -28,5 +49,5 @@
                 <TextBlock Text="{Binding StatusCollection[3].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
             </Label>
         </StackPanel>
-    </Border>
+    </Grid>
 </UserControl>
