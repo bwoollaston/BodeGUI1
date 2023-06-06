@@ -39,7 +39,7 @@ namespace BodeGUI1.ViewModel.Plots
             set 
             { 
                 _phase = value;
-                UpdateUI();
+                if(Phase.Count != 0 && Impedance.Count !=0 )UpdateUI();
                 OnPropertyChanged(); 
             }
         }
