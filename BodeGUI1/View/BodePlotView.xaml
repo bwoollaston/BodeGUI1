@@ -15,10 +15,12 @@
         <oxy:Plot Title="{Binding Title}" TitleFontSize="14" LegendPlacement="Inside">
             <oxy:Plot.Axes>
                 <oxy:LogarithmicAxis Position="Bottom" Title="Frequency [Hz]"/>
-                <oxy:LogarithmicAxis Position="Left" Title="Impedace [Ω]"/>
+                <oxy:LogarithmicAxis Position="Left" Title="Impedace [Ω]" Key="YLogAxes"/>
+                <oxy:LinearAxis Position="Right" Title="Phase [Degrees]" Key="YLinAxes"/>
             </oxy:Plot.Axes>
             <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding Points}" Title="Impedace [Ω] vs. Frequency [Hz]"/>
+                <oxy:LineSeries ItemsSource="{Binding ImpedanceView}" Title="Impedace [Ω] vs. Frequency [Hz]" YAxisKey="YLogAxes"/>
+                <oxy:LineSeries ItemsSource="{Binding PhaseView}" Title="Phase [Deg] vs. Frequency [Hz]" YAxisKey="YLinAxes"/>
             </oxy:Plot.Series>
         </oxy:Plot>
     </Grid>

@@ -14,27 +14,27 @@ using System.Globalization;
 
 namespace BodeGUI1.ViewModel
 {
-    internal class ProgViewModel : MeasurementViewModelBase
+    internal class ProgViewModel : ViewModelBase
     {
         public ProgViewModel()
         {
             BodeControlsHeight = 100;
             ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel();
             PeakTrackMeasurementViewModel = new ResonanceMeasurementViewModel();
+            BodeEvents = new MeasurementViewModelBase();
             BodeConnection = new BodeSettingsViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
             TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking","Connection Settings" };
             SelectedTab = TabItems[2];
             CurrentContent = BodeConnection;
-
-            BodeConnection.ConnectClicked += Connect;
-            BodeConnection.OpenClicked += OpenCal;
-            BodeConnection.ShortClicked += ShortCal;
-            BodeConnection.LoadClicked += LoadCal;
+            BodeConnection.ConnectClicked += BodeEvents.Connect;
+            BodeConnection.OpenClicked += BodeEvents.OpenCal;
+            BodeConnection.ShortClicked += BodeEvents.ShortCal;
+            BodeConnection.LoadClicked += LoadEvent;
             Parameters.ExportClicked += ExportData;
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
-            this.StatusBasePropertyChanged += UpdateStatus;
+            BodeEvents.StatusBasePropertyChanged += UpdateStatus;
         }
 
         private async void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
@@ -44,11 +44,13 @@ namespace BodeGUI1.ViewModel
                 case "Resonance Measurement":
                     var p = Parameters;
                     p.Enable = false;
-                    SweepData.Name = p.SampleName;
-                    await Task.Run(() => Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, SweepMode.Logarithmic, p.RecieverBW));
-                    ResonanceMeasurementViewModel.SweepData.Add(SweepData);
-                    ResonanceMeasurementViewModel.BodePlot.Points.Clear();
-                    ResonanceMeasurementViewModel.BodePlot.Points = new ObservableCollection<OxyPlot.DataPoint>(BodePoints);
+                    BodeEvents.SweepData.Name = p.SampleName;
+                    await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
+                    ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
+                    ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
+                    ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
+                    ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
+                    ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
                     BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
                 case "Peak Tracking":
@@ -111,7 +113,18 @@ namespace BodeGUI1.ViewModel
         public BodeSettingsViewModel BodeConnection
         {
             get { return _bodeConnection; }
-            set { _bodeConnection = value;OnPropertyChanged(); }
+            set 
+            { 
+                _bodeConnection = value;
+                BodeEvents.CalResistor = _bodeConnection.CalResistor;
+                OnPropertyChanged(); 
+            }
+        }
+        private MeasurementViewModelBase _bodeEvents;
+        public MeasurementViewModelBase BodeEvents
+        {
+            get { return _bodeEvents; }
+            set { _bodeEvents = value; OnPropertyChanged(); }
         }
         private ObservableCollection<string> _tabItems;
         public ObservableCollection<string> TabItems
@@ -126,7 +139,7 @@ namespace BodeGUI1.ViewModel
             set 
             { 
                 _bodeControls=value;
-                _bodeControls.Status = BodeStatusViewModel;
+                _bodeControls.Status = BodeEvents.BodeStatusViewModel;
                 OnPropertyChanged();
             }
         }
@@ -138,13 +151,13 @@ namespace BodeGUI1.ViewModel
         }
         private void UpdateStatus(object? sender, EventArgs e)
         {
-            BodeControls.Status = BodeStatusViewModel;
+            BodeControls.Status = BodeEvents.BodeStatusViewModel;
         }
         private async void ExportData(object? sender, EventArgs e)
         {
             try
             {
-                string fp = await Task.Run(() => ExportPath());
+                string fp = await Task.Run(() => BodeEvents.ExportPath());
                 using (var writer = new StreamWriter(fp))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
@@ -163,6 +176,11 @@ namespace BodeGUI1.ViewModel
         {
             get { return _bodeControlsHeight; }
             set { _bodeControlsHeight = value; OnPropertyChanged(); }
+        }
+        private void LoadEvent(object? sender, EventArgs e)
+        {
+            BodeEvents.CalResistor = _bodeConnection.CalResistor;
+            BodeEvents.LoadCal(sender, e);
         }
     }
 }

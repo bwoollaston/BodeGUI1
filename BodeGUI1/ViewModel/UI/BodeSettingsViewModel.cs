@@ -16,10 +16,12 @@ namespace BodeGUI1.ViewModel.UI
         public BodeSettingsViewModel()
         {
             Enable = true;
+            CalResistor = 100;
             Connect = new DelegateCommand(BodeConnect);
             Open = new DelegateCommand(CalOpen);
             Short = new DelegateCommand(CalShort);
             Load = new DelegateCommand(CalLoad);
+
         }
         private void BodeConnect()
         {
@@ -66,6 +68,12 @@ namespace BodeGUI1.ViewModel.UI
         {
             get { return _load; }
             set { _load = value; OnPropertyChanged(); }
+        }
+        private double _calResistor;
+        public double CalResistor
+        {
+            get { return _calResistor; }
+            set { _calResistor = value; OnPropertyChanged(); }
         }
     }
 }

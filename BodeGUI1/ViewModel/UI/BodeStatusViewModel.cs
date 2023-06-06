@@ -14,9 +14,7 @@ namespace BodeGUI1.ViewModel.UI
     {
         public BodeStatusViewModel()
         {
-            FontSize = 8;
-            BorderThicknes = 1;
-            BorderColor = new SolidColorBrush(Colors.Black);
+            FontSize = 10;
             StatusCollection = new ObservableCollection<StatusBase> { new StatusBase("Connect"),new StatusBase("Open"), new StatusBase("Short") , new StatusBase("Load") };
         }
         private ObservableCollection<StatusBase> _statusCollection;
@@ -31,18 +29,5 @@ namespace BodeGUI1.ViewModel.UI
             get { return _fontSize; }
             set { _fontSize = value; OnPropertyChanged(); }
         }
-        private double _borderThicknes;
-        public double BorderThicknes
-        {
-            get { return _borderThicknes; }
-            set { _borderThicknes = value; OnPropertyChanged(); }   
-        }
-        private SolidColorBrush _borderColor;
-        public SolidColorBrush BorderColor
-        {
-            get { return _borderColor; }
-            set { _borderColor = value; OnPropertyChanged(); }
-        }
-
     }
 }

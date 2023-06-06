@@ -30,6 +30,13 @@ namespace BodeGUI1.ViewModel
             BodeStatusViewModel = new BodeStatusViewModel();
             BodePoints = new List<DataPoint>();
             SweepData = new ResonanceSweepDataViewModel();
+            CalResistor = 100;
+        }
+        private double _calResistor;
+        public double CalResistor
+        {
+            get { return _calResistor; }
+            set { _calResistor = value; }
         }
         private BodeStatusViewModel _bodeStatusViewModel;
         public BodeStatusViewModel BodeStatusViewModel
@@ -44,13 +51,21 @@ namespace BodeGUI1.ViewModel
         }
         public ResonanceSweepDataViewModel SweepData { get; private set; }
         public List<DataPoint> BodePoints { get; private set; }
+        public List<DataPoint> PhasePoints { get; private set; }
         public void Connect(object? sender, EventArgs e)
         {
             try
             {
-                bode = auto.Connect();
-                measurement = bode.Impedance.CreateOnePortMeasurement();
-                BodeStatusViewModel.StatusCollection[0].Status = true;
+                if (BodeStatusViewModel.StatusCollection[0].Status == true)
+                {
+                    Disconnect(this, EventArgs.Empty);
+                }
+                else
+                {
+                    bode = auto.Connect();
+                    measurement = bode.Impedance.CreateOnePortMeasurement();
+                    BodeStatusViewModel.StatusCollection[0].Status = true;
+                }
             }
             catch (Exception ex)
             {
@@ -63,7 +78,7 @@ namespace BodeGUI1.ViewModel
             try { if (bode != null) bode.ShutDown(); BodeStatusViewModel.StatusCollection[0].Status = false; }
             catch (Exception ex)
             {
-                MessageBox.Show("Shutdowm did not go as planned", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Shutdown did not go as planned", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void SweepPtMeasurement(double Low, double High, int NumPts, SweepMode Type)
@@ -76,7 +91,6 @@ namespace BodeGUI1.ViewModel
                 //throw new ExecuteStateException("Frequency Sweep");
             }
         }
-
         private void SinglePtMeasurement(double frequency)
         {
             measurement.ConfigureSinglePoint(frequency);
@@ -94,6 +108,7 @@ namespace BodeGUI1.ViewModel
             SweepPtMeasurement(LowFreq, HighFreq, NumPts, Type);
             ClearPlotData(BodePoints);
             FillPlotData(BodePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
+            FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
             SinglePtMeasurement(SweepData.Resfreq);
@@ -165,6 +180,7 @@ namespace BodeGUI1.ViewModel
         {
             try
             {
+                measurement.Calibration.Load = CalResistor;
                 ExecutionState state = measurement.Calibration.FullRange.ExecuteLoad();
                 BodeStatusViewModel.StatusCollection[3].Status = true;
             }

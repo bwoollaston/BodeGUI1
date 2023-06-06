@@ -12,26 +12,19 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Run" Style="{DynamicResource MaterialDesignRaisedButton}" IsEnabled="{Binding Enabled}" Command="{Binding Run}" Margin="5"/>
+        <ContentControl Content="{Binding Status}" Grid.Column="0" VerticalAlignment="Center">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vmu:BodeStatusViewModel}">
+                    <v:StatusView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="Run" Style="{DynamicResource MaterialDesignRaisedButton}" IsEnabled="{Binding Enabled}" Command="{Binding Run}" Margin="5" Width="200"/>
             <ProgressBar Visibility="{Binding ProgramingActive}" Height="15" Margin="5"/>
         </StackPanel>
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ContentControl Content="{Binding Status}" Grid.Column="1">
-                <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type vmu:BodeStatusViewModel}">
-                        <v:StatusView/>
-                    </DataTemplate>
-                </ContentControl.Resources>
-            </ContentControl>
-        </Grid>
     </Grid>
 </UserControl>

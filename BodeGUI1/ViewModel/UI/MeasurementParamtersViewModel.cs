@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BodeGUI1.ExceptionHandlers;
+using OmicronLab.VectorNetworkAnalysis.AutomationInterface.Enumerations;
 using Prism.Commands;
 
 namespace BodeGUI1.ViewModel.UI
@@ -16,6 +18,8 @@ namespace BodeGUI1.ViewModel.UI
         public event EventHandler ExportClicked;
         public MeasurementParamtersViewModel()
         {
+            SweepModes = new ObservableCollection<string>() { "Logarithmic" , "Linear" };
+            SelectedMode = SweepModes[0];
             Export = new DelegateCommand(DataExport);
             SampleIndex = 1;
             HighSweep = 190000;
@@ -25,6 +29,34 @@ namespace BodeGUI1.ViewModel.UI
             SampleName = String.Empty;
             IndexingIsChecked = false;
             Enable = true;
+        }
+        private ObservableCollection<string> _sweepModes;
+        public ObservableCollection<string> SweepModes
+        {
+            get { return _sweepModes; }
+            set 
+            { 
+                _sweepModes = value; 
+                OnPropertyChanged();
+            }
+        }
+        private string _selectedMode;
+        public string SelectedMode
+        {
+            get { return _selectedMode; }
+            set 
+            { 
+                _selectedMode = value;
+                if (_selectedMode == SweepModes[0]) CurSweepMode = SweepMode.Logarithmic;
+                else CurSweepMode = SweepMode.Linear;
+                OnPropertyChanged(); 
+            }
+        }
+        private SweepMode _curSweepMode;
+        public SweepMode CurSweepMode
+        {
+            get { return _curSweepMode; }
+            set { _curSweepMode = value; OnPropertyChanged(); }
         }
         private int SampleIndex;
         private bool _indexingIsChecked;
@@ -88,6 +120,7 @@ namespace BodeGUI1.ViewModel.UI
                 OnPropertyChanged(); 
             }
         }
+
         private DelegateCommand _export;
         public DelegateCommand Export
         {

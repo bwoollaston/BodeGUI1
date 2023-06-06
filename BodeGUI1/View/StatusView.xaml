@@ -13,41 +13,38 @@
         <Style TargetType="Ellipse" x:Key="elp">
             <Setter Property="Width" Value="25"/>
             <Setter Property="Height" Value="15"/>
-            <Setter Property="Fill" Value="Blue"/>
-            <Setter Property="Stroke" Value="Red"/>
-            <Setter Property="StrokeThickness" Value="2"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="StrokeThickness" Value="1"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Ellipse Style="{StaticResource elp}" />
-        <StackPanel Grid.Row="2">
-            <Ellipse Width="20" Height="10" Fill="{Binding StatusCollection[0].Background}"/>
-            <Label Background="{Binding StatusCollection[0].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
-                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
-                <TextBlock Text="{Binding StatusCollection[0].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
-            </Label>
-            <Label Background="{Binding StatusCollection[1].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
-                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
-                <TextBlock Text="{Binding StatusCollection[1].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
-            </Label>
-            <Label Background="{Binding StatusCollection[2].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}" 
-                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
-                <TextBlock Text="{Binding StatusCollection[2].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
-            </Label>
-            <Label Background="{Binding StatusCollection[3].Background}" BorderThickness="{Binding BorderThicknes}" BorderBrush="{Binding BorderColor}"
-                   Height="{Binding StatusCollection[0].Height}" Width="{Binding StatusCollection[0].Width}">
-                <TextBlock Text="{Binding StatusCollection[3].Name}" HorizontalAlignment="Center" FontSize="{Binding FontSize}"/>
-            </Label>
-        </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+            <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[0].Background}" Grid.Row="0" VerticalAlignment="Center"/>
+            <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[1].Background}" Grid.Row="1" VerticalAlignment="Center"/>
+            <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[2].Background}" Grid.Row="2" VerticalAlignment="Center"/>
+            <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[3].Background}" Grid.Row="3" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding StatusCollection[0].Name}" FontSize="{Binding FontSize}" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[1].Name}" FontSize="{Binding FontSize}" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[2].Name}" FontSize="{Binding FontSize}" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[3].Name}" FontSize="{Binding FontSize}" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+        </Grid>
     </Grid>
 </UserControl>
