@@ -119,11 +119,11 @@ namespace BodeGUI1.ViewModel
             SinglePtMeasurement(1000);
             SweepData.Capacitance = measurement.Results.CsAt(0);
         }
-        private void FillPlotData(List<DataPoint> Pts, List<double> Frequencies, List<double> Impedances, int count)
+        private void FillPlotData(List<DataPoint> Pts, List<double> Frequencies, List<double> Data, int count)
         {
             for (int i = 0; i < count; i++)
             {
-                Pts.Add(new DataPoint(measurement.Results.MeasurementFrequencies[i], measurement.Results.Magnitude(MagnitudeUnit.Lin)[i]));
+                Pts.Add(new DataPoint(Frequencies[i], Data[i]));
             }
         }
         private void ClearPlotData(List<DataPoint> Pts)
