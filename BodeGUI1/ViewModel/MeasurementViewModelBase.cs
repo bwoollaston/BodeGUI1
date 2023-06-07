@@ -120,7 +120,7 @@ namespace BodeGUI1.ViewModel
             SinglePtMeasurement(SweepData.Antifreq);
             SweepData.Anti_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SinglePtMeasurement(1000);
-            SweepData.Capacitance = measurement.Results.CsAt(0);
+            SweepData.Capacitance = measurement.Results.CsAt(0)*1e12;
         }
         private void FillPlotData(List<DataPoint> Pts, List<double> Frequencies, List<double> Data, int count)
         {

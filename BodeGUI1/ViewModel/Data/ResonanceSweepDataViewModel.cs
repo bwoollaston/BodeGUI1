@@ -80,5 +80,19 @@ namespace BodeGUI1.ViewModel.DataModel
             get { return _phase; }
             set { _phase = value; OnPropertyChanged(); }
         }
+
+        //used to autoscale plot
+        private double _lowX;
+        public double LowX
+        {
+            get { return _lowX; }
+            set { _lowX = value; OnPropertyChanged(); }
+        }
+        private double _highX;
+        public double HighX
+        {
+            get { return _highX; }  
+            set { _highX = value; OnPropertyChanged(); }
+        }
     }
 }

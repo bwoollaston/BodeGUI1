@@ -17,6 +17,8 @@ namespace BodeGUI1.ViewModel.Plots
             Phase = new ObservableCollection<DataPoint>();
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
+            HighX = 190000;
+            LowX = 180000;
         }
         private string _title;
         public string Title
@@ -55,6 +57,18 @@ namespace BodeGUI1.ViewModel.Plots
         {
             get { return _phaseView; }
             set { _phaseView = value; OnPropertyChanged(); }
+        }
+        private double _lowX;
+        public double LowX
+        {
+            get { return _lowX; }
+            set { _lowX = value; OnPropertyChanged(); }
+        }
+        private double _highX;
+        public double HighX
+        {
+            get { return _highX; }
+            set { _highX = value; OnPropertyChanged(); }
         }
         public async void UpdateUI()
         {
