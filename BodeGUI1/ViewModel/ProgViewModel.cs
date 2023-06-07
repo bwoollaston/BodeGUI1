@@ -79,6 +79,7 @@ namespace BodeGUI1.ViewModel
                 else if (_selectedTab == TabItems[1])
                 {
                     CurrentContent = PeakTrackMeasurementViewModel;
+                    PeakTrackMeasurementViewModel.ListWidth = PeakTrackMeasurementViewModel.ListWidth;
                 }
                 else if (SelectedTab == TabItems[2])
                 {
