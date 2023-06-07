@@ -29,6 +29,7 @@ namespace BodeGUI1.ViewModel
         {
             BodeStatusViewModel = new BodeStatusViewModel();
             BodePoints = new List<DataPoint>();
+            PhasePoints = new List<DataPoint>();
             SweepData = new ResonanceSweepDataViewModel();
             CalResistor = 100;
         }
@@ -107,6 +108,7 @@ namespace BodeGUI1.ViewModel
             measurement.ReceiverBandwidth = (ReceiverBandwidth)bandwidth;       //sets UI bandwidth value to be bandwidth of measurement
             SweepPtMeasurement(LowFreq, HighFreq, NumPts, Type);
             ClearPlotData(BodePoints);
+            ClearPlotData(PhasePoints);
             FillPlotData(BodePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
             FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;

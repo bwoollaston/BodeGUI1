@@ -51,6 +51,7 @@ namespace BodeGUI1.ViewModel
                     ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
                     ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
                     ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
+                    ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
                 case "Peak Tracking":

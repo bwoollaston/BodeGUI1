@@ -15,6 +15,8 @@ namespace BodeGUI1.ViewModel.Plots
             Title = "Bode Impedance vs. Frequency Plot";
             Impedance = new ObservableCollection<DataPoint>();
             Phase = new ObservableCollection<DataPoint>();
+            ImpedanceView = new ObservableCollection<DataPoint>();
+            PhaseView = new ObservableCollection<DataPoint>();
         }
         private string _title;
         public string Title
@@ -39,7 +41,7 @@ namespace BodeGUI1.ViewModel.Plots
             set 
             { 
                 _phase = value;
-                if(Phase.Count != 0 && Impedance.Count !=0 )UpdateUI();
+                //if(Phase.Count != 0 && Impedance.Count !=0 )UpdateUI();
                 OnPropertyChanged(); 
             }
         }
@@ -55,15 +57,15 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _phaseView; }
             set { _phaseView = value; OnPropertyChanged(); }
         }
-        private async void UpdateUI()
+        public async void UpdateUI()
         {
-            int delay = 5000;
+            int delay = 3000;
             int dt = delay/Impedance.Count;
             int i = 0;
             foreach(DataPoint element in Impedance)
             {
                 ImpedanceView.Add(element);
-                PhaseView.Add(PhaseView[i]);
+                PhaseView.Add(Phase[i]);
                 await Task.Delay(dt);
                 i++;
             }
