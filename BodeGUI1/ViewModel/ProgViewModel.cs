@@ -45,6 +45,8 @@ namespace BodeGUI1.ViewModel
                     var p = Parameters;
                     p.Enable = false;
                     BodeEvents.SweepData.Name = p.SampleName;
+                    BodeEvents.SweepData.LowX = p.LowSweep;
+                    BodeEvents.SweepData.HighX = p.HighSweep;
                     await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                     ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
                     ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
