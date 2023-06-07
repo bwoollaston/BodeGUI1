@@ -116,6 +116,7 @@ namespace BodeGUI1.ViewModel
             SinglePtMeasurement(SweepData.Resfreq);
             SweepData.Res_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SweepData.QualityFactor = measurement.Results.QAt(0);
+            SweepData.Phase = measurement.Results.PhaseAt(0,AngleUnit.Degree);
             SinglePtMeasurement(SweepData.Antifreq);
             SweepData.Anti_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SinglePtMeasurement(1000);

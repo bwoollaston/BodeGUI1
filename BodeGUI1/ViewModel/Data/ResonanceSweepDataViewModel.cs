@@ -18,6 +18,7 @@ namespace BodeGUI1.ViewModel.DataModel
             Res_impedance = 0;
             Anti_impedance = 0;
             QualityFactor = 0;
+            Phase = 0;
         }
         private int _index;
         public int Index
@@ -72,6 +73,12 @@ namespace BodeGUI1.ViewModel.DataModel
         {
             get { return _qualityFactor; }
             set { _qualityFactor = value; OnPropertyChanged(); }
+        }
+        private double _phase;
+        public double Phase
+        {
+            get { return _phase; }
+            set { _phase = value; OnPropertyChanged(); }
         }
     }
 }

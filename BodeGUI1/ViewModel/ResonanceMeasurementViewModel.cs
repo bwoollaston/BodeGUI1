@@ -21,7 +21,7 @@ namespace BodeGUI1.ViewModel
             Headers = new ObservableCollection<TextBlock>();
             DataTypes = new ObservableCollection<string>() { "Name", "Resonance Frequency [kHz]", "Resonance Impedance [Ω]",
                                                             "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",
-                                                            "Quality Factor", "Capacitance" };
+                                                            "Quality Factor", "Capacitance","Phase [deg]" };
             BodePlot = new ResonancePlotViewModel();
             SweepData = new ObservableCollection<ResonanceSweepDataViewModel>();
             DeleteRow = new DelegateCommand(Delete);
@@ -123,7 +123,7 @@ namespace BodeGUI1.ViewModel
             set 
             { 
                 _listWidth = value-61; 
-                ColumnWidth = _listWidth/7;
+                ColumnWidth = _listWidth/8;
                 OnPropertyChanged(nameof(ListWidth)); 
             } 
         }

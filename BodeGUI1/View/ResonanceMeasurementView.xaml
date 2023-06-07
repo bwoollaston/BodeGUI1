@@ -44,6 +44,7 @@
                         <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance}"/>
                         <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor}"/>
                         <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance}"/>
+                        <GridViewColumn Header="{Binding Headers[7]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Phase}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
