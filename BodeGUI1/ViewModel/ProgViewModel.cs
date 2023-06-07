@@ -49,6 +49,8 @@ namespace BodeGUI1.ViewModel
                     ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
                     ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
                     ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
+                    ResonanceMeasurementViewModel.BodePlot.ImpedanceView.Clear();
+                    ResonanceMeasurementViewModel.BodePlot.PhaseView.Clear();
                     ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
                     ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
                     ResonanceMeasurementViewModel.BodePlot.UpdateUI();

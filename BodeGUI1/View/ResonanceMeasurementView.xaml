@@ -13,7 +13,6 @@
              xmlns:gdc="clr-namespace:BodeGUI1.View.SizeConverter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
     <UserControl.Resources>
         <gdc:GridToDoubleConverter x:Key="gtodc"/>
     </UserControl.Resources>
