@@ -113,6 +113,7 @@ namespace BodeGUI1.ViewModel
             FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
+            if(SweepData.Resfreq == null) throw
             SinglePtMeasurement(SweepData.Resfreq);
             SweepData.Res_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SweepData.QualityFactor = measurement.Results.QAt(0);

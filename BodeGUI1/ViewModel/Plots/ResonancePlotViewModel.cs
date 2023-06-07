@@ -72,7 +72,7 @@ namespace BodeGUI1.ViewModel.Plots
         }
         public async void UpdateUI()
         {
-            int delay = 3000;
+            int delay = 2000;
             int dt = delay/Impedance.Count;
             int i = 0;
             foreach(DataPoint element in Impedance)

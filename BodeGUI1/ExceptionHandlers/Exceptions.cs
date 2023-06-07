@@ -21,4 +21,10 @@ namespace BodeGUI1.ExceptionHandlers
 
         }
     }
+    internal class ResNotFoundException : Exception
+    {
+        public ResNotFoundException() : base("Resonance Frequenct Not Found") { }
+        public ResNotFoundException(string message) : base(message){}
+        public ResNotFoundException(string message, Exception innerException) : base 
+    }
 }
