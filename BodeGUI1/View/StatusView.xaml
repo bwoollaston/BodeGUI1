@@ -24,10 +24,10 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="17"/>
             </Grid.RowDefinitions>
             <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[0].Background}" Grid.Row="0" VerticalAlignment="Center"/>
             <Ellipse Style="{StaticResource elp}" Fill="{Binding StatusCollection[1].Background}" Grid.Row="1" VerticalAlignment="Center"/>
@@ -36,15 +36,15 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="15"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="17"/>
+                <RowDefinition Height="16"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding StatusCollection[0].Name}" FontSize="{Binding FontSize}" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
-            <TextBlock Text="{Binding StatusCollection[1].Name}" FontSize="{Binding FontSize}" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
-            <TextBlock Text="{Binding StatusCollection[2].Name}" FontSize="{Binding FontSize}" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
-            <TextBlock Text="{Binding StatusCollection[3].Name}" FontSize="{Binding FontSize}" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[0].Name}" FontSize="{Binding FontSize}" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[1].Name}" FontSize="{Binding FontSize}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[2].Name}" FontSize="{Binding FontSize}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+            <TextBlock Text="{Binding StatusCollection[3].Name}" FontSize="{Binding FontSize}" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
         </Grid>
     </Grid>
 </UserControl>
