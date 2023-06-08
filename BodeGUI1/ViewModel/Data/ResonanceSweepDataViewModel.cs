@@ -21,6 +21,24 @@ namespace BodeGUI1.ViewModel.DataModel
             QualityFactor = 0;
             Phase = 0;
         }
+
+        public ResonanceSweepDataViewModel Clone()
+        {
+            return new ResonanceSweepDataViewModel()
+            {
+                Index = Index,
+                Time = Time,
+                Name = Name,
+                Capacitance = Capacitance,
+                Resfreq = Resfreq,
+                Antifreq = Antifreq,
+                Res_impedance=Res_impedance,
+                Anti_impedance=Anti_impedance,
+                QualityFactor = QualityFactor,
+                Phase = Phase
+            };
+        }
+
         private int _index;
         public int Index
         {

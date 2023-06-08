@@ -1,4 +1,5 @@
 ﻿using BodeGUI1.ViewModel.UI;
+using BodeGUI1.ViewModel.DataModel;
 using OmicronLab.VectorNetworkAnalysis.AutomationInterface.Enumerations;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace BodeGUI1.ViewModel
                     try
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
-                        ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
+                        ResonanceMeasurementViewModel.SweepData.Add((ResonanceSweepDataViewModel) BodeEvents.SweepData.Clone());
                         ClearPlots();
                         ResonanceMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
                         ResonanceMeasurementViewModel.BodePlot.PhaseHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints));

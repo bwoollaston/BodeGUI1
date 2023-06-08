@@ -27,7 +27,7 @@ namespace BodeGUI1.ViewModel.UI
             Enabled = false;
             CurrentProgress = 0;
             ProgramingActive = Visibility.Visible;
-            AnimateBar();
+            //AnimateBar();
         }
         private void stopProgram()
         {
