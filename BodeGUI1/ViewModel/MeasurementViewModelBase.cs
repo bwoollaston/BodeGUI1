@@ -29,10 +29,10 @@ namespace BodeGUI1.ViewModel
         public MeasurementViewModelBase()
         {
             BodeStatusViewModel = new BodeStatusViewModel();
-            SweepData = new ResonanceSweepDataViewModel();
+            SweepData = new ResonanceSweepData();
             BodePoints = new List<DataPoint>();
             PhasePoints = new List<DataPoint>();
-            SweepData = new ResonanceSweepDataViewModel();
+            SweepData = new ResonanceSweepData();
             CalResistor = 100;
         }
         private double _calResistor;
@@ -58,7 +58,7 @@ namespace BodeGUI1.ViewModel
                 OnPropertyChanged();
             }
         }
-        public ResonanceSweepDataViewModel SweepData { get; private set; }
+        public ResonanceSweepData SweepData { get; private set; }
         public List<DataPoint> BodePoints { get; private set; }
         public List<DataPoint> PhasePoints { get; private set; }
         public async void Connect(object? sender, EventArgs e)

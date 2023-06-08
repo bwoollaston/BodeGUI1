@@ -33,7 +33,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
-                  Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0" SelectedValue="{Binding SelectedItems}">
+                  Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0" SelectedItem="{Binding SelectedItems}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{Binding Headers[8]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Time}"/>

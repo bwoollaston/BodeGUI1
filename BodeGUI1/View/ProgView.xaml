@@ -46,6 +46,9 @@
                             <DataTemplate DataType="{x:Type vm:ResonanceMeasurementViewModel}">
                                 <v:ResonanceMeasurmentView/>
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:PeakTrackMeasurementViewModel}">
+                                <v:PeakTrackMeasurementView/>
+                            </DataTemplate>
                             <DataTemplate DataType="{x:Type vmu:BodeSettingsViewModel}">
                                 <v:BodeSettingsView/>
                             </DataTemplate>

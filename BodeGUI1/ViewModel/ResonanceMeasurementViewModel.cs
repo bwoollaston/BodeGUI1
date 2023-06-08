@@ -13,17 +13,13 @@ using System.Windows.Controls;
 
 namespace BodeGUI1.ViewModel
 {
-    internal class ResonanceMeasurementViewModel : ViewModelBase
+    internal class ResonanceMeasurementViewModel : MeasurementFrameViewModelBase
     {
 
         public ResonanceMeasurementViewModel()
         {
-            Headers = new ObservableCollection<TextBlock>();
-            DataTypes = new ObservableCollection<string>() { "Name", "Resonance Frequency [kHz]", "Resonance Impedance [Ω]",
-                                                            "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",
-                                                            "Quality Factor", "Capacitance [pF]","Phase [deg]","Time" };
             BodePlot = new ResonancePlotViewModel();
-            SweepData = new ObservableCollection<ResonanceSweepDataViewModel>();
+            SweepData = new ObservableCollection<ResonanceSweepData>();
             DeleteRow = new DelegateCommand(Delete);
             ClearData = new DelegateCommand(ClearList);
         }
@@ -33,38 +29,8 @@ namespace BodeGUI1.ViewModel
             get { return _bodePlot; }
             set { _bodePlot = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<TextBlock> _headers;
-        public ObservableCollection<TextBlock> Headers
-        {
-            get { return _headers; }
-            set { _headers = value; OnPropertyChanged(); }
-        }
-        private ObservableCollection<string> _dataTypes;
-        public ObservableCollection<string> DataTypes
-        {
-            get { return _dataTypes; }
-            set 
-            { 
-                _dataTypes = value;
-                for(int i = 0;i < _dataTypes.Count; i++)
-                {
-                    Headers.Add(new TextBlock() { Text = _dataTypes[i], TextWrapping = TextWrapping.Wrap, FontSize=10, HorizontalAlignment=HorizontalAlignment.Center});
-                }
-                OnPropertyChanged(); 
-            }
-        }
-        private ObservableCollection<ResonanceSweepDataViewModel> _sweepData;
-        public ObservableCollection<ResonanceSweepDataViewModel> SweepData
-        {
-            get { return _sweepData; }
-            set 
-            {
-                _sweepData = value; 
-                OnPropertyChanged();
-            }
-        }
-        private List<ResonanceSweepDataViewModel> _selectedItems;
-        public List<ResonanceSweepDataViewModel> SelectedItems
+        private ResonanceSweepData _selectedItems;
+        public ResonanceSweepData SelectedItems
         {
             get { return _selectedItems; }
             set { _selectedItems = value; OnPropertyChanged(); }
@@ -105,10 +71,10 @@ namespace BodeGUI1.ViewModel
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to delete selected items?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
                 {
-                    foreach(ResonanceSweepDataViewModel item in SelectedItems)
-                    {
-                        SweepData.Remove(item);
-                    }
+                    //foreach(ResonanceSweepData item in SelectedItems)
+                    //{
+                    //    SweepData.Remove(item);
+                    //}
                 }
             }
             catch (Exception ex)
@@ -116,22 +82,12 @@ namespace BodeGUI1.ViewModel
                 MessageBox.Show("Clear Failed", "Exception Sample", MessageBoxButton.OK);
             }
         }
-        private double _columnWidth;
-        public double ColumnWidth
+        public void ClearPlots()
         {
-            get { return _columnWidth; }
-            set { _columnWidth = value; OnPropertyChanged(); }
-        }
-        private double _listWidth;
-        public double ListWidth
-        {
-            get { return _listWidth; }
-            set 
-            { 
-                _listWidth = value-61; 
-                ColumnWidth = _listWidth/9;
-                OnPropertyChanged(nameof(ListWidth)); 
-            } 
+            BodePlot.Impedance.Clear();
+            BodePlot.Phase.Clear();
+            BodePlot.ImpedanceView.Clear();
+            BodePlot.PhaseView.Clear();
         }
     }
 }

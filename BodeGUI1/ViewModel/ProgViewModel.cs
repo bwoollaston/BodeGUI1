@@ -22,7 +22,7 @@ namespace BodeGUI1.ViewModel
         {
             BodeControlsHeight = 100;
             ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel();
-            PeakTrackMeasurementViewModel = new ResonanceMeasurementViewModel();
+            PeakTrackMeasurementViewModel = new PeakTrackMeasurementViewModel();
             BodeEvents = new MeasurementViewModelBase();
             BodeConnection = new BodeSettingsViewModel();
             BodeControls = new BodeControlsViewModel();
@@ -42,11 +42,11 @@ namespace BodeGUI1.ViewModel
 
         private async void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
         {
+            var p = Parameters;
+            Parameters.Enable = false;
             switch (SelectedTab)
             {
                 case "Resonance Measurement":
-                    var p = Parameters;
-                    Parameters.Enable = false;
                     BodeEvents.SweepData.Name = p.SampleName;
                     BodeEvents.SweepData.LowX = p.LowSweep;
                     BodeEvents.SweepData.HighX = p.HighSweep;
@@ -54,21 +54,38 @@ namespace BodeGUI1.ViewModel
                     try
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
-                        ResonanceMeasurementViewModel.SweepData.Add((ResonanceSweepDataViewModel) BodeEvents.SweepData.Clone());
-                        ClearPlots();
+                        ResonanceMeasurementViewModel.SweepData.Add((ResonanceSweepData) BodeEvents.SweepData.Clone());
+                        ResonanceMeasurementViewModel.ClearPlots();
                         ResonanceMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
                         ResonanceMeasurementViewModel.BodePlot.PhaseHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints));
                         ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     }
                     catch(ResNotFoundException ex)
                     {
-                        ClearPlots();
+                        ResonanceMeasurementViewModel.ClearPlots();
                         MessageBox.Show(ex.Message, "Exception Sample", MessageBoxButton.OK);
                     }
                     Parameters.Enable = true;
                     BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
                 case "Peak Tracking":
+                    BodeEvents.SweepData.Name = p.SampleName;
+                    BodeEvents.SweepData.LowX = p.LowSweep;
+                    BodeEvents.SweepData.HighX = p.HighSweep;
+                    try
+                    {
+                        await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
+                        PeakTrackMeasurementViewModel.ClearPlots();
+                        PeakTrackMeasurementViewModel.SweepData.Add((ResonanceSweepData)BodeEvents.SweepData.Clone());
+                        PeakTrackMeasurementViewModel.BodePlot.SmoothData();
+                        PeakTrackMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
+                    }
+                    catch (ResNotFoundException ex)
+                    {
+                        PeakTrackMeasurementViewModel.ClearPlots();
+                        MessageBox.Show(ex.Message, "Exception Sample", MessageBoxButton.OK);
+                    }
+
                     break;
 
                 default: break;
@@ -91,7 +108,6 @@ namespace BodeGUI1.ViewModel
                 else if (_selectedTab == TabItems[1])
                 {
                     CurrentContent = PeakTrackMeasurementViewModel;
-                    PeakTrackMeasurementViewModel.ListWidth = PeakTrackMeasurementViewModel.ListWidth;
                 }
                 else if (SelectedTab == TabItems[2])
                 {
@@ -119,8 +135,8 @@ namespace BodeGUI1.ViewModel
             get { return _measurement; }
             set { _measurement = value;OnPropertyChanged(); }
         }
-        private ResonanceMeasurementViewModel _tracking;
-        public ResonanceMeasurementViewModel PeakTrackMeasurementViewModel
+        private PeakTrackMeasurementViewModel _tracking;
+        public PeakTrackMeasurementViewModel PeakTrackMeasurementViewModel
         {
             get { return _tracking; }
             set { _tracking = value;OnPropertyChanged(); }
@@ -202,13 +218,6 @@ namespace BodeGUI1.ViewModel
         {
             BodeEvents.TestCal();
             BodeConnection.CalTestValue = BodeEvents.TestValue;
-        }
-        private void ClearPlots()
-        {
-            ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
-            ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
-            ResonanceMeasurementViewModel.BodePlot.ImpedanceView.Clear();
-            ResonanceMeasurementViewModel.BodePlot.PhaseView.Clear();
         }
     }
 }

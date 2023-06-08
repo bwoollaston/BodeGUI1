@@ -67,5 +67,17 @@ namespace BodeGUI1.ViewModel.Plots
                 OnPropertyChanged();
             }
         }
+        private ObservableCollection<DataPoint> _impedanceView;
+        public ObservableCollection<DataPoint> ImpedanceView
+        {
+            get { return _impedanceView; }
+            set { _impedanceView = value; OnPropertyChanged(); }
+        }
+        private ObservableCollection<DataPoint> _phaseView;
+        public ObservableCollection<DataPoint> PhaseView
+        {
+            get { return _phaseView; }
+            set { _phaseView = value; OnPropertyChanged(); }
+        }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BodeGUI1.ViewModel.DataModel
 {
-    internal class ResonanceSweepDataViewModel : ViewModelBase
+    internal class ResonanceSweepData : ViewModelBase
     {
-        public ResonanceSweepDataViewModel()
+        public ResonanceSweepData()
         {
             Index = 0;
             Time = "";
@@ -22,9 +22,9 @@ namespace BodeGUI1.ViewModel.DataModel
             Phase = 0;
         }
 
-        public ResonanceSweepDataViewModel Clone()
+        public ResonanceSweepData Clone()
         {
-            return new ResonanceSweepDataViewModel()
+            return new ResonanceSweepData()
             {
                 Index = Index,
                 Time = Time,
