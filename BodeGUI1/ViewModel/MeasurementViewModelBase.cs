@@ -54,7 +54,7 @@ namespace BodeGUI1.ViewModel
         public ResonanceSweepDataViewModel SweepData { get; private set; }
         public List<DataPoint> BodePoints { get; private set; }
         public List<DataPoint> PhasePoints { get; private set; }
-        public void Connect(object? sender, EventArgs e)
+        public async void Connect(object? sender, EventArgs e)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace BodeGUI1.ViewModel
                 }
                 else
                 {
-                    bode = auto.Connect();
+                    bode = await Task.Run(() => auto.Connect());
                     measurement = bode.Impedance.CreateOnePortMeasurement();
                     BodeStatusViewModel.StatusCollection[0].Status = true;
                 }
@@ -114,7 +114,7 @@ namespace BodeGUI1.ViewModel
             FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
-            if (SweepData.Resfreq == null || SweepData.Resfreq<=0) throw new ResNotFoundException(SweepData.Resfreq);
+            if (SweepData.Resfreq<=0) throw new ResNotFoundException(SweepData.Resfreq);
             SinglePtMeasurement(SweepData.Resfreq);
             SweepData.Res_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SweepData.QualityFactor = measurement.Results.QAt(0);
@@ -154,12 +154,12 @@ namespace BodeGUI1.ViewModel
             }
             return fileSelected;
         }
-        public void OpenCal(object? sender, EventArgs e)
+        public async void OpenCal(object? sender, EventArgs e)
         {
             /* Bode Automation Suite method runs open calibration */
             try
             {
-                ExecutionState state = measurement.Calibration.FullRange.ExecuteOpen();
+                ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteOpen());
                 BodeStatusViewModel.StatusCollection[1].Status = true;
             }
             catch (Exception ex)
@@ -168,11 +168,11 @@ namespace BodeGUI1.ViewModel
                 MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
             }
         }
-        public void ShortCal(object? sender, EventArgs e)
+        public async void ShortCal(object? sender, EventArgs e)
         {
             try
             {
-                ExecutionState state = measurement.Calibration.FullRange.ExecuteShort();
+                ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteShort());
                 BodeStatusViewModel.StatusCollection[2].Status = true;
             }
             catch (Exception ex)
@@ -181,12 +181,12 @@ namespace BodeGUI1.ViewModel
                 BodeStatusViewModel.StatusCollection[2].Status = false;
             }
         }
-        public void LoadCal(object? sender, EventArgs e)
+        public async void LoadCal(object? sender, EventArgs e)
         {
             try
             {
                 measurement.Calibration.Load = CalResistor;
-                ExecutionState state = measurement.Calibration.FullRange.ExecuteLoad();
+                ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteLoad());
                 BodeStatusViewModel.StatusCollection[3].Status = true;
             }
             catch(Exception ex)
