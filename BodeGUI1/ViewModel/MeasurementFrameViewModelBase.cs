@@ -14,6 +14,7 @@ namespace BodeGUI1.ViewModel
     {
         public MeasurementFrameViewModelBase()
         {
+            SweepData = new ObservableCollection<ResonanceSweepData>();
             Headers = new ObservableCollection<TextBlock>();
             DataTypes = new ObservableCollection<string>() { "Name", "Resonance Frequency [kHz]", "Resonance Impedance [Ω]",
                                                             "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",

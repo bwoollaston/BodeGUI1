@@ -19,7 +19,6 @@ namespace BodeGUI1.ViewModel
         public ResonanceMeasurementViewModel()
         {
             BodePlot = new ResonancePlotViewModel();
-            SweepData = new ObservableCollection<ResonanceSweepData>();
             DeleteRow = new DelegateCommand(Delete);
             ClearData = new DelegateCommand(ClearList);
         }

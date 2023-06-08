@@ -77,6 +77,7 @@ namespace BodeGUI1.ViewModel
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         PeakTrackMeasurementViewModel.ClearPlots();
                         PeakTrackMeasurementViewModel.SweepData.Add((ResonanceSweepData)BodeEvents.SweepData.Clone());
+                        PeakTrackMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
                         PeakTrackMeasurementViewModel.BodePlot.SmoothData();
                         PeakTrackMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
                     }
