@@ -85,7 +85,7 @@
             </md:Card>
             <md:Card Margin="5">
                 <StackPanel VerticalAlignment="Center">
-                    <Button Height="40" Width="200" Grid.Row="3" IsEnabled="{Binding Enable}" Command="{Binding Load}" Margin="5">
+                    <Button Height="40" Width="200" Grid.Row="3" IsEnabled="{Binding Enable}" Command="{Binding Test}" Margin="5">
                         <TextBlock Text="Test Calibration" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0"/>
                     </Button>
                     <TextBox Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True" md:HintAssist.Hint="Calibration Test Results [Ω]"
