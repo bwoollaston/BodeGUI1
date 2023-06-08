@@ -11,6 +11,7 @@ using System.Windows;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
+using BodeGUI1.ExceptionHandlers;
 
 namespace BodeGUI1.ViewModel
 {
@@ -51,20 +52,15 @@ namespace BodeGUI1.ViewModel
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
-                        ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.ImpedanceView.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.PhaseView.Clear();
+                        ClearPlots();
                         ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
                         ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
                         ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     }
-                    catch()
+                    catch(ResNotFoundException ex)
                     {
-                        ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.ImpedanceView.Clear();
-                        ResonanceMeasurementViewModel.BodePlot.PhaseView.Clear();
+                        ClearPlots();
+                        MessageBox.Show(ex.Message, "Exception Sample", MessageBoxButton.OK);
                     }
                     Parameters.Enable = true;
                     BodeControls.ProgramingActive = Visibility.Collapsed;
@@ -198,6 +194,13 @@ namespace BodeGUI1.ViewModel
         {
             BodeEvents.CalResistor = _bodeConnection.CalResistor;
             BodeEvents.LoadCal(sender, e);
+        }
+        private void ClearPlots()
+        {
+            ResonanceMeasurementViewModel.BodePlot.Impedance.Clear();
+            ResonanceMeasurementViewModel.BodePlot.Phase.Clear();
+            ResonanceMeasurementViewModel.BodePlot.ImpedanceView.Clear();
+            ResonanceMeasurementViewModel.BodePlot.PhaseView.Clear();
         }
     }
 }

@@ -30,21 +30,13 @@ namespace BodeGUI1.ViewModel.Plots
         public ObservableCollection<DataPoint> Impedance
         {
             get { return _impedance; }
-            set 
-            { 
-                _impedance = value; 
-                OnPropertyChanged(); 
-            }
+            set { _impedance = value; OnPropertyChanged(); }
         }
         private ObservableCollection<DataPoint> _phase;
         public ObservableCollection<DataPoint> Phase
         {
             get { return _phase; }
-            set 
-            { 
-                _phase = value;
-                OnPropertyChanged(); 
-            }
+            set { _phase = value; OnPropertyChanged(); }
         }
         private ObservableCollection<DataPoint> _impedanceView;
         public ObservableCollection<DataPoint> ImpedanceView

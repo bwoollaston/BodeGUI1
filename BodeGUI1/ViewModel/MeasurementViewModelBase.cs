@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using OxyPlot;
 using BodeGUI1.ViewModel.DataModel;
+using BodeGUI1.ExceptionHandlers;
 
 namespace BodeGUI1.ViewModel
 {
@@ -113,7 +114,7 @@ namespace BodeGUI1.ViewModel
             FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
-            if(SweepData.Resfreq == null) throw
+            if (SweepData.Resfreq == null) throw new ResNotFoundException(SweepData.Resfreq);
             SinglePtMeasurement(SweepData.Resfreq);
             SweepData.Res_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SweepData.QualityFactor = measurement.Results.QAt(0);
