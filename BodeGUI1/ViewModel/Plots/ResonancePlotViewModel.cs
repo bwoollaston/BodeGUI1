@@ -17,6 +17,8 @@ namespace BodeGUI1.ViewModel.Plots
             Phase = new ObservableCollection<DataPoint>();
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
+            ImpedanceHistory = new ObservableCollection<ObservableCollection<DataPoint>>();
+            PhaseHistory = new ObservableCollection<ObservableCollection<DataPoint>>();
             HighX = 190000;
             LowX = 180000;
         }
