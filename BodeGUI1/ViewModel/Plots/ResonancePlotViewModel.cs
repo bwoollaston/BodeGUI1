@@ -8,7 +8,7 @@ using OxyPlot;
 
 namespace BodeGUI1.ViewModel.Plots
 {
-    internal class ResonancePlotViewModel : ViewModelBase
+    internal class ResonancePlotViewModel : PlotViewModelBase
     {
         public ResonancePlotViewModel()
         {
@@ -22,24 +22,7 @@ namespace BodeGUI1.ViewModel.Plots
             HighX = 190000;
             LowX = 180000;
         }
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { _title = value; OnPropertyChanged(); }
-        }
-        private ObservableCollection<DataPoint> _impedance;
-        public ObservableCollection<DataPoint> Impedance
-        {
-            get { return _impedance; }
-            set { _impedance = value; OnPropertyChanged(); }
-        }
-        private ObservableCollection<DataPoint> _phase;
-        public ObservableCollection<DataPoint> Phase
-        {
-            get { return _phase; }
-            set { _phase = value; OnPropertyChanged(); }
-        }
+
         private ObservableCollection<DataPoint> _impedanceView;
         public ObservableCollection<DataPoint> ImpedanceView
         {
@@ -53,45 +36,10 @@ namespace BodeGUI1.ViewModel.Plots
             set { _phaseView = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<ObservableCollection<DataPoint>> _impedanceHistory;
-        public ObservableCollection<ObservableCollection<DataPoint>> ImpedanceHistory
-        {
-            get { return _impedanceHistory; }
-            set 
-            { 
-                _impedanceHistory = value;
-                //make most recent measurment display
-                if (_impedanceHistory.Count == 0) { Impedance.Clear(); ImpedanceView.Clear(); }
-                OnPropertyChanged(); 
-            }
-        }
-        private ObservableCollection<ObservableCollection<DataPoint>> _phaseHistory;
-        public ObservableCollection<ObservableCollection<DataPoint>> PhaseHistory
-        {
-            get { return _phaseHistory; }
-            set 
-            { 
-                _phaseHistory = value;
-                if (_phaseHistory.Count == 0) { Phase.Clear(); PhaseView.Clear(); }
-                OnPropertyChanged(); 
-            }
-        }
-        private double _lowX;
-        public double LowX
-        {
-            get { return _lowX; }
-            set { _lowX = value; OnPropertyChanged(); }
-        }
-        private double _highX;
-        public double HighX
-        {
-            get { return _highX; }
-            set { _highX = value; OnPropertyChanged(); }
-        }
         public async void UpdateUI()
         {
-            Impedance = _impedanceHistory[ImpedanceHistory.Count-1];
-            Phase = _phaseHistory[PhaseHistory.Count-1];
+            Impedance = ImpedanceHistory[ImpedanceHistory.Count-1];
+            Phase = PhaseHistory[PhaseHistory.Count-1];
             int delay = 2000;
             int dt = delay/Impedance.Count;
             int i = 0;
