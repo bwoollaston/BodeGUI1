@@ -40,6 +40,12 @@ namespace BodeGUI1.ViewModel
             get { return _calResistor; }
             set { _calResistor = value; }
         }
+        private double _testValue;
+        public double TestValue
+        {
+            get { return _testValue; }
+            set { _testValue = value; }
+        }
         private BodeStatusViewModel _bodeStatusViewModel;
         public BodeStatusViewModel BodeStatusViewModel
         {
@@ -135,10 +141,10 @@ namespace BodeGUI1.ViewModel
         {
             Pts.Clear();
         }
-        public double TestCal()
+        public void TestCal()
         {
             SinglePtMeasurement(1000);
-            return measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
+            TestValue = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
         }
         public string ExportPath()
         {

@@ -13,6 +13,7 @@ namespace BodeGUI1.ViewModel.UI
         public event EventHandler OpenClicked;
         public event EventHandler ShortClicked;
         public event EventHandler LoadClicked;
+        public event EventHandler TestClicked;
         public BodeSettingsViewModel()
         {
             Enable = true;
@@ -21,6 +22,8 @@ namespace BodeGUI1.ViewModel.UI
             Open = new DelegateCommand(CalOpen);
             Short = new DelegateCommand(CalShort);
             Load = new DelegateCommand(CalLoad);
+            Test = new DelegateCommand(CalTest);
+
 
         }
         private void BodeConnect()
@@ -38,6 +41,10 @@ namespace BodeGUI1.ViewModel.UI
         private void CalLoad()
         {
             LoadClicked?.Invoke(this, EventArgs.Empty);
+        }
+        private void CalTest()
+        {
+            TestClicked?.Invoke(this, EventArgs.Empty);
         }
         private bool _enable;
         public bool Enable
@@ -69,11 +76,23 @@ namespace BodeGUI1.ViewModel.UI
             get { return _load; }
             set { _load = value; OnPropertyChanged(); }
         }
+        private DelegateCommand _test;
+        public DelegateCommand Test
+        {
+            get { return _test; }
+            set { _test = value; OnPropertyChanged(); }
+        }
         private double _calResistor;
         public double CalResistor
         {
             get { return _calResistor; }
             set { _calResistor = value; OnPropertyChanged(); }
+        }
+        private double _calTestValue;
+        public double CalTestValue
+        {
+            get { return _testValue; }
+            set { _testValue = value; OnPropertyChanged(); }
         }
     }
 }

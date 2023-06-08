@@ -32,6 +32,7 @@ namespace BodeGUI1.ViewModel
             BodeConnection.ConnectClicked += BodeEvents.Connect;
             BodeConnection.OpenClicked += BodeEvents.OpenCal;
             BodeConnection.ShortClicked += BodeEvents.ShortCal;
+            BodeConnection.TestClicked += CalTest;
             BodeConnection.LoadClicked += LoadEvent;
             Parameters.ExportClicked += ExportData;
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
@@ -195,6 +196,11 @@ namespace BodeGUI1.ViewModel
         {
             BodeEvents.CalResistor = _bodeConnection.CalResistor;
             BodeEvents.LoadCal(sender, e);
+        }
+        private void CalTest(object? sender, EventArgs e)
+        {
+            BodeEvents.TestCal();
+            BodeConnection.CalTestValue = BodeEvents.TestValue;
         }
         private void ClearPlots()
         {
