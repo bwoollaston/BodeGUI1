@@ -61,7 +61,7 @@ namespace BodeGUI1.ViewModel.Plots
             { 
                 _impedanceHistory = value;
                 //make most recent measurment display
-                Impedance = _impedanceHistory[_impedanceHistory.Count];
+                if(_impedanceHistory.Count!=0)Impedance = _impedanceHistory[_impedanceHistory.Count];
                 OnPropertyChanged(); 
             }
         }
@@ -72,7 +72,7 @@ namespace BodeGUI1.ViewModel.Plots
             set 
             { 
                 _phaseHistory = value;
-                Phase = _phaseHistory[_phaseHistory.Count];
+                if (_phaseHistory.Count != 0) Phase = _phaseHistory[_phaseHistory.Count];
                 OnPropertyChanged(); 
             }
         }
@@ -90,6 +90,8 @@ namespace BodeGUI1.ViewModel.Plots
         }
         public async void UpdateUI()
         {
+            Impedance = _impedanceHistory[ImpedanceHistory.Count-1];
+            Phase = _phaseHistory[PhaseHistory.Count-1];
             int delay = 2000;
             int dt = delay/Impedance.Count;
             int i = 0;
