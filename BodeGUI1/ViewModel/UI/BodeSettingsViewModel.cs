@@ -91,8 +91,8 @@ namespace BodeGUI1.ViewModel.UI
         private double _calTestValue;
         public double CalTestValue
         {
-            get { return _testValue; }
-            set { _testValue = value; OnPropertyChanged(); }
+            get { return _calTestValue; }
+            set { _calTestValue = value; OnPropertyChanged(); }
         }
     }
 }
