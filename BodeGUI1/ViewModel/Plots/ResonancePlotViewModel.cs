@@ -61,7 +61,7 @@ namespace BodeGUI1.ViewModel.Plots
             { 
                 _impedanceHistory = value;
                 //make most recent measurment display
-                if(_impedanceHistory.Count!=0)Impedance = _impedanceHistory[_impedanceHistory.Count];
+                if (_impedanceHistory.Count == 0) { Impedance.Clear(); ImpedanceView.Clear(); }
                 OnPropertyChanged(); 
             }
         }
@@ -72,7 +72,7 @@ namespace BodeGUI1.ViewModel.Plots
             set 
             { 
                 _phaseHistory = value;
-                if (_phaseHistory.Count != 0) Phase = _phaseHistory[_phaseHistory.Count];
+                if (_phaseHistory.Count == 0) { Phase.Clear(); PhaseView.Clear(); }
                 OnPropertyChanged(); 
             }
         }

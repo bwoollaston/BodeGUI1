@@ -89,6 +89,8 @@ namespace BodeGUI1.ViewModel
                 if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
                 {
                     SweepData.Clear();
+                    BodePlot.ImpedanceHistory.Clear();
+                    BodePlot.PhaseHistory.Clear();
                 }
             }
             catch (Exception ex)
