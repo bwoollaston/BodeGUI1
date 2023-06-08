@@ -11,6 +11,7 @@ namespace BodeGUI1.ViewModel.DataModel
         public ResonanceSweepDataViewModel()
         {
             Index = 0;
+            Time = "";
             Name = "Name";
             Capacitance = 0;
             Resfreq = 0;
@@ -25,6 +26,12 @@ namespace BodeGUI1.ViewModel.DataModel
         {
             get { return _index; }
             set { _index = value; OnPropertyChanged(); }
+        }
+        private string _time;
+        public string Time
+        {
+            get { return _time; }
+            set { _time = value; OnPropertyChanged(); }
         }
         private string _name;
         public string Name

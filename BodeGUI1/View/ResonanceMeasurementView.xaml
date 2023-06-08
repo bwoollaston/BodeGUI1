@@ -36,6 +36,7 @@
                   Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0" SelectedValue="{Binding SelectedItems}">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header="{Binding Headers[8]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Time}"/>
                         <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq, StringFormat={}{0:F3}}"/>
                         <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance, StringFormat={}{0:F3}}"/>

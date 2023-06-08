@@ -48,6 +48,7 @@ namespace BodeGUI1.ViewModel
                     BodeEvents.SweepData.Name = p.SampleName;
                     BodeEvents.SweepData.LowX = p.LowSweep;
                     BodeEvents.SweepData.HighX = p.HighSweep;
+                    BodeEvents.SweepData.Time = DateTime.Now.ToString("g");
                     try
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
