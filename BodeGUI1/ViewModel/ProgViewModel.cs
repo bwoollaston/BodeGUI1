@@ -53,8 +53,10 @@ namespace BodeGUI1.ViewModel
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData);
                         ClearPlots();
-                        ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
-                        ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
+                        ResonanceMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
+                        ResonanceMeasurementViewModel.BodePlot.PhaseHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints));
+                        //ResonanceMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
+                        //ResonanceMeasurementViewModel.BodePlot.Phase = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints);
                         ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     }
                     catch(ResNotFoundException ex)

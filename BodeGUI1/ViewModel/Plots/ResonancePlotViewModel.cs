@@ -50,6 +50,30 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _phaseView; }
             set { _phaseView = value; OnPropertyChanged(); }
         }
+
+        private ObservableCollection<ObservableCollection<DataPoint>> _impedanceHistory;
+        public ObservableCollection<ObservableCollection<DataPoint>> ImpedanceHistory
+        {
+            get { return _impedanceHistory; }
+            set 
+            { 
+                _impedanceHistory = value;
+                //make most recent measurment display
+                Impedance = _impedanceHistory[_impedanceHistory.Count];
+                OnPropertyChanged(); 
+            }
+        }
+        private ObservableCollection<ObservableCollection<DataPoint>> _phaseHistory;
+        public ObservableCollection<ObservableCollection<DataPoint>> PhaseHistory
+        {
+            get { return _phaseHistory; }
+            set 
+            { 
+                _phaseHistory = value;
+                Phase = _phaseHistory[_phaseHistory.Count];
+                OnPropertyChanged(); 
+            }
+        }
         private double _lowX;
         public double LowX
         {
