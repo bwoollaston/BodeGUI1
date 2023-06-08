@@ -27,7 +27,7 @@ namespace BodeGUI1.ViewModel.UI
             Enabled = false;
             CurrentProgress = 0;
             ProgramingActive = Visibility.Visible;
-            AnimateBar().Await();
+            AnimateBar();
         }
         private void stopProgram()
         {
@@ -73,12 +73,12 @@ namespace BodeGUI1.ViewModel.UI
             get { return _currentProgress; }
             set { _currentProgress = value; OnPropertyChanged(); }
         }
-        public async Task AnimateBar()
+        public void AnimateBar()
         {
-            while (!cts.Token.IsCancellationRequested)
+            while (ProgramingActive == Visibility.Visible)
             {
                 CurrentProgress++;
-                await Task.Delay(200);
+                Task.Delay(200);
             }
         }
     }
