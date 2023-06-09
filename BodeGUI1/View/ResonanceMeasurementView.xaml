@@ -49,8 +49,8 @@
                 </ListView.View>
             </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
-                <Button Content="Delete" Width="100" Margin="10,0" Command="{Binding DeleteRow}"/>
-                <Button Content="Clear" Width="100" Margin="10,0,6,0" Command="{Binding ClearData}"/>
+                <Button Content="Delete" Width="100" Margin="10,5" Command="{Binding DeleteRow}"/>
+                <Button Content="Clear" Width="100" Margin="10,5,6,5" Command="{Binding ClearData}"/>
             </StackPanel>
         </Grid>
         <ContentControl Content="{Binding BodePlot}" Grid.Row="1">

@@ -14,7 +14,7 @@ namespace BodeGUI1.ViewModel
     {
         public MeasurementFrameViewModelBase()
         {
-            SweepData = new ObservableCollection<ResonanceSweepData>();
+
             Headers = new ObservableCollection<TextBlock>();
             DataTypes = new ObservableCollection<string>() { "Name", "Resonance Frequency [kHz]", "Resonance Impedance [Ω]",
                                                             "Anti-Resonant Frequency [kHz]", "Anti-Resonant Impedance [Ω]",
@@ -40,12 +40,7 @@ namespace BodeGUI1.ViewModel
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<ResonanceSweepData> _sweepData;
-        public ObservableCollection<ResonanceSweepData> SweepData
-        {
-            get { return _sweepData; }
-            set { _sweepData = value; OnPropertyChanged(); }
-        }
+
         private double _columnWidth;
         public double ColumnWidth
         {

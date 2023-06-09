@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace BodeGUI1.ViewModel.DataModel
         public ResonanceSweepData()
         {
             Index = 0;
-            Time = "";
+            Time = DateTime.Now.ToString();
             Name = "Name";
             Capacitance = 0;
             Resfreq = 0;
@@ -20,6 +22,8 @@ namespace BodeGUI1.ViewModel.DataModel
             Anti_impedance = 0;
             QualityFactor = 0;
             Phase = 0;
+            ImpdedancePlot = new List<DataPoint>();
+            PhasePlot = new List<DataPoint>();
         }
 
         public ResonanceSweepData Clone()
@@ -105,7 +109,18 @@ namespace BodeGUI1.ViewModel.DataModel
             get { return _phase; }
             set { _phase = value; OnPropertyChanged(); }
         }
-
+        private List<DataPoint> _impdedancePlot;
+        public List<DataPoint> ImpdedancePlot
+        {
+            get { return _impdedancePlot; }
+            set { _impdedancePlot = value;OnPropertyChanged(); }
+        }
+        private List<DataPoint> _phasePlot;
+        public List<DataPoint> PhasePlot
+        {
+            get { return _phasePlot; }
+            set { _phasePlot = value;OnPropertyChanged(); }
+        }
         //used to autoscale plot
         private double _lowX;
         public double LowX
@@ -118,6 +133,30 @@ namespace BodeGUI1.ViewModel.DataModel
         {
             get { return _highX; }  
             set { _highX = value; OnPropertyChanged(); }
+        }
+        public ResonanceSweepData RandClone()
+        {
+            Random random = new Random();
+            for (int j = 0; j < 10; j++)
+            {
+                ImpdedancePlot.Add(new DataPoint(Math.Pow(2, j), random.NextDouble() * 1000));
+            }
+            return new ResonanceSweepData()
+            {
+                Index = Index,
+                Time = Time,
+                Name = Name,
+                Capacitance = random.Next(1,100)*1e-11,
+                Resfreq = (random.NextDouble()*2000)+180000,
+                Antifreq = (random.NextDouble() * 2000) + 180000,
+                Res_impedance = random.NextDouble() * 2000,
+                Anti_impedance = random.NextDouble() * 2000,
+                QualityFactor = random.NextDouble() * 2,
+                Phase = random.NextDouble() * 180,
+                HighX = 190000,
+                LowX = 180000,
+                ImpdedancePlot = ImpdedancePlot
+            };
         }
     }
 }

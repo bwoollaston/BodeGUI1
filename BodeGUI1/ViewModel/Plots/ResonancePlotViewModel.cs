@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OxyPlot;
+using BodeGUI1.ViewModel.DataModel;
 
 namespace BodeGUI1.ViewModel.Plots
 {
@@ -13,26 +14,19 @@ namespace BodeGUI1.ViewModel.Plots
         public ResonancePlotViewModel()
         {
             Title = "Bode Impedance vs. Frequency Plot";
-            Impedance = new ObservableCollection<DataPoint>();
-            Phase = new ObservableCollection<DataPoint>();
-            ImpedanceView = new ObservableCollection<DataPoint>();
-            PhaseView = new ObservableCollection<DataPoint>();
-            ImpedanceHistory = new ObservableCollection<ObservableCollection<DataPoint>>();
-            PhaseHistory = new ObservableCollection<ObservableCollection<DataPoint>>();
             HighX = 190000;
             LowX = 180000;
         }
+
         public async void UpdateUI()
         {
-            Impedance = ImpedanceHistory[ImpedanceHistory.Count-1];
-            Phase = PhaseHistory[PhaseHistory.Count-1];
             int delay = 2000;
-            int dt = delay/Impedance.Count;
+            int dt = delay/SelectedData.ImpdedancePlot.Count;
             int i = 0;
-            foreach(DataPoint element in Impedance)
+            foreach(DataPoint element in SelectedData.ImpdedancePlot)
             {
                 ImpedanceView.Add(element);
-                PhaseView.Add(Phase[i]);
+                PhaseView.Add(SelectedData.PhasePlot[i]);
                 await Task.Delay(dt);
                 i++;
             }

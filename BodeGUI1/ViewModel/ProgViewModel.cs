@@ -13,6 +13,8 @@ using System.IO;
 using CsvHelper;
 using System.Globalization;
 using BodeGUI1.ExceptionHandlers;
+using BodeGUI1.Utility;
+using OxyPlot;
 
 namespace BodeGUI1.ViewModel
 {
@@ -23,7 +25,7 @@ namespace BodeGUI1.ViewModel
             BodeControlsHeight = 100;
             ResonanceMeasurementViewModel = new ResonanceMeasurementViewModel();
             PeakTrackMeasurementViewModel = new PeakTrackMeasurementViewModel();
-            BodeEvents = new MeasurementViewModelBase();
+            BodeEvents = new MeasurementFunctions();
             BodeConnection = new BodeSettingsViewModel();
             BodeControls = new BodeControlsViewModel();
             Parameters = new MeasurementParamtersViewModel();
@@ -38,8 +40,19 @@ namespace BodeGUI1.ViewModel
             Parameters.ExportClicked += ExportData;
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
             BodeEvents.StatusBasePropertyChanged += UpdateStatus;
-        }
 
+            GenRandData();
+        }
+        public void GenRandData()
+        {
+            Random random = new Random();
+            for(int i = 0; i < 10; i++)
+            {
+                ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
+
+                PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
+            }
+        }
         private async void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
         {
             var p = Parameters;
@@ -54,10 +67,7 @@ namespace BodeGUI1.ViewModel
                     try
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
-                        ResonanceMeasurementViewModel.SweepData.Add((ResonanceSweepData) BodeEvents.SweepData.Clone());
-                        ResonanceMeasurementViewModel.ClearPlots();
-                        ResonanceMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
-                        ResonanceMeasurementViewModel.BodePlot.PhaseHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.PhasePoints));
+                        ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.Clone());
                         ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     }
                     catch(ResNotFoundException ex)
@@ -75,11 +85,8 @@ namespace BodeGUI1.ViewModel
                     try
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
-                        PeakTrackMeasurementViewModel.ClearPlots();
-                        PeakTrackMeasurementViewModel.SweepData.Add((ResonanceSweepData)BodeEvents.SweepData.Clone());
-                        PeakTrackMeasurementViewModel.BodePlot.Impedance = new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints);
+                        PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.Clone());
                         PeakTrackMeasurementViewModel.BodePlot.SmoothData();
-                        PeakTrackMeasurementViewModel.BodePlot.ImpedanceHistory.Add(new ObservableCollection<OxyPlot.DataPoint>(BodeEvents.BodePoints));
                     }
                     catch (ResNotFoundException ex)
                     {
@@ -153,8 +160,8 @@ namespace BodeGUI1.ViewModel
                 OnPropertyChanged(); 
             }
         }
-        private MeasurementViewModelBase _bodeEvents;
-        public MeasurementViewModelBase BodeEvents
+        private MeasurementFunctions _bodeEvents;
+        public MeasurementFunctions BodeEvents
         {
             get { return _bodeEvents; }
             set { _bodeEvents = value; OnPropertyChanged(); }

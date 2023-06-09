@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BodeGUI1.ViewModel.DataModel;
 
 namespace BodeGUI1.ViewModel.Plots
 {
@@ -12,6 +13,10 @@ namespace BodeGUI1.ViewModel.Plots
     {
         public PlotViewModelBase()
         {
+            SweepData = new ObservableCollection<ResonanceSweepData>();
+            ImpedanceView = new ObservableCollection<DataPoint>();
+            PhaseView = new ObservableCollection<DataPoint>();
+            SelectedData = new ResonanceSweepData();
             Title = "Title";
             HighX = 4e6;
             LowX = 100;
@@ -34,38 +39,17 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _highX; }
             set { _highX = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<DataPoint> _impedance;
-        public ObservableCollection<DataPoint> Impedance
+        private ResonanceSweepData _selectedData;
+        public ResonanceSweepData SelectedData
         {
-            get { return _impedance; }
-            set { _impedance = value; OnPropertyChanged(); }
+            get { return _selectedData; }
+            set { _selectedData = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<DataPoint> _phase;
-        public ObservableCollection<DataPoint> Phase
+        private ObservableCollection<ResonanceSweepData> _sweepData;
+        public ObservableCollection<ResonanceSweepData> SweepData
         {
-            get { return _phase; }
-            set { _phase = value; OnPropertyChanged(); }
-        }
-        private ObservableCollection<ObservableCollection<DataPoint>> _impedanceHistory;
-        public ObservableCollection<ObservableCollection<DataPoint>> ImpedanceHistory
-        {
-            get { return _impedanceHistory; }
-            set
-            {
-                _impedanceHistory = value;
-                //make most recent measurment display
-                OnPropertyChanged();
-            }
-        }
-        private ObservableCollection<ObservableCollection<DataPoint>> _phaseHistory;
-        public ObservableCollection<ObservableCollection<DataPoint>> PhaseHistory
-        {
-            get { return _phaseHistory; }
-            set
-            {
-                _phaseHistory = value;
-                OnPropertyChanged();
-            }
+            get { return _sweepData; }
+            set { _sweepData = value; OnPropertyChanged(); }
         }
         private ObservableCollection<DataPoint> _impedanceView;
         public ObservableCollection<DataPoint> ImpedanceView

@@ -18,7 +18,14 @@ namespace BodeGUI1.ViewModel
     {
         public PeakTrackMeasurementViewModel()
         {
+            SweepData = new ObservableCollection<ResonanceSweepData>();
             BodePlot = new PeakPlotViewModel();
+        }
+        private ObservableCollection<ResonanceSweepData> _sweepData;
+        public ObservableCollection<ResonanceSweepData> SweepData
+        {
+            get { return _sweepData; }
+            set { _sweepData = value; OnPropertyChanged(); }
         }
         private PeakPlotViewModel _bodePlot;
         public PeakPlotViewModel BodePlot
@@ -28,8 +35,6 @@ namespace BodeGUI1.ViewModel
         }
         public void ClearPlots()
         {
-            BodePlot.Impedance.Clear();
-            BodePlot.Phase.Clear();
             BodePlot.SmoothPts.Clear();
             BodePlot.ImpedanceView.Clear();
             BodePlot.PhaseView.Clear();

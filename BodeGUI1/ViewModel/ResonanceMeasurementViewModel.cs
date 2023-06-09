@@ -18,9 +18,22 @@ namespace BodeGUI1.ViewModel
 
         public ResonanceMeasurementViewModel()
         {
+            SweepData = new ObservableCollection<ResonanceSweepData>();
             BodePlot = new ResonancePlotViewModel();
             DeleteRow = new DelegateCommand(Delete);
             ClearData = new DelegateCommand(ClearList);
+        }
+        private ObservableCollection<ResonanceSweepData> _sweepData;
+        public ObservableCollection<ResonanceSweepData> SweepData
+        {
+            get { return _sweepData; }
+            set 
+            { 
+                _sweepData = value;
+                if(BodePlot!=null)BodePlot.SweepData = _sweepData;
+                if(_sweepData.Count != 0) SelectedItems = value.Last();
+                OnPropertyChanged(); 
+            }
         }
         private ResonancePlotViewModel _bodePlot;
         public ResonancePlotViewModel BodePlot
@@ -32,7 +45,16 @@ namespace BodeGUI1.ViewModel
         public ResonanceSweepData SelectedItems
         {
             get { return _selectedItems; }
-            set { _selectedItems = value; OnPropertyChanged(); }
+            set 
+            {
+                if (value == _selectedItems) ;
+                else
+                {
+                    _selectedItems = value;
+                    BodePlot.SelectedData = _selectedItems;
+                    OnPropertyChanged();
+                }
+            }
         }
         private DelegateCommand _clearData;
         public DelegateCommand ClearData
@@ -54,8 +76,6 @@ namespace BodeGUI1.ViewModel
                 if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
                 {
                     SweepData.Clear();
-                    BodePlot.ImpedanceHistory.Clear();
-                    BodePlot.PhaseHistory.Clear();
                 }
             }
             catch (Exception ex)
@@ -70,10 +90,7 @@ namespace BodeGUI1.ViewModel
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to delete selected items?", "Application Shutdown Sample", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)                     //check to make sure the user really wants to clear data
                 {
-                    //foreach(ResonanceSweepData item in SelectedItems)
-                    //{
-                    //    SweepData.Remove(item);
-                    //}
+                    SweepData.Remove(SelectedItems);
                 }
             }
             catch (Exception ex)
@@ -83,8 +100,6 @@ namespace BodeGUI1.ViewModel
         }
         public void ClearPlots()
         {
-            BodePlot.Impedance.Clear();
-            BodePlot.Phase.Clear();
             BodePlot.ImpedanceView.Clear();
             BodePlot.PhaseView.Clear();
         }

@@ -16,22 +16,20 @@ using System.Windows;
 using OxyPlot;
 using BodeGUI1.ViewModel.DataModel;
 using BodeGUI1.ExceptionHandlers;
+using BodeGUI1.ViewModel;
 
-namespace BodeGUI1.ViewModel
+namespace BodeGUI1.Utility
 {
-    internal class MeasurementViewModelBase : ViewModelBase
+    internal class MeasurementFunctions : ViewModelBase
     {
         public OnePortMeasurement measurement;
         public BodeDevice bode;
         public ExecutionState state;
         public BodeAutomationInterface auto = new BodeAutomation();
         public event EventHandler StatusBasePropertyChanged;
-        public MeasurementViewModelBase()
+        public MeasurementFunctions()
         {
             BodeStatusViewModel = new BodeStatusViewModel();
-            SweepData = new ResonanceSweepData();
-            BodePoints = new List<DataPoint>();
-            PhasePoints = new List<DataPoint>();
             SweepData = new ResonanceSweepData();
             CalResistor = 100;
         }
@@ -59,8 +57,6 @@ namespace BodeGUI1.ViewModel
             }
         }
         public ResonanceSweepData SweepData { get; private set; }
-        public List<DataPoint> BodePoints { get; private set; }
-        public List<DataPoint> PhasePoints { get; private set; }
         public async void Connect(object? sender, EventArgs e)
         {
             try
@@ -68,6 +64,7 @@ namespace BodeGUI1.ViewModel
                 if (BodeStatusViewModel.StatusCollection[0].Status == true)
                 {
                     Disconnect(this, EventArgs.Empty);
+                    BodeStatusViewModel.StatusCollection[0].Status = false;
                 }
                 else
                 {
@@ -114,10 +111,10 @@ namespace BodeGUI1.ViewModel
         {
             measurement.ReceiverBandwidth = (ReceiverBandwidth)bandwidth;       //sets UI bandwidth value to be bandwidth of measurement
             SweepPtMeasurement(LowFreq, HighFreq, NumPts, Type);
-            ClearPlotData(BodePoints);
-            ClearPlotData(PhasePoints);
-            FillPlotData(BodePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
-            FillPlotData(PhasePoints, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
+            ClearPlotData(SweepData.ImpdedancePlot);
+            ClearPlotData(SweepData.PhasePlot);
+            FillPlotData(SweepData.ImpdedancePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
+            FillPlotData(SweepData.PhasePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
             if (SweepData.Resfreq<=0) throw new ResNotFoundException(SweepData.Resfreq);
