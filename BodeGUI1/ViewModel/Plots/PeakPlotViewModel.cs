@@ -17,7 +17,6 @@ namespace BodeGUI1.ViewModel.Plots
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
             SmoothPts = new ObservableCollection<DataPoint>();
-            SelectedData = new ResonanceSweepData();
             HighX = 1e6;
             LowX = 1000;
         }

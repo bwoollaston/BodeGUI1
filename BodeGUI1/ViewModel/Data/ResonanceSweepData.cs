@@ -28,6 +28,8 @@ namespace BodeGUI1.ViewModel.DataModel
 
         public ResonanceSweepData Clone()
         {
+            List<DataPoint> temp1 = new List<DataPoint>(ImpdedancePlot);
+            List<DataPoint> temp2 = new List<DataPoint>(PhasePlot);
             return new ResonanceSweepData()
             {
                 Index = Index,
@@ -39,7 +41,9 @@ namespace BodeGUI1.ViewModel.DataModel
                 Res_impedance=Res_impedance,
                 Anti_impedance=Anti_impedance,
                 QualityFactor = QualityFactor,
-                Phase = Phase
+                Phase = Phase,
+                ImpdedancePlot = temp1,
+                PhasePlot = temp2
             };
         }
 

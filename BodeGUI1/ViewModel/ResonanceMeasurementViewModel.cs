@@ -47,13 +47,9 @@ namespace BodeGUI1.ViewModel
             get { return _selectedItems; }
             set 
             {
-                if (value == _selectedItems) ;
-                else
-                {
                     _selectedItems = value;
                     BodePlot.SelectedData = _selectedItems;
                     OnPropertyChanged();
-                }
             }
         }
         private DelegateCommand _clearData;

@@ -21,7 +21,7 @@ namespace BodeGUI1.ViewModel.UI
             SweepModes = new ObservableCollection<string>() { "Logarithmic" , "Linear" };
             SelectedMode = SweepModes[0];
             Export = new DelegateCommand(DataExport);
-            SampleIndex = 1;
+            SampleIndex = 0;
             HighSweep = 190000;
             LowSweep = 180000;
             RecieverBW = 100000;
@@ -101,6 +101,7 @@ namespace BodeGUI1.ViewModel.UI
                 OnPropertyChanged(); 
             }
         }
+        private string LastSample;
         private string _sampleName;
         public string SampleName
         {
@@ -108,16 +109,22 @@ namespace BodeGUI1.ViewModel.UI
             set 
             { 
                 _sampleName = value;
-                if (IndexingIsChecked == true)
+                if (IndexingIsChecked == true && Enable==false)
                 {
-                    if (_sampleName != String.Empty)
+                    if (_sampleName != String.Empty && _sampleName.Length>=3)
                     {
+                        if(LastSample!=_sampleName) SampleIndex = 1;
+
                         string sub = _sampleName.Substring(_sampleName.Length - 2);
-                        if (sub == "_" + (SampleIndex - 1).ToString()) _sampleName = _sampleName.Substring(0, _sampleName.Length - 2);
+                        if (sub == String.Format("_{0}", SampleIndex-1))
+                        {
+                            _sampleName = _sampleName.Substring(0, _sampleName.Length - 2);
+                        }
                     }
                     _sampleName += String.Format("_{0}", SampleIndex);
+                    LastSample = _sampleName;
                 }
-                OnPropertyChanged(); 
+               OnPropertyChanged(); 
             }
         }
 
@@ -159,7 +166,7 @@ namespace BodeGUI1.ViewModel.UI
             set 
             { 
                 _enable = value;
-                if (_enable == false) SampleIndex++;
+                if (_enable == false && IndexingIsChecked) SampleIndex++;
                 SampleName = _sampleName;
                 OnPropertyChanged(); 
             }

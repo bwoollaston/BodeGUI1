@@ -27,7 +27,7 @@
                  Text="{Binding RecieverBW,Converter={StaticResource bwcon},UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Number of Points" 
                  Text="{Binding SweepPoints,UpdateSourceTrigger=LostFocus}" KeyUp="TextBox_KeyUp" IsEnabled="{Binding Enable}"/>
-        <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding SweepModes}" md:HintAssist.Hint="Sweep Mode" SelectedItem="{Binding SelectedMode}"/>
+        <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding SweepModes}" md:HintAssist.Hint="Sweep Mode" SelectedItem="{Binding SelectedMode}" IsEnabled="{Binding Enable}"/>
         <StackPanel Orientation="Horizontal">
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" md:HintAssist.Hint="Sample Name" 
                  Text="{Binding SampleName,Mode=TwoWay}" KeyUp="TextBox_KeyUp" MinWidth="100" IsEnabled="{Binding Enable}"/>

@@ -46,8 +46,16 @@ namespace BodeGUI1.ViewModel.Plots
             set 
             { 
                 _selectedData = value;
-                ImpedanceView = new ObservableCollection<DataPoint>(_selectedData.ImpdedancePlot);
-                PhaseView = new ObservableCollection<DataPoint>(_selectedData.PhasePlot);
+                if (_selectedData != null)
+                {
+                    ImpedanceView = new ObservableCollection<DataPoint>(_selectedData.ImpdedancePlot);
+                    PhaseView = new ObservableCollection<DataPoint>(_selectedData.PhasePlot);
+                }
+                else
+                {
+                    ImpedanceView.Clear();
+                    PhaseView.Clear();
+                }
                 OnPropertyChanged(); 
             }
         }

@@ -57,10 +57,11 @@ namespace BodeGUI1.Utility
             }
         }
         public ResonanceSweepData SweepData { get; private set; }
-        public async void Connect(object? sender, EventArgs e)
+        public async void Connect(BodeSettingsViewModel sender, EventArgs e)
         {
             try
             {
+                sender.Enable = false;
                 if (BodeStatusViewModel.StatusCollection[0].Status == true)
                 {
                     Disconnect(this, EventArgs.Empty);
@@ -72,6 +73,8 @@ namespace BodeGUI1.Utility
                     measurement = bode.Impedance.CreateOnePortMeasurement();
                     BodeStatusViewModel.StatusCollection[0].Status = true;
                 }
+                sender.Enable = true;
+
             }
             catch (Exception ex)
             {

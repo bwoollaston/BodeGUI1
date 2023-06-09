@@ -14,11 +14,13 @@ namespace BodeGUI1.ViewModel.Plots
         public ResonancePlotViewModel()
         {
             Title = "Bode Impedance vs. Frequency Plot";
-            //HighX = 190000;
-            //LowX = 180000;
+            HighX = 190000;
+            LowX = 180000;
         }
         public async void UpdateUI()
         {
+            ImpedanceView.Clear();
+            PhaseView.Clear();
             int delay = 2000;
             int dt = delay/SelectedData.ImpdedancePlot.Count;
             int i = 0;

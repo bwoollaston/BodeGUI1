@@ -41,7 +41,7 @@ namespace BodeGUI1.ViewModel
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
             BodeEvents.StatusBasePropertyChanged += UpdateStatus;
 
-            //GenRandData();
+            GenRandData();
         }
         public void GenRandData()
         {
@@ -67,6 +67,8 @@ namespace BodeGUI1.ViewModel
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.Clone());
+                        ResonanceMeasurementViewModel.BodePlot.SweepData.Add(BodeEvents.SweepData.Clone());
+                        ResonanceMeasurementViewModel.BodePlot.SelectedData = ResonanceMeasurementViewModel.SweepData.Last();
                         ResonanceMeasurementViewModel.BodePlot.UpdateUI();
                     }
                     catch(ResNotFoundException ex)
@@ -218,9 +220,9 @@ namespace BodeGUI1.ViewModel
         }
         private void ConnectEvent(object? sender, EventArgs e)
         {
-            BodeConnection.Enable = false;
-            BodeEvents.Connect(sender, e);
-            BodeConnection.Enable = true;
+            //BodeConnection.Enable = false;
+            BodeEvents.Connect((BodeSettingsViewModel)sender, e);
+            //BodeConnection.Enable = true;
         }
         private void OpenEvent(object? sender, EventArgs e)
         {
