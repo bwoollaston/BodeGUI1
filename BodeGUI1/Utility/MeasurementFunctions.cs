@@ -17,6 +17,7 @@ using OxyPlot;
 using BodeGUI1.ViewModel.DataModel;
 using BodeGUI1.ExceptionHandlers;
 using BodeGUI1.ViewModel;
+using MathNet.Numerics;
 
 namespace BodeGUI1.Utility
 {
@@ -33,6 +34,7 @@ namespace BodeGUI1.Utility
             SweepData = new ResonanceSweepData();
             CalResistor = 100;
         }
+        private Tuple<double,double> ThreshPoints;
         private double _calResistor;
         public double CalResistor
         {
@@ -127,7 +129,29 @@ namespace BodeGUI1.Utility
         }
         public void PeakSweep(double LowFreq, double HighFreq, int NumPts, SweepMode Type, double bandwidth)
         {
+            double threshConstant = 0.4;
+            double pt;
+            int i = 0;
+            int j = 0;
             InitializeSweepMeasurement(LowFreq, HighFreq, NumPts, Type, bandwidth);
+            double[] imp = measurement.Results.Magnitude(MagnitudeUnit.Lin);
+            double[] freq = measurement.Results.MeasurementFrequencies;
+            ThreshPoints = Fit.Power(freq, imp);
+            foreach(double element in freq)
+            {
+                pt = ThreshPoints.Item1 * Math.Pow(element,ThreshPoints.Item2);
+                SweepData.Threshline.Add(new DataPoint(element, pt - (pt * threshConstant)));
+            }
+            foreach(double element in imp)
+            {
+                if (imp[i + 1] <= SweepData.Threshline[i + 1].Y && imp[i]>= SweepData.Threshline[i].Y)
+                {
+                    j = i;
+                    while (imp[j] < imp[j + 1]) j++;
+                    Sweep(freq[i], freq[i + 1], 100, Type, bandwidth);
+                    SweepData.PeakDataTable.Add(SweepData);
+                }
+            }
         }
         private void InitializeSweepMeasurement(double LowFreq, double HighFreq, int NumPts, SweepMode Type, double bandwidth)
         {

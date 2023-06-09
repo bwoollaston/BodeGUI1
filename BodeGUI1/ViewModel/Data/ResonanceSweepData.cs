@@ -1,4 +1,5 @@
-﻿using OxyPlot;
+﻿using BodeGUI1.ViewModel.Data;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,20 +9,12 @@ using System.Threading.Tasks;
 
 namespace BodeGUI1.ViewModel.DataModel
 {
-    internal class ResonanceSweepData : ViewModelBase
+    internal class ResonanceSweepData : TableData
     {
         public ResonanceSweepData()
         {
-            Index = 0;
             Time = DateTime.Now.ToString();
             Name = "Name";
-            Capacitance = 0;
-            Resfreq = 0;
-            Antifreq = 0;
-            Res_impedance = 0;
-            Anti_impedance = 0;
-            QualityFactor = 0;
-            Phase = 0;
             ImpdedancePlot = new List<DataPoint>();
             PhasePlot = new List<DataPoint>();
         }
@@ -48,13 +41,6 @@ namespace BodeGUI1.ViewModel.DataModel
                 LowX = LowX
             };
         }
-
-        private int _index;
-        public int Index
-        {
-            get { return _index; }
-            set { _index = value; OnPropertyChanged(); }
-        }
         private string _time;
         public string Time
         {
@@ -67,59 +53,23 @@ namespace BodeGUI1.ViewModel.DataModel
             get { return _name; }
             set { _name = value; OnPropertyChanged(); }
         }
-        private double _resfreq;
-        public double Resfreq
-        {
-            get { return _resfreq; }
-            set { _resfreq = value; OnPropertyChanged(); }
-        }
-        private double _antifreq;
-        public double Antifreq
-        {
-            get { return _antifreq; }
-            set { _antifreq = value; OnPropertyChanged(); }
-        }
-        private double _res_impedance;
-        public double Res_impedance
-        {
-            get { return _res_impedance; }
-            set { _res_impedance = value; OnPropertyChanged(); }
-        }
-        private double _anti_impedance;
-        public double Anti_impedance
-        {
-            get { return _anti_impedance; }
-            set { _anti_impedance = value; OnPropertyChanged(); }
-        }
-        private double _capacitance;
-        public double Capacitance
-        {
-            get { return _capacitance; }
-            set { _capacitance = value; OnPropertyChanged(); }
-        }
-        private double _resistance;
-        public double Resistance
-        {
-            get { return _resistance; }
-            set {_resistance = value;OnPropertyChanged();}
-        }
-        private double _qualityFactor;
-        public double QualityFactor
-        {
-            get { return _qualityFactor; }
-            set { _qualityFactor = value; OnPropertyChanged(); }
-        }
-        private double _phase;
-        public double Phase
-        {
-            get { return _phase; }
-            set { _phase = value; OnPropertyChanged(); }
-        }
         private List<DataPoint> _impdedancePlot;
         public List<DataPoint> ImpdedancePlot
         {
             get { return _impdedancePlot; }
             set { _impdedancePlot = value;OnPropertyChanged(); }
+        }
+        private List<DataPoint> _threshline;
+        public List<DataPoint> Threshline
+        {
+            get { return _threshline; }
+            set { _threshline = value;OnPropertyChanged(); }
+        }
+        private List<TableData> _peakDataTable;
+        public List<TableData> PeakDataTable
+        {
+            get { return _peakDataTable; }
+            set { _peakDataTable = value;OnPropertyChanged(); }
         }
         private List<DataPoint> _phasePlot;
         public List<DataPoint> PhasePlot
