@@ -32,9 +32,9 @@ namespace BodeGUI1.ViewModel
             TabItems = new ObservableCollection<string>() { "Resonance Measurement","Peak Tracking","Connection Settings" };
             SelectedTab = TabItems[2];
             CurrentContent = BodeConnection;
-            BodeConnection.ConnectClicked += BodeEvents.Connect;
-            BodeConnection.OpenClicked += BodeEvents.OpenCal;
-            BodeConnection.ShortClicked += BodeEvents.ShortCal;
+            BodeConnection.ConnectClicked += ConnectEvent;
+            BodeConnection.OpenClicked += OpenEvent;
+            BodeConnection.ShortClicked += ShortEvent;
             BodeConnection.TestClicked += CalTest;
             BodeConnection.LoadClicked += LoadEvent;
             Parameters.ExportClicked += ExportData;
@@ -216,15 +216,39 @@ namespace BodeGUI1.ViewModel
             get { return _bodeControlsHeight; }
             set { _bodeControlsHeight = value; OnPropertyChanged(); }
         }
+        private void ConnectEvent(object? sender, EventArgs e)
+        {
+            BodeConnection.Enable = false;
+            BodeEvents.Connect(sender, e);
+            BodeConnection.Enable = true;
+        }
+        private void OpenEvent(object? sender, EventArgs e)
+        {
+            BodeConnection.Enable = false;
+            BodeEvents.OpenCal(sender, e);
+            BodeConnection.Enable = true;
+
+        }
+        private void ShortEvent(object? sender, EventArgs e)
+        {
+            BodeConnection.Enable = false;
+            BodeEvents.ShortCal(sender, e);
+            BodeConnection.Enable = true;
+        }
         private void LoadEvent(object? sender, EventArgs e)
         {
+            BodeConnection.Enable = false;
             BodeEvents.CalResistor = _bodeConnection.CalResistor;
             BodeEvents.LoadCal(sender, e);
+            BodeConnection.Enable = true;
+
         }
         private void CalTest(object? sender, EventArgs e)
         {
+            BodeConnection.Enable = false;
             BodeEvents.TestCal();
             BodeConnection.CalTestValue = BodeEvents.TestValue;
+            BodeConnection.Enable = true;
         }
     }
 }

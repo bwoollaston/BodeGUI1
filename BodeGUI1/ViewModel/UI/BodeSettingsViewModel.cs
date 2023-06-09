@@ -23,8 +23,6 @@ namespace BodeGUI1.ViewModel.UI
             Short = new DelegateCommand(CalShort);
             Load = new DelegateCommand(CalLoad);
             Test = new DelegateCommand(CalTest);
-
-
         }
         private void BodeConnect()
         {
