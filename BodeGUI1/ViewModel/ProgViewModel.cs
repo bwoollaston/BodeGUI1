@@ -85,7 +85,7 @@ namespace BodeGUI1.ViewModel
                     BodeEvents.SweepData.HighX = p.HighSweep;
                     try
                     {
-                        await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
+                        await Task.Run(() => BodeEvents.PeakSweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.Clone());
                         PeakTrackMeasurementViewModel.BodePlot.SweepData.Add(BodeEvents.SweepData.Clone());
                         PeakTrackMeasurementViewModel.BodePlot.SelectedData = PeakTrackMeasurementViewModel.SweepData.Last();
@@ -97,7 +97,8 @@ namespace BodeGUI1.ViewModel
                         PeakTrackMeasurementViewModel.ClearPlots();
                         MessageBox.Show(ex.Message, "Exception Sample", MessageBoxButton.OK);
                     }
-
+                    Parameters.Enable = true;
+                    BodeControls.ProgramingActive = Visibility.Collapsed;
                     break;
 
                 default: break;

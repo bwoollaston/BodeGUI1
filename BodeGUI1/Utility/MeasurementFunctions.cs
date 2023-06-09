@@ -73,14 +73,13 @@ namespace BodeGUI1.Utility
                     measurement = bode.Impedance.CreateOnePortMeasurement();
                     BodeStatusViewModel.StatusCollection[0].Status = true;
                 }
-                sender.Enable = true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Bode connection failed", "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
                 BodeStatusViewModel.StatusCollection[0].Status = false;
             }
+            sender.Enable = true;
         }
         public void Disconnect(object? sender, EventArgs e)
         {
@@ -112,15 +111,11 @@ namespace BodeGUI1.Utility
         }
         public void Sweep(double LowFreq, double HighFreq, int NumPts, SweepMode Type,double bandwidth)
         {
-            measurement.ReceiverBandwidth = (ReceiverBandwidth)bandwidth;       //sets UI bandwidth value to be bandwidth of measurement
-            SweepPtMeasurement(LowFreq, HighFreq, NumPts, Type);
-            ClearPlotData(SweepData.ImpdedancePlot);
-            ClearPlotData(SweepData.PhasePlot);
-            FillPlotData(SweepData.ImpdedancePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
-            FillPlotData(SweepData.PhasePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList() , measurement.Results.MeasurementFrequencies.Length);
+            InitializeSweepMeasurement( LowFreq,  HighFreq,  NumPts,  Type,  bandwidth);
             SweepData.Resfreq = measurement.Results.CalculateFResQValues(false, true, FResQFormats.Magnitude).ResonanceFrequency;
             SweepData.Antifreq = measurement.Results.CalculateFResQValues(true, true, FResQFormats.Magnitude).ResonanceFrequency;
             if (SweepData.Resfreq<=0) throw new ResNotFoundException(SweepData.Resfreq);
+            if(SweepData.Antifreq <= 0) throw new ResNotFoundException(SweepData.Antifreq);
             SinglePtMeasurement(SweepData.Resfreq);
             SweepData.Res_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SweepData.QualityFactor = measurement.Results.QAt(0);
@@ -129,6 +124,19 @@ namespace BodeGUI1.Utility
             SweepData.Anti_impedance = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
             SinglePtMeasurement(1000);
             SweepData.Capacitance = measurement.Results.CsAt(0)*1e12;
+        }
+        public void PeakSweep(double LowFreq, double HighFreq, int NumPts, SweepMode Type, double bandwidth)
+        {
+            InitializeSweepMeasurement(LowFreq, HighFreq, NumPts, Type, bandwidth);
+        }
+        private void InitializeSweepMeasurement(double LowFreq, double HighFreq, int NumPts, SweepMode Type, double bandwidth)
+        {
+            measurement.ReceiverBandwidth = (ReceiverBandwidth)bandwidth;       //sets UI bandwidth value to be bandwidth of measurement
+            SweepPtMeasurement(LowFreq, HighFreq, NumPts, Type);
+            ClearPlotData(SweepData.ImpdedancePlot);
+            ClearPlotData(SweepData.PhasePlot);
+            FillPlotData(SweepData.ImpdedancePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Magnitude(MagnitudeUnit.Lin).ToList(), measurement.Results.MeasurementFrequencies.Length);
+            FillPlotData(SweepData.PhasePlot, measurement.Results.MeasurementFrequencies.ToList(), measurement.Results.Phase(AngleUnit.Degree).ToList(), measurement.Results.MeasurementFrequencies.Length);
         }
         private void FillPlotData(List<DataPoint> Pts, List<double> Frequencies, List<double> Data, int count)
         {
@@ -154,7 +162,7 @@ namespace BodeGUI1.Utility
                 TestValue = 0;
                 MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
             }
-            sender.Enable = false;
+            sender.Enable = true;
         }
         public string ExportPath()
         {
@@ -184,7 +192,7 @@ namespace BodeGUI1.Utility
                 BodeStatusViewModel.StatusCollection[1].Status = false;
                 MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
             }
-            sender.Enable = false;
+            sender.Enable = true;
         }
         public async void ShortCal(BodeSettingsViewModel sender, EventArgs e)
         {
@@ -199,7 +207,7 @@ namespace BodeGUI1.Utility
                 MessageBox.Show("Short calibration failed", "Exception Sample", MessageBoxButton.OK);
                 BodeStatusViewModel.StatusCollection[2].Status = false;
             }
-            sender.Enable = false;
+            sender.Enable = true;
         }
         public async void LoadCal(BodeSettingsViewModel sender, EventArgs e)
         {
@@ -215,7 +223,7 @@ namespace BodeGUI1.Utility
                 MessageBox.Show("Load calibration failed", "Exception Sample", MessageBoxButton.OK);
                 BodeStatusViewModel.StatusCollection[3].Status = false;
             }
-            sender.Enable = false;
+            sender.Enable = true;
         }
 
     }

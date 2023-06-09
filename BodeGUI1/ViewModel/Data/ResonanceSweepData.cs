@@ -43,7 +43,9 @@ namespace BodeGUI1.ViewModel.DataModel
                 QualityFactor = QualityFactor,
                 Phase = Phase,
                 ImpdedancePlot = temp1,
-                PhasePlot = temp2
+                PhasePlot = temp2,
+                HighX = HighX,
+                LowX = LowX
             };
         }
 

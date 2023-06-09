@@ -11,15 +11,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <oxy:Plot Title="{Binding Title}" TitleFontSize="14" LegendPlacement="Inside">
-            <oxy:Plot.Axes>
-                <oxy:LogarithmicAxis Position="Bottom" Title="Frequency [Hz]" Maximum="{Binding HighX}" Minimum="{Binding LowX}"/>
-                <oxy:LogarithmicAxis Position="Left" Title="Impedace [Ω]" Key="YLogAxes"/>
-            </oxy:Plot.Axes>
-            <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding ImpedanceView}" Title="Impedace [Ω] vs. Frequency [Hz]" />
-                <oxy:LineSeries ItemsSource="{Binding SmoothPts}" Title="Smooth Impedace [Ω] vs. Frequency [Hz]" />
-            </oxy:Plot.Series>
-        </oxy:Plot>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <oxy:Plot Title="{Binding Title}" TitleFontSize="14" LegendPlacement="Inside">
+                <oxy:Plot.Axes>
+                    <oxy:LogarithmicAxis Position="Bottom" Title="Frequency [Hz]" Maximum="{Binding SelectedData.HighX}" Minimum="{Binding SelectedData.LowX}"/>
+                    <oxy:LogarithmicAxis Position="Left" Title="Impedace [Ω]" Key="YLogAxes"/>
+                </oxy:Plot.Axes>
+                <oxy:Plot.Series>
+                    <oxy:LineSeries ItemsSource="{Binding ImpedanceView}" Title="Impedace [Ω] vs. Frequency [Hz]" Cursor="Cross"/>
+                    <oxy:LineSeries ItemsSource="{Binding SmoothPts}" Title="Smooth Impedace [Ω] vs. Frequency [Hz]" />
+                </oxy:Plot.Series>
+            </oxy:Plot>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Label Content="Degree of Smoothing  " VerticalAlignment="Center"/>
+                <Slider Maximum="5" Minimum="1" Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Value="{Binding DeltaP}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

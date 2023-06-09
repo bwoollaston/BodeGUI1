@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BodeGUI1.ViewModel.DataModel;
+using System.Runtime.Intrinsics.Arm;
 
 namespace BodeGUI1.ViewModel.Plots
 {
@@ -17,6 +18,8 @@ namespace BodeGUI1.ViewModel.Plots
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
             SmoothPts = new ObservableCollection<DataPoint>();
+            SmoothPtsView = new ObservableCollection<DataPoint>();
+            DeltaP = 3;
             HighX = 1e6;
             LowX = 1000;
         }
@@ -55,17 +58,20 @@ namespace BodeGUI1.ViewModel.Plots
         {
             SmoothPts.Clear();
             int dp = DeltaP;
-            for(int i = 0; i < SelectedData.ImpdedancePlot.Count; i += dp)
+            int rangeFlag = 0;
+            int remainder = SelectedData.ImpdedancePlot.Count % dp;
+            for (int i = 0; i < SelectedData.ImpdedancePlot.Count; i += dp)
             {
                 double x = 0;
                 double y = 0;
                 for(int j=0; j < dp; j++)
                 {
+                    if (j + i >= SelectedData.ImpdedancePlot.Count) { rangeFlag = 1; break; }
                     x += SelectedData.ImpdedancePlot[i + j].X;
                     y += SelectedData.ImpdedancePlot[i + j].Y;
                 }
-                x = x / dp;
-                y = y / dp;
+                if (rangeFlag == 0) { x = x / dp; y = y / dp; }
+                else { x = x / remainder; y = y / remainder; }
                 SmoothPts.Add(new DataPoint(x,y));
             }
         }
@@ -82,6 +88,7 @@ namespace BodeGUI1.ViewModel.Plots
             {
                 for(int j=0; j < DeltaP; j++)
                 {
+                    if (k + j >= SelectedData.ImpdedancePlot.Count) break;
                     ImpedanceView.Add(SelectedData.ImpdedancePlot[k+j]);
                     //PhaseView.Add(SelectedData.PhasePlot[i]);
                 }
