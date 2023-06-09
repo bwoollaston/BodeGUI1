@@ -32,16 +32,29 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _smoothPts; }
             set { _smoothPts = value; OnPropertyChanged(); }
         }
+        private ObservableCollection<DataPoint> _smoothPtsView;
+        public ObservableCollection<DataPoint> SmoothPtsView
+        {
+            get { return _smoothPtsView; }
+            set { _smoothPtsView = value; OnPropertyChanged(); }
+        }
         private ObservableCollection<ObservableCollection<DataPoint>> _points;
         public ObservableCollection<ObservableCollection<DataPoint>> Points
         {
             get { return _points; }
             set { _points = value; OnPropertyChanged(); }
         }
+        //Used to set degree of data smoothing
+        private int _deltaP;
+        public int DeltaP
+        {
+            get { return _deltaP; }
+            set { _deltaP = value; OnPropertyChanged(); }
+        }
         public void SmoothData()
         {
             SmoothPts.Clear();
-            int dp = 3;
+            int dp = DeltaP;
             for(int i = 0; i < SelectedData.ImpdedancePlot.Count; i += dp)
             {
                 double x = 0;
@@ -54,6 +67,28 @@ namespace BodeGUI1.ViewModel.Plots
                 x = x / dp;
                 y = y / dp;
                 SmoothPts.Add(new DataPoint(x,y));
+            }
+        }
+        public async void UpdateUI()
+        {
+            ImpedanceView.Clear();
+            PhaseView.Clear();
+            SmoothPtsView.Clear();
+            int delay = 2000;
+            int dt = delay / SelectedData.ImpdedancePlot.Count;
+            int i = 0;
+            int k = 0;
+            foreach (DataPoint element in SmoothPts)
+            {
+                for(int j=0; j < DeltaP; j++)
+                {
+                    ImpedanceView.Add(SelectedData.ImpdedancePlot[k+j]);
+                    //PhaseView.Add(SelectedData.PhasePlot[i]);
+                }
+                SmoothPtsView.Add(SmoothPts[i]);
+                await Task.Delay(dt);
+                k += DeltaP;
+                i++;
             }
         }
     }

@@ -141,10 +141,20 @@ namespace BodeGUI1.Utility
         {
             Pts.Clear();
         }
-        public void TestCal()
+        public void TestCal(BodeSettingsViewModel sender,EventArgs e)
         {
-            SinglePtMeasurement(1000);
-            TestValue = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
+            try
+            {
+                sender.Enable = false;
+                SinglePtMeasurement(1000);
+                TestValue = measurement.Results.MagnitudeAt(0, MagnitudeUnit.Lin);
+            }
+            catch(Exception ex)
+            {
+                TestValue = 0;
+                MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
+            }
+            sender.Enable = false;
         }
         public string ExportPath()
         {
@@ -160,11 +170,12 @@ namespace BodeGUI1.Utility
             }
             return fileSelected;
         }
-        public async void OpenCal(object? sender, EventArgs e)
+        public async void OpenCal(BodeSettingsViewModel sender, EventArgs e)
         {
             /* Bode Automation Suite method runs open calibration */
             try
             {
+                sender.Enable = false;
                 ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteOpen());
                 BodeStatusViewModel.StatusCollection[1].Status = true;
             }
@@ -173,11 +184,13 @@ namespace BodeGUI1.Utility
                 BodeStatusViewModel.StatusCollection[1].Status = false;
                 MessageBox.Show("Open calibration failed", "Exception Sample", MessageBoxButton.OK);
             }
+            sender.Enable = false;
         }
-        public async void ShortCal(object? sender, EventArgs e)
+        public async void ShortCal(BodeSettingsViewModel sender, EventArgs e)
         {
             try
             {
+                sender.Enable = false;
                 ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteShort());
                 BodeStatusViewModel.StatusCollection[2].Status = true;
             }
@@ -186,11 +199,13 @@ namespace BodeGUI1.Utility
                 MessageBox.Show("Short calibration failed", "Exception Sample", MessageBoxButton.OK);
                 BodeStatusViewModel.StatusCollection[2].Status = false;
             }
+            sender.Enable = false;
         }
-        public async void LoadCal(object? sender, EventArgs e)
+        public async void LoadCal(BodeSettingsViewModel sender, EventArgs e)
         {
             try
             {
+                sender.Enable = false;
                 measurement.Calibration.Load = CalResistor;
                 ExecutionState state = await Task.Run(() => measurement.Calibration.FullRange.ExecuteLoad());
                 BodeStatusViewModel.StatusCollection[3].Status = true;
@@ -200,6 +215,8 @@ namespace BodeGUI1.Utility
                 MessageBox.Show("Load calibration failed", "Exception Sample", MessageBoxButton.OK);
                 BodeStatusViewModel.StatusCollection[3].Status = false;
             }
+            sender.Enable = false;
         }
+
     }
 }

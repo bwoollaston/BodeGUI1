@@ -87,7 +87,10 @@ namespace BodeGUI1.ViewModel
                     {
                         await Task.Run(() => BodeEvents.Sweep(p.LowSweep, p.HighSweep, p.SweepPoints, p.CurSweepMode, p.RecieverBW));
                         PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.Clone());
+                        PeakTrackMeasurementViewModel.BodePlot.SweepData.Add(BodeEvents.SweepData.Clone());
+                        PeakTrackMeasurementViewModel.BodePlot.SelectedData = PeakTrackMeasurementViewModel.SweepData.Last();
                         PeakTrackMeasurementViewModel.BodePlot.SmoothData();
+                        PeakTrackMeasurementViewModel.BodePlot.UpdateUI();
                     }
                     catch (ResNotFoundException ex)
                     {
@@ -220,37 +223,25 @@ namespace BodeGUI1.ViewModel
         }
         private void ConnectEvent(object? sender, EventArgs e)
         {
-            //BodeConnection.Enable = false;
             BodeEvents.Connect((BodeSettingsViewModel)sender, e);
-            //BodeConnection.Enable = true;
         }
         private void OpenEvent(object? sender, EventArgs e)
         {
-            BodeConnection.Enable = false;
-            BodeEvents.OpenCal(sender, e);
-            BodeConnection.Enable = true;
-
+            BodeEvents.OpenCal((BodeSettingsViewModel)sender, e);
         }
         private void ShortEvent(object? sender, EventArgs e)
         {
-            BodeConnection.Enable = false;
-            BodeEvents.ShortCal(sender, e);
-            BodeConnection.Enable = true;
+            BodeEvents.ShortCal((BodeSettingsViewModel)sender, e);
         }
         private void LoadEvent(object? sender, EventArgs e)
         {
-            BodeConnection.Enable = false;
             BodeEvents.CalResistor = _bodeConnection.CalResistor;
-            BodeEvents.LoadCal(sender, e);
-            BodeConnection.Enable = true;
-
+            BodeEvents.LoadCal((BodeSettingsViewModel)sender, e);
         }
         private void CalTest(object? sender, EventArgs e)
         {
-            BodeConnection.Enable = false;
-            BodeEvents.TestCal();
+            BodeEvents.TestCal((BodeSettingsViewModel)sender, e);
             BodeConnection.CalTestValue = BodeEvents.TestValue;
-            BodeConnection.Enable = true;
         }
     }
 }
