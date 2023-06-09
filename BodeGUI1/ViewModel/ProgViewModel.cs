@@ -41,7 +41,7 @@ namespace BodeGUI1.ViewModel
             BodeControls.StartMeasurementClicked += BodeControls_StartMeasurementClicked;
             BodeEvents.StatusBasePropertyChanged += UpdateStatus;
 
-            GenRandData();
+            //GenRandData();
         }
         public void GenRandData()
         {
