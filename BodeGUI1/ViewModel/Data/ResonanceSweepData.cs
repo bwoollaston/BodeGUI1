@@ -137,9 +137,10 @@ namespace BodeGUI1.ViewModel.DataModel
         public ResonanceSweepData RandClone()
         {
             Random random = new Random();
+            List<DataPoint> temp = new List<DataPoint>();
             for (int j = 0; j < 10; j++)
             {
-                ImpdedancePlot.Add(new DataPoint(Math.Pow(2, j), random.NextDouble() * 1000));
+                temp.Add(new DataPoint(Math.Pow(2, j), random.NextDouble() * 1000));
             }
             return new ResonanceSweepData()
             {
@@ -155,7 +156,7 @@ namespace BodeGUI1.ViewModel.DataModel
                 Phase = random.NextDouble() * 180,
                 HighX = 190000,
                 LowX = 180000,
-                ImpdedancePlot = ImpdedancePlot
+                ImpdedancePlot = temp
             };
         }
     }

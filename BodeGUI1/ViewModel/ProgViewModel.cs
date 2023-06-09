@@ -49,7 +49,6 @@ namespace BodeGUI1.ViewModel
             for(int i = 0; i < 10; i++)
             {
                 ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
-
                 PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
             }
         }

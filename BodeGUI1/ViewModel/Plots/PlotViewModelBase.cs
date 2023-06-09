@@ -43,7 +43,13 @@ namespace BodeGUI1.ViewModel.Plots
         public ResonanceSweepData SelectedData
         {
             get { return _selectedData; }
-            set { _selectedData = value; OnPropertyChanged(); }
+            set 
+            { 
+                _selectedData = value;
+                ImpedanceView = new ObservableCollection<DataPoint>(_selectedData.ImpdedancePlot);
+                PhaseView = new ObservableCollection<DataPoint>(_selectedData.PhasePlot);
+                OnPropertyChanged(); 
+            }
         }
         private ObservableCollection<ResonanceSweepData> _sweepData;
         public ObservableCollection<ResonanceSweepData> SweepData
