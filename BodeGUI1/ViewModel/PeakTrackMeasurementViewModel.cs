@@ -34,9 +34,7 @@ namespace BodeGUI1.ViewModel
             { 
                 _tableDataIndex = value;
                 CurrentData = new ObservableCollection<TableData>(SweepData[_tableDataIndex].PeakDataTable);
-                BodePlot.ImpedanceView = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].ImpdedancePlot);
-                BodePlot.ThreshPoints = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].Threshline);
-                BodePlot.SmoothPtsView = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].SmoothPoints);
+                BodePlot.SelectedData = SweepData[_tableDataIndex];
                 OnPropertyChanged(); 
             }
         }

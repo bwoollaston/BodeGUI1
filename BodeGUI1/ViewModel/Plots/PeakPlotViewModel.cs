@@ -47,12 +47,6 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _smoothPtsView; }
             set { _smoothPtsView = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<ResonanceSweepData> _sweepDataCollection;
-        public ObservableCollection<ResonanceSweepData> SweepDataColleciton
-        {
-            get { return _sweepDataCollection; }
-            set { _sweepDataCollection = value; OnPropertyChanged(); }
-        }
         //Used to set degree of data smoothing
         private int _deltaP;
         public int DeltaP

@@ -16,6 +16,7 @@ namespace BodeGUI1.ViewModel.Plots
             SweepData = new ObservableCollection<ResonanceSweepData>();
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
+            ThreshView = new ObservableCollection<DataPoint>();
             SelectedData = new ResonanceSweepData();
             Title = "Title";
             //HighX = 4e6;
@@ -50,6 +51,7 @@ namespace BodeGUI1.ViewModel.Plots
                 {
                     ImpedanceView = new ObservableCollection<DataPoint>(_selectedData.ImpdedancePlot);
                     PhaseView = new ObservableCollection<DataPoint>(_selectedData.PhasePlot);
+                    ThreshView = new ObservableCollection<DataPoint>(_selectedData.Threshline);
                 }
                 else
                 {
@@ -76,6 +78,12 @@ namespace BodeGUI1.ViewModel.Plots
         {
             get { return _phaseView; }
             set { _phaseView = value; OnPropertyChanged(); }
+        }
+        private ObservableCollection<DataPoint> _threshView;
+        public ObservableCollection<DataPoint> ThreshView
+        {
+            get { return _threshView; }
+            set { _threshView = value; OnPropertyChanged(); }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace BodeGUI1.ViewModel.DataModel
             Name = "Name";
             ImpdedancePlot = new List<DataPoint>();
             PhasePlot = new List<DataPoint>();
+            Threshline = new List<DataPoint>();
             PeakDataTable = new List<TableData> { };
             for(int i = 0; i < 10; i++)
             {
