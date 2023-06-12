@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mdi="assembly=MaterialDesign.Icons"
              xmlns:local="clr-namespace:BodeGUI1.View"
              xmlns:v="clr-namespace:BodeGUI1.View"
              xmlns:vm="clr-namespace:BodeGUI1.ViewModel"
@@ -16,43 +17,60 @@
         <gdc:GridToDoubleConverter x:Key="gtodc"/>
     </UserControl.Resources>
     <Grid>
-        <p:DataPiping.DataPipes>
-            <p:DataPipeCollection>
-                <p:DataPipe Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ActualWidth}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Button Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button.Content>
+                <md:PackIcon Kind="ChevronLeft"/>
+            </Button.Content>
+        </Button>
+        <Button Grid.Column="2" Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button.Content>
+                <md:PackIcon Kind="ChevronRight"/>
+            </Button.Content>
+        </Button>
+        <Grid Grid.Column="1">
+            <p:DataPiping.DataPipes>
+                <p:DataPipeCollection>
+                    <p:DataPipe Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ActualWidth}"
                          Target="{Binding Path=ListWidth, Mode=OneWayToSource}"/>
-            </p:DataPipeCollection>
-        </p:DataPiping.DataPipes>
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".7*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid>
+                </p:DataPipeCollection>
+            </p:DataPiping.DataPipes>
             <Grid.RowDefinitions>
+                <RowDefinition Height=".7*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
                   Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance, StringFormat={}{0:F3}}"/>
-                        <GridViewColumn Header="{Binding Headers[7]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Phase, StringFormat={}{0:F3}}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{Binding Headers[0]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="{Binding Headers[1]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Resfreq, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[2]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Res_impedance, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[3]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Antifreq, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[4]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Anti_impedance, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[5]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding QualityFactor, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[6]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Capacitance, StringFormat={}{0:F3}}"/>
+                            <GridViewColumn Header="{Binding Headers[7]}" Width="{Binding ColumnWidth}" DisplayMemberBinding="{Binding Phase, StringFormat={}{0:F3}}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vmp:PeakPlotViewModel}">
+                        <v:PeakPlotView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
         </Grid>
-        <ContentControl Content="{Binding BodePlot}" Grid.Row="1">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type vmp:PeakPlotViewModel}">
-                    <v:PeakPlotView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
     </Grid>
 </UserControl>

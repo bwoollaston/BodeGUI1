@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="MaterialDesign.Icons" Version="1.1.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.2" />
     <PackageReference Include="MaterialDesignThemes" Version="4.8.0" />
     <PackageReference Include="OmicronLab.VectorNetworkAnalysis.AutomationInterface" Version="3.25.2241.1" />

@@ -53,9 +53,12 @@ namespace BodeGUI1.ViewModel
             get { return _listWidth; }
             set
             {
-                _listWidth = value - 61;
-                ColumnWidth = _listWidth / DataTypes.Count;
-                OnPropertyChanged(nameof(ListWidth));
+                if(double.IsFinite(value))
+                {
+                    _listWidth = value - 61;
+                    ColumnWidth = _listWidth / DataTypes.Count;
+                    OnPropertyChanged();
+                }
             }
         }
     }
