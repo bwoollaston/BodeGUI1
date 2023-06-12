@@ -18,8 +18,8 @@ namespace BodeGUI1.ViewModel.Plots
             PhaseView = new ObservableCollection<DataPoint>();
             SelectedData = new ResonanceSweepData();
             Title = "Title";
-            HighX = 4e6;
-            LowX = 100;
+            //HighX = 4e6;
+            //LowX = 100;
         }
         private string _title;
         public string Title

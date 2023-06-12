@@ -17,6 +17,11 @@ namespace BodeGUI1.ViewModel.DataModel
             Name = "Name";
             ImpdedancePlot = new List<DataPoint>();
             PhasePlot = new List<DataPoint>();
+            PeakDataTable = new List<TableData> { };
+            for(int i = 0; i < 10; i++)
+            {
+                PeakDataTable.Add(RandCloneTableData());
+            }
         }
 
         public ResonanceSweepData Clone()
@@ -89,6 +94,21 @@ namespace BodeGUI1.ViewModel.DataModel
         {
             get { return _highX; }  
             set { _highX = value; OnPropertyChanged(); }
+        }
+        public TableData RandCloneTableData()
+        {
+            Random random = new Random();
+            return new TableData()
+            {
+                Index = Index,
+                Capacitance = random.Next(1, 100) * 1e-11,
+                Resfreq = (random.NextDouble() * 2000) + 180000,
+                Antifreq = (random.NextDouble() * 2000) + 180000,
+                Res_impedance = random.NextDouble() * 2000,
+                Anti_impedance = random.NextDouble() * 2000,
+                QualityFactor = random.NextDouble() * 2,
+                Phase = random.NextDouble() * 180
+            };
         }
         public ResonanceSweepData RandClone()
         {

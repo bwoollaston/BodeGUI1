@@ -22,12 +22,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <Button Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Button Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" Command="{Binding IndexDataLeft}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Button.Content>
                 <md:PackIcon Kind="ChevronLeft"/>
             </Button.Content>
         </Button>
-        <Button Grid.Column="2" Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Button Grid.Column="2" Padding="0" Style="{StaticResource MaterialDesignFlatDarkButton}" Command="{Binding IndexDataRight}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Button.Content>
                 <md:PackIcon Kind="ChevronRight"/>
             </Button.Content>

@@ -53,7 +53,7 @@ namespace BodeGUI1.ViewModel
             get { return _listWidth; }
             set
             {
-                if(double.IsFinite(value))
+                if(double.IsFinite(value))  //eliminates weird listview display error
                 {
                     _listWidth = value - 61;
                     ColumnWidth = _listWidth / DataTypes.Count;
