@@ -114,9 +114,11 @@ namespace BodeGUI1.ViewModel.DataModel
         {
             Random random = new Random();
             List<DataPoint> temp = new List<DataPoint>();
+            List<TableData> tempTable = new List<TableData>();
             for (int j = 0; j < 10; j++)
             {
                 temp.Add(new DataPoint(Math.Pow(2, j), random.NextDouble() * 1000));
+                tempTable.Add(RandCloneTableData());
             }
             return new ResonanceSweepData()
             {
@@ -130,6 +132,7 @@ namespace BodeGUI1.ViewModel.DataModel
                 Anti_impedance = random.NextDouble() * 2000,
                 QualityFactor = random.NextDouble() * 2,
                 Phase = random.NextDouble() * 180,
+                PeakDataTable = tempTable,
                 HighX = 190000,
                 LowX = 180000,
                 ImpdedancePlot = temp

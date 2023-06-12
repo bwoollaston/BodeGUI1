@@ -2,6 +2,7 @@
 using BodeGUI1.ViewModel.DataModel;
 using BodeGUI1.ViewModel.Plots;
 using BodeGUI1.ViewModel.UI;
+using OxyPlot;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,24 @@ namespace BodeGUI1.ViewModel
         public PeakTrackMeasurementViewModel()
         {
             SweepData = new ObservableCollection<ResonanceSweepData>();
+            CurrentData = new ObservableCollection<TableData>();
             BodePlot = new PeakPlotViewModel();
             IndexDataRight = new DelegateCommand(IndexRight);
             IndexDataLeft = new DelegateCommand(IndexLeft);
+        }
+        private int _tableDataIndex;
+        public int TableDataIndex
+        {
+            get { return _tableDataIndex; }
+            set 
+            { 
+                _tableDataIndex = value;
+                CurrentData = new ObservableCollection<TableData>(SweepData[_tableDataIndex].PeakDataTable);
+                BodePlot.ImpedanceView = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].ImpdedancePlot);
+                BodePlot.ThreshPoints = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].Threshline);
+                BodePlot.SmoothPtsView = new ObservableCollection<DataPoint>(SweepData[_tableDataIndex].SmoothPoints);
+                OnPropertyChanged(); 
+            }
         }
         private DelegateCommand _indexDataRight;
         public DelegateCommand IndexDataRight
@@ -49,7 +65,7 @@ namespace BodeGUI1.ViewModel
             set
             {
                 _sweepData = value;
-                CurrentData = (ObservableCollection<TableData>)_sweepData[_sweepData.Count - 1].PeakDataTable; 
+                if(_sweepData.Count!=0) CurrentData = new ObservableCollection<TableData>(_sweepData[_sweepData.Count - 1].PeakDataTable); 
                 OnPropertyChanged(); 
             }
         }
@@ -61,11 +77,11 @@ namespace BodeGUI1.ViewModel
         }
         private void IndexRight()
         {
-
+            if (TableDataIndex < SweepData.Count - 1) TableDataIndex++;
         }
         private void IndexLeft()
         {
-
+            if (TableDataIndex > 0) TableDataIndex--;
         }
         public void ClearPlots()
         {

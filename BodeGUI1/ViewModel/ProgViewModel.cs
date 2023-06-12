@@ -15,6 +15,7 @@ using System.Globalization;
 using BodeGUI1.ExceptionHandlers;
 using BodeGUI1.Utility;
 using OxyPlot;
+using BodeGUI1.ViewModel.Data;
 
 namespace BodeGUI1.ViewModel
 {
@@ -51,6 +52,7 @@ namespace BodeGUI1.ViewModel
                 ResonanceMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
                 PeakTrackMeasurementViewModel.SweepData.Add(BodeEvents.SweepData.RandClone());
             }
+            PeakTrackMeasurementViewModel.TableDataIndex = 9; 
         }
         private async void BodeControls_StartMeasurementClicked(object? sender, EventArgs e)
         {

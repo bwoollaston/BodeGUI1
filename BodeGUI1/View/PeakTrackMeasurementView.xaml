@@ -48,7 +48,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0" ItemsSource="{Binding SweepData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
+                <ListView Grid.Row="0" ItemsSource="{Binding CurrentData}" MinHeight="100" Style="{DynamicResource MaterialDesignListView}"
                   Width="{Binding ListWidth,Mode=OneWayToSource}" Margin="55,0,6,0">
                     <ListView.View>
                         <GridView>

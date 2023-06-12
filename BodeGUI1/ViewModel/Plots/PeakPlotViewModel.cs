@@ -35,17 +35,23 @@ namespace BodeGUI1.ViewModel.Plots
             get { return _smoothPts; }
             set { _smoothPts = value; OnPropertyChanged(); }
         }
+        private ObservableCollection<DataPoint> _threshPoints;
+        public ObservableCollection<DataPoint> ThreshPoints
+        {
+            get { return _threshPoints; }
+            set { _threshPoints = value; OnPropertyChanged(); } 
+        }
         private ObservableCollection<DataPoint> _smoothPtsView;
         public ObservableCollection<DataPoint> SmoothPtsView
         {
             get { return _smoothPtsView; }
             set { _smoothPtsView = value; OnPropertyChanged(); }
         }
-        private ObservableCollection<ObservableCollection<DataPoint>> _points;
-        public ObservableCollection<ObservableCollection<DataPoint>> Points
+        private ObservableCollection<ResonanceSweepData> _sweepDataCollection;
+        public ObservableCollection<ResonanceSweepData> SweepDataColleciton
         {
-            get { return _points; }
-            set { _points = value; OnPropertyChanged(); }
+            get { return _sweepDataCollection; }
+            set { _sweepDataCollection = value; OnPropertyChanged(); }
         }
         //Used to set degree of data smoothing
         private int _deltaP;
