@@ -134,8 +134,8 @@ namespace BodeGUI1.ViewModel.DataModel
                 QualityFactor = random.NextDouble() * 2,
                 Phase = random.NextDouble() * 180,
                 PeakDataTable = tempTable,
-                HighX = 190000,
-                LowX = 180000,
+                HighX = 10,
+                LowX = 0,
                 ImpdedancePlot = temp
             };
         }

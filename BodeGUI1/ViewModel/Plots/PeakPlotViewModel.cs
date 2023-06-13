@@ -21,8 +21,8 @@ namespace BodeGUI1.ViewModel.Plots
             ThreshPoints = new ObservableCollection<DataPoint>();
             SmoothPtsView = new ObservableCollection<DataPoint>();
             DeltaP = 3;
-            //HighX = 1e6;
-            //LowX = 1000;
+            HighX = 1e6;
+            LowX = 1000;
         }
         private int _numPoints;
         public int NumPoints

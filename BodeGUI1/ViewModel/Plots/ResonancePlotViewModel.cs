@@ -14,8 +14,8 @@ namespace BodeGUI1.ViewModel.Plots
         public ResonancePlotViewModel()
         {
             Title = "Bode Impedance vs. Frequency Plot";
-            //HighX = 190000;
-            //LowX = 180000;
+            HighX = 190000;
+            LowX = 180000;
         }
         public async void UpdateUI()
         {
