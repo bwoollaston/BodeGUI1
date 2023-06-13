@@ -34,7 +34,12 @@ namespace BodeGUI1.ViewModel
             { 
                 _tableDataIndex = value;
                 CurrentData = new ObservableCollection<TableData>(SweepData[_tableDataIndex].PeakDataTable);
-                BodePlot.SelectedData = SweepData[_tableDataIndex];
+                if (_sweepData.Count != 0)
+                {
+                    CurrentData = new ObservableCollection<TableData>(SweepData[_tableDataIndex].PeakDataTable);
+                    BodePlot.SelectedData = SweepData[_tableDataIndex].Clone();
+                    BodePlot.SmoothData();
+                }
                 OnPropertyChanged(); 
             }
         }
@@ -63,7 +68,7 @@ namespace BodeGUI1.ViewModel
             set
             {
                 _sweepData = value;
-                if(_sweepData.Count!=0) CurrentData = new ObservableCollection<TableData>(_sweepData[_sweepData.Count - 1].PeakDataTable); 
+                if(_sweepData.Count!=0) CurrentData = new ObservableCollection<TableData>(_sweepData[TableDataIndex].PeakDataTable); 
                 OnPropertyChanged(); 
             }
         }

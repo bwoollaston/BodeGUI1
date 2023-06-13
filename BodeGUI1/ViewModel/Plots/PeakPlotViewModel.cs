@@ -18,6 +18,7 @@ namespace BodeGUI1.ViewModel.Plots
             ImpedanceView = new ObservableCollection<DataPoint>();
             PhaseView = new ObservableCollection<DataPoint>();
             SmoothPts = new ObservableCollection<DataPoint>();
+            ThreshPoints = new ObservableCollection<DataPoint>();
             SmoothPtsView = new ObservableCollection<DataPoint>();
             DeltaP = 3;
             //HighX = 1e6;
@@ -39,7 +40,11 @@ namespace BodeGUI1.ViewModel.Plots
         public ObservableCollection<DataPoint> ThreshPoints
         {
             get { return _threshPoints; }
-            set { _threshPoints = value; OnPropertyChanged(); } 
+            set 
+            { 
+                _threshPoints = value;
+                OnPropertyChanged(); 
+            } 
         }
         private ObservableCollection<DataPoint> _smoothPtsView;
         public ObservableCollection<DataPoint> SmoothPtsView
